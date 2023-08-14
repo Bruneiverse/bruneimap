@@ -17,5 +17,5 @@ Depends:
 RoxygenNote: 7.2.3
 Suggests: 
     tidyverse
-URL: https://github.com/propertypricebn/datagis
-BugReports: https://github.com/propertypricebn/datagis/issues
+URL: https://github.com/propertypricebn/bruneimap
+BugReports: https://github.com/propertypricebn/bruneimap/issues
