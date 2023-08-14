@@ -78,6 +78,8 @@ bnkpg_df <- as_tibble(kpg_sf) %>%
   # drop_na() %>%
   arrange(id)
 
+write_csv(bnkpg_df, file = "datasrc/bn_kpg_level_data.csv")
+
 usethis::use_data(bnkpg_df, overwrite = TRUE, compress = "xz")
 
 # # Examples plot
