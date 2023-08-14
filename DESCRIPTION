@@ -19,3 +19,5 @@ Suggests:
     tidyverse
 URL: https://github.com/propertypricebn/bruneimap
 BugReports: https://github.com/propertypricebn/bruneimap/issues
+Imports: 
+    sf
