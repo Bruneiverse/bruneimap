@@ -1,7 +1,7 @@
 Package: bruneimap
 Type: Package
 Title: Maps of Brunei
-Version: 0.1.0
+Version: 0.1.0.9001
 Authors@R: 
     person("Haziq", "Jamil",              
            email = "haziq.jamil@gmail.com",
@@ -19,5 +19,5 @@ Suggests:
     tidyverse
 URL: https://github.com/propertypricebn/bruneimap
 BugReports: https://github.com/propertypricebn/bruneimap/issues
-Imports: 
+Depends: 
     sf
