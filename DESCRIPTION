@@ -13,11 +13,10 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Depends: 
-    R (>= 2.10)
+    R (>= 2.10),
+    sf
 RoxygenNote: 7.2.3
 Suggests: 
     tidyverse
 URL: https://github.com/propertypricebn/bruneimap
 BugReports: https://github.com/propertypricebn/bruneimap/issues
-Depends: 
-    sf
