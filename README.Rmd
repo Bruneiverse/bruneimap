@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 Provides Brunei GIS data in the form of a `sf` (simple features) object ready for plotting and analysis in R. 
-The smallest (areal) unit of analysis is a "kampong", which in turn is contained within mukims and districts.
+The smallest (areal) unit of analysis is a "kampong" (although not all areas are actual kampongs), which in turn is contained within mukims and districts.
 
 ## Installation
 
@@ -37,9 +37,9 @@ There are three `sf` files contained in the package:
 
 1. `dis_sf` (District level boundaries)
 2. `mkm_sf` (Mukim level boundaries)
-3. `kpg_sf` (Kampong level boundaries)
+3. `kpg_sf` ("Kampong" level boundaries)
 
-Most likely you will want to use the kampong level data. Of course, the `kpg_sf` can be summarised in terms of mukims and districts, but for convenience the other two data sets are provided as well. 
+Most likely you will want to use either the kampong level or mukim level data.
 
 ### Data
 
@@ -58,8 +58,9 @@ glimpse(kpg_sf)
 
 ```{r brunei_map_plot, message = FALSE, warning = FALSE}
 ggplot(kpg_sf) +
-  geom_sf(aes(fill = mukim)) +
+  geom_sf(aes(fill = mukim), col = "gray50") +
   geom_sf(data = mkm_sf, col = "black", lwd = 0.5, fill = NA) +
+  geom_sf(data = filter(kpg_sf, is.na(mukim)), fill = "gray70", col = "gray70") +
   theme(legend.position = "none") +
   scale_fill_viridis_d(option = "turbo")
 ```
