@@ -4,12 +4,12 @@ id,kampong,mukim,district
 3,Kg. Sibut,Mukim Amo,Temburong
 4,Kg. Sumbiling Baru,Mukim Amo,Temburong
 5,Kg. Batang Duri,Mukim Amo,Temburong
-6,Kg. Sumbiling Lama,Mukim Amo,Temburong
+6,Kg. Sumbiling Lama Amo,Mukim Amo,Temburong
 7,Hutan Simpan Batu Apoi,Mukim Amo,Temburong
 8,Kg. Selapon,Mukim Batu Apoi,Temburong
 9,Kg. Lepong,Mukim Bokok,Temburong
 10,Kg. Semabat,Mukim Bokok,Temburong
-11,Kawasan Bahaya,Mukim Bokok,Temburong
+11,Kawasan Bahaya Mukim Bokok,Mukim Bokok,Temburong
 12,Kg. Temada,Mukim Bokok,Temburong
 13,Hutan Simpan Batu Apoi,Mukim Bokok,Temburong
 14,Kg. Ikas,Mukim Keriam,Tutong
@@ -137,7 +137,7 @@ id,kampong,mukim,district
 136,Kg. Setia Pahlawan,Mukim Peramu,Brunei Muara
 137,Kg. Sungai Lampai,Mukim Kota Batu,Brunei Muara
 138,Kg. Sinarubai,Mukim Kilanas,Brunei Muara
-139,Kg. Subok,Mukim Kota Batu,Brunei Muara
+139,Kg. Subok Kota Batu,Mukim Kota Batu,Brunei Muara
 140,Kg. Sungai Akar,Mukim Berakas B,Brunei Muara
 141,Kg. Sungai Asam,Mukim Lumapas,Brunei Muara
 142,Kg. Sungai Belukut,Mukim Kota Batu,Brunei Muara
@@ -173,21 +173,21 @@ id,kampong,mukim,district
 174,Pekan Muara,Mukim Serasa,Brunei Muara
 176,STKRJ Lambak Kiri,Mukim Berakas A,Brunei Muara
 177,Kg. Meragang,Mukim Serasa,Brunei Muara
-178,Kg. Parit,Mukim Pangkalan Batu,Brunei Muara
-179,Kg. Parit,Mukim Kianggeh,Brunei Muara
-180,Kg. Panchor,Mukim Mentiri,Brunei Muara
+178,Kg. Parit Pangkalan Batu,Mukim Pangkalan Batu,Brunei Muara
+179,Kg. Parit Kianggeh,Mukim Kianggeh,Brunei Muara
+180,Kg. Panchor Mentiri,Mukim Mentiri,Brunei Muara
 181,Lingkungan Diplomatik,Mukim Kianggeh,Brunei Muara
 182,Kg. Belaban,Mukim Amo,Temburong
 183,Kg. Sibulu,Mukim Amo,Temburong
 184,Kg. Selangan,Mukim Amo,Temburong
-185,Kg. Parit,Mukim Amo,Temburong
+185,Kg. Parit Amo,Mukim Amo,Temburong
 186,Kg. Kastam Lama,Mukim Bangar,Temburong
 187,Kg. Parit Belayang,Mukim Bangar,Temburong
-188,Kg. Peliunan,Mukim Bangar,Temburong
+188,Kg. Peliunan Bangar,Mukim Bangar,Temburong
 189,Kg. Sungai Sulok,Mukim Bangar,Temburong
 190,Kg. Sungai Getahan,Mukim Bangar,Temburong
 191,Kg. Seri Tanjong Belayang,Mukim Bangar,Temburong
-192,Kg. Menengah,Mukim Bangar,Temburong
+192,Kg. Menengah Bangar,Mukim Bangar,Temburong
 193,Kg. Sungai Tanit,Mukim Bangar,Temburong
 194,Pekan Bangar,Mukim Bangar,Temburong
 195,Kg. Batang Tuau,Mukim Bangar,Temburong
@@ -196,7 +196,7 @@ id,kampong,mukim,district
 198,Kg. Batu Bejarah,Mukim Bangar,Temburong
 199,Kg. Puni,Mukim Bangar,Temburong
 200,Kg. Semamang,Mukim Bangar,Temburong
-201,Kg. Subok,Mukim Bangar,Temburong
+201,Kg. Subok Bangar,Mukim Bangar,Temburong
 202,Kg. Kinalong,Mukim Bangar,Temburong
 203,Kg. Ujong Jalan,Mukim Bangar,Temburong
 204,Kg. Bang Bulan,Mukim Bangar,Temburong
@@ -209,13 +209,13 @@ id,kampong,mukim,district
 211,Kg. Negalang Ering,Mukim Batu Apoi,Temburong
 212,Kg. Selilit,Mukim Batu Apoi,Temburong
 213,Kg. Batu Apoi,Mukim Batu Apoi,Temburong
-214,Kg. Peliunan,Mukim Batu Apoi,Temburong
+214,Kg. Peliunan Batu Apoi,Mukim Batu Apoi,Temburong
 215,Kg. Tanjong Bungar,Mukim Batu Apoi,Temburong
 216,Kg. Rebada,Mukim Batu Apoi,Temburong
 217,Kg. Lamaling,Mukim Batu Apoi,Temburong
 218,Kg. Sungai Radang,Mukim Batu Apoi,Temburong
 219,Kg. Gadong Baru,Mukim Batu Apoi,Temburong
-220,Kg. Simbatang,Mukim Batu Apoi,Temburong
+220,Kg. Simbatang Batu Apoi,Mukim Batu Apoi,Temburong
 221,Kg. Sekurop,Mukim Batu Apoi,Temburong
 222,Kg. Buda-Buda,Mukim Bokok,Temburong
 223,Kg. Belais Kecil,Mukim Bokok,Temburong
@@ -225,7 +225,7 @@ id,kampong,mukim,district
 227,Kg. Bokok,Mukim Bokok,Temburong
 228,Kg. Maniup,Mukim Bokok,Temburong
 229,Kg. Bakarut,Mukim Bokok,Temburong
-230,Kg. Simbatang,Mukim Bokok,Temburong
+230,Kg. Simbatang Bokok,Mukim Bokok,Temburong
 231,Kg. Kenua,Mukim Bokok,Temburong
 232,Hutan Simpan Labu,Mukim Labu,Temburong
 233,Kg. Piasau-Piasau,Mukim Labu,Temburong
@@ -243,18 +243,16 @@ id,kampong,mukim,district
 246,Kg. Perpindahan Mata-Mata,Mukim Gadong B,Brunei Muara
 247,STKRJ Mata-Mata Kawasan 3,Mukim Gadong B,Brunei Muara
 248,STKRJ Mata-Mata Kawasan 1,Mukim Gadong B,Brunei Muara
-249,NA,Mukim Gadong B,Brunei Muara
 250,STKRJ Tungku Kawasan 1,Mukim Gadong A,Brunei Muara
 251,STKRJ Tungku Kawasan 3,Mukim Gadong A,Brunei Muara
 252,STKRJ Tungku Kawasan 2,Mukim Gadong A,Brunei Muara
 253,STKRJ Rimba,Mukim Gadong A,Brunei Muara
-254,Kg. Sumbiling Lama,Mukim Sungai Kedayan,Brunei Muara
+254,Kg. Sumbiling Lama Sungai Kedayan,Mukim Sungai Kedayan,Brunei Muara
 255,Kg. Bukit Salat,Mukim Sungai Kedayan,Brunei Muara
 256,Pusat Bandar,Mukim Kianggeh,Brunei Muara
-257,Kg. Panchor,Mukim Lumapas,Brunei Muara
+257,Kg. Panchor Lumapas,Mukim Lumapas,Brunei Muara
 258,STKRJ Lumapas Kawasan 1,Mukim Lumapas,Brunei Muara
 259,Kg. Kilugus,Mukim Lumapas,Brunei Muara
-260,Kg. Kilugus,Mukim Lumapas,Brunei Muara
 261,Kg. Kasat,Mukim Lumapas,Brunei Muara
 262,Kg. Baong,Mukim Lumapas,Brunei Muara
 264,Kg. Sungai Buloh,Mukim Mentiri,Brunei Muara
@@ -273,7 +271,7 @@ id,kampong,mukim,district
 277,Kg. Apak-Apak,Mukim Sukang,Belait
 278,Kg. Sungai Hilir,Mukim Sukang,Belait
 279,Kg. Bukit Sulang,Mukim Lamunin,Tutong
-280,Kg. Menengah,Mukim Lamunin,Tutong
+280,Kg. Menengah Lamunin,Mukim Lamunin,Tutong
 281,Kg. Mumong A,Mukim Kuala Belait,Belait
 282,Kg. Mumong B,Mukim Kuala Belait,Belait
 283,Pekan Kuala Belait,Mukim Kuala Belait,Belait
@@ -292,7 +290,7 @@ id,kampong,mukim,district
 296,Kg. Tanjong Rangas,Mukim Kuala Balai,Belait
 297,Kg. Tanjong Sudai,Mukim Kuala Balai,Belait
 298,Kg. Tugong,Mukim Kuala Balai,Belait
-299,NA,Mukim Kuala Balai,Belait
+299,Hutan Simpan Kuala Balai,Mukim Kuala Balai,Belait
 300,Kg. Gates,Mukim Labi,Belait
 301,Kg. Kenapol,Mukim Labi,Belait
 302,Kg. Labi,Mukim Labi,Belait
@@ -357,7 +355,7 @@ id,kampong,mukim,district
 367,Kg. Bukit Sibut,Mukim Tanjong Maya,Tutong
 368,Kg. Sungai Paku,Mukim Telisai,Tutong
 369,Kg. Keramut,Mukim Telisai,Tutong
-370,NA,Mukim Liang,Belait
+370,Badas Liang,Mukim Liang,Belait
 371,Perkhemahan Lumut,Mukim Liang,Belait
 372,Kg. Sungai Tali,Mukim Liang,Belait
 373,Perumahan Negara Lumut Kawasan 2,Mukim Liang,Belait
@@ -410,35 +408,24 @@ id,kampong,mukim,district
 420,Kg. Bukit Tuding,Mukim Melilas,Belait
 421,Kg. Mendaram Kecil,Mukim Labi,Belait
 422,Kg. Teraja,Mukim Labi,Belait
-882,NA,NA,NA
-883,NA,NA,NA
-884,NA,NA,NA
-893,NA,NA,NA
-894,NA,NA,NA
+882,Pulau Bedukang,NA,Brunei Muara
+883,Pulau Muara Besar,NA,Brunei Muara
+884,Tanjong Pelumpong,NA,Brunei Muara
+893,Pulau Si Mangga Besar,NA,Brunei Muara
+894,Pulau Suhung Damit,NA,Brunei Muara
 895,NA,NA,NA
 896,NA,NA,NA
-901,NA,NA,NA
-902,NA,NA,NA
-908,NA,NA,NA
-910,NA,NA,NA
-911,NA,NA,NA
-913,NA,NA,NA
-914,NA,NA,NA
-915,NA,NA,NA
-917,NA,NA,NA
-920,NA,NA,NA
-921,NA,NA,NA
-922,NA,NA,NA
-923,NA,NA,NA
-924,NA,NA,NA
-925,NA,NA,NA
-926,NA,NA,NA
-927,NA,NA,NA
-928,NA,NA,NA
-929,NA,NA,NA
-930,NA,NA,NA
-932,NA,NA,NA
-933,NA,NA,NA
+901,Pulau Chermin,NA,Brunei Muara
+902,Pulau Kaingaran,NA,Brunei Muara
+908,Pulau Baru-Baru,NA,Brunei Muara
+910,Pulau Berbunut,NA,Temburong
+911,Pulau Selirong,NA,Temburong
+915,Pulau Siarau,NA,Temburong
+917,Pulau Sibungor,NA,Brunei Muara
+921,Pulau Bakuku,NA,Tutong
+925,Pulau Tarap,NA,Temburong
+926,Pulau Selanjak,NA,Temburong
+933,Pulau Setawat,NA,Tutong
 954,Kg. Tungku,Mukim Gadong A,Brunei Muara
 958,Perkhemahan Berakas,Mukim Berakas A,Brunei Muara
 959,Kg. Tanah Jambu,Mukim Mentiri,Brunei Muara
@@ -449,4 +436,4 @@ id,kampong,mukim,district
 967,Kg. Kuala Tutong,Mukim Pekan Tutong,Tutong
 968,Kg. Danau,Mukim Telisai,Tutong
 969,Kg. Tumpuan Ugas,Mukim Telisai,Tutong
-983,NA,NA,NA
+983,Pulau Pepatan,NA,Brunei Muara
