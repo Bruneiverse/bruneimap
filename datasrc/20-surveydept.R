@@ -1,27 +1,37 @@
 library(tidyverse)
-library(geojsonsf)
-# library(ggsflabel)
-library(gghighlight)
+library(sf)
 library(spdep)
 theme_set(theme_bw())
 
 # Load geojson files -----------------------------------------------------------
 
-# Data obtained from https://github.com/thewheat/brunei_map
-import_geojsn_sf <- function(path) {
-  geojson_sf(path) %>%
-    sf::st_make_valid(.) %>%
-    sf::st_cast(., "MULTIPOLYGON") %>%
-    mutate(name = stringr::str_to_title(name)) %>%
-    # Add centroids
-    bind_cols(st_centroid(.) %>% st_coordinates() %>% suppressWarnings())
-}
+# Data obtained from https://github.com/thewheat/brunei_map 13/9/23: I found
+# that importing using sf package messes up the geometries. So instead, I opted
+# to import the GeoJSON files using geopandas library in Python, and convert it
+# to shape file. The shape files are then imported here.
+# import_geojsn_sf <- function(path) {
+#   geojson_sf(path) %>%
+#     sf::st_make_valid(.) %>%
+#     sf::st_cast(., "MULTIPOLYGON") %>%
+#     mutate(name = stringr::str_to_title(name)) %>%
+#     # Add centroids
+#     bind_cols(st_centroid(.) %>% st_coordinates() %>% suppressWarnings())
+# }
+#
+# c(dis_sf = "datasrc/map_data/geojson/districts_latlon.txt.geojson",
+#   mkm_sf = "datasrc/map_data/geojson/mukims_latlon.txt.geojson",
+#   kpg_sf = "datasrc/map_data/geojson/kampongs_latlon.txt.geojson") %>%
+#   purrr::map(\(x) {
+#     import_geojsn_sf(x) %>%
+#       sf::st_as_sf() %>%
+#       as_tibble() %>%
+#       sf::st_as_sf()
+#   }) %>%
+#   list2env(envir = .GlobalEnv)
 
-c(dis_sf = "datasrc/map_data/geojson/districts_latlon.txt.geojson",
-  mkm_sf = "datasrc/map_data/geojson/mukims_latlon.txt.geojson",
-  kpg_sf = "datasrc/map_data/geojson/kampongs_latlon.txt.geojson") %>%
-  purrr::map(import_geojsn_sf) %>%
-  list2env(envir = .GlobalEnv)
+dis_sf <- sf::read_sf("datasrc/map_data/geojson_shp/district.shp")
+mkm_sf <- sf::read_sf("datasrc/map_data/geojson_shp/mukim.shp")
+kpg_sf <- sf::read_sf("datasrc/map_data/geojson_shp/kampong.shp")
 
 # Clean up ---------------------------------------------------------------------
 
