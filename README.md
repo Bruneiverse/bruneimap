@@ -10,8 +10,8 @@
 
 Provides Brunei GIS data in the form of a `sf` (simple features) object
 ready for plotting and analysis in R. The smallest (areal) unit of
-analysis is a “kampong”, which in turn is contained within mukims and
-districts.
+analysis is a “kampong” (although not all areas are actual kampongs),
+which in turn is contained within mukims and districts.
 
 ## Installation
 
@@ -29,11 +29,10 @@ There are three `sf` files contained in the package:
 
 1.  `dis_sf` (District level boundaries)
 2.  `mkm_sf` (Mukim level boundaries)
-3.  `kpg_sf` (Kampong level boundaries)
+3.  `kpg_sf` (“Kampong” level boundaries)
 
-Most likely you will want to use the kampong level data. Of course, the
-`kpg_sf` can be summarised in terms of mukims and districts, but for
-convenience the other two data sets are provided as well.
+Most likely you will want to use either the kampong level or mukim level
+data.
 
 ### Data
 
@@ -46,24 +45,26 @@ library(sf)
 
 # What's in our data set?
 glimpse(kpg_sf)
-#> Rows: 451
-#> Columns: 8
-#> $ id       <dbl> 28, 29, 30, 31, 32, 25, 26, 27, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10…
-#> $ kampong  <chr> "Perumahan Negara Rimba Kawasan 5", "Perumahan Negara Mentiri…
-#> $ mukim    <chr> "Mukim Gadong A", "Mukim Mentiri", "Mukim Mentiri", "Mukim Be…
-#> $ area     <dbl> 1697312.38, 2850799.25, 926182.25, 4115267.50, 902883.44, 137…
-#> $ X        <dbl> 114.9061, 115.0368, 115.0269, 114.9399, 114.9472, 114.9197, 1…
-#> $ Y        <dbl> 4.968952, 4.970981, 4.970273, 4.924705, 4.936163, 4.963643, 4…
-#> $ district <chr> "Brunei Muara", "Brunei Muara", "Brunei Muara", "Brunei Muara…
-#> $ geometry <MULTIPOLYGON [°]> MULTIPOLYGON (((114.9104 4...., MULTIPOLYGON (((…
+#> Rows: 438
+#> Columns: 9
+#> $ id        <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+#> $ kampong   <chr> "Kg. Biang", "Kg. Amo", "Kg. Sibut", "Kg. Sumbiling Baru", "…
+#> $ mukim     <chr> "Mukim Amo", "Mukim Amo", "Mukim Amo", "Mukim Amo", "Mukim A…
+#> $ district  <chr> "Temburong", "Temburong", "Temburong", "Temburong", "Temburo…
+#> $ geometry  <POLYGON [°]> POLYGON ((115.1546 4.66665,..., POLYGON ((115.1626 4…
+#> $ X         <dbl> 115.1244, 115.1512, 115.1080, 115.1071, 115.1600, 115.1247, …
+#> $ Y         <dbl> 4.666180, 4.631506, 4.611763, 4.597677, 4.574173, 4.587969, …
+#> $ perimeter [m] 21056.211 [m], 38683.611 [m], 16291.051 [m], 12994.328 [m], 33…
+#> $ area      [m^2] 19281117.5 [m^2], 52037879.4 [m^2], 7597654.2 [m^2], 6652565…
 ```
 
 ### Plots
 
 ``` r
 ggplot(kpg_sf) +
-  geom_sf(aes(fill = mukim)) +
+  geom_sf(aes(fill = mukim), col = "gray50") +
   geom_sf(data = mkm_sf, col = "black", lwd = 0.5, fill = NA) +
+  geom_sf(data = filter(kpg_sf, is.na(mukim)), fill = "gray70", col = "gray70") +
   theme(legend.position = "none") +
   scale_fill_viridis_d(option = "turbo")
 ```
