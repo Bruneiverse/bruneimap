@@ -291,7 +291,7 @@ id,kampong,mukim,district
 297,Kg. Tanjong Sudai,Mukim Kuala Balai,Belait
 298,Kg. Tugong,Mukim Kuala Balai,Belait
 299,Hutan Simpan Kuala Balai,Mukim Kuala Balai,Belait
-300,Kg. Gates,Mukim Labi,Belait
+300,Kg. Gatas,Mukim Labi,Belait
 301,Kg. Kenapol,Mukim Labi,Belait
 302,Kg. Labi,Mukim Labi,Belait
 303,Kg. Labi Lama,Mukim Labi,Belait
@@ -413,8 +413,8 @@ id,kampong,mukim,district
 884,Tanjong Pelumpong,NA,Brunei Muara
 893,Pulau Si Mangga Besar,NA,Brunei Muara
 894,Pulau Suhung Damit,NA,Brunei Muara
-895,NA,NA,Brunei Muara
-896,NA,NA,Brunei Muara
+895,Pulau ...,NA,Brunei Muara
+896,Pulau ...,NA,Brunei Muara
 901,Pulau Chermin,NA,Brunei Muara
 902,Pulau Kaingaran,NA,Brunei Muara
 908,Pulau Baru-Baru,NA,Brunei Muara

@@ -4,3 +4,4 @@
 ^datasrc$
 ^README\.Rmd$
 ^\.github$
+^notebooks$
