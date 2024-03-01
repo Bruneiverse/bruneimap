@@ -241,10 +241,13 @@ kpg_sf[kpg_sf$id == 370, ]$kampong  <- "Badas Liang"
 # Kuala Balai
 kpg_sf[kpg_sf$id == 299, ]$kampong  <- "Hutan Simpan Kuala Balai"
 # The two pulaus which we don't know the names
+kpg_sf[kpg_sf$id == 895, ]$kampong  <- "Pulau ..."
 kpg_sf[kpg_sf$id == 895, ]$district  <- "Brunei Muara"
+kpg_sf[kpg_sf$id == 896, ]$kampong  <- "Pulau ..."
 kpg_sf[kpg_sf$id == 896, ]$district  <- "Brunei Muara"
 
-
+# Kg. Gatas
+kpg_sf[kpg_sf$id == 300, ]$kampong <- "Kg. Gatas"
 
 # Delete these ids:
 # - 920 island does not exist
