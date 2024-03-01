@@ -271,7 +271,23 @@ kpg_sf <-
   mutate(perimeter = st_length(st_boundary(geometry)),
          area = st_area(geometry))
 
+# Create an overall sillouette of Brunei ---------------------------------------
+mainland <- st_union(dis_sf$geometry)
+pulaus <-
+  kpg_sf |>
+  filter(grepl("pulau", kampong, ignore.case = TRUE)) |>
+  filter(kampong != "Pulau Bakuku") |>
+  filter(kampong != "Pulau Setawat") |>
+  filter(!grepl("Kg.", kampong))
+brn_sf <-
+  tibble(
+    name = c("Mainland", pulaus$kampong),
+    geometry = c(mainland, pulaus$geometry)
+  ) |>
+  st_as_sf()
+
 # Export to Rdata --------------------------------------------------------------
+usethis::use_data(brn_sf, overwrite = TRUE, compress = "xz")
 usethis::use_data(dis_sf, overwrite = TRUE, compress = "xz")
 usethis::use_data(mkm_sf, overwrite = TRUE, compress = "xz")
 usethis::use_data(kpg_sf, overwrite = TRUE, compress = "xz")
