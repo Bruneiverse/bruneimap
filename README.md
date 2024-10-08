@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/EM3FG0CJ)
 
-Hi
+Hi. These are the questions that we are going to focus on :
 
 1. What is the spatial distribution of hospitals in Brunei?
    - Analyze the geographic spread and clustering of hospital locations.
