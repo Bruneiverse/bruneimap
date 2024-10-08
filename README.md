@@ -13,3 +13,5 @@ Hi. These are the questions that we are going to focus on :
 
 4. How does population density relate to hospital distribution?
    - Is there multiple hospital in a high population density area
+     
+![Uploading 216ea745-e20f-40b6-a9e0-a642f6b07761.png…]()
