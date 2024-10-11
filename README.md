@@ -10,7 +10,7 @@
 
 ## Hey! 👋
 
-We are from the group [SINE(rs)! ](#3944Bc)
+We are from the group [SINE(rs)! ](#900603)
 [Angela](https://github.com/Angela-29) | [Syafiqah](https://github.com/SyafYus) | [Irdina](https://github.com/nrirdnbtrsy)
 --- | --- | --- | 
 
