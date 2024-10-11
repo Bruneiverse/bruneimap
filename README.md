@@ -8,15 +8,11 @@
 
 <p align='center'><b>⤿ Hospitals and Clinics! 🏥🧑🏻‍⚕️/
 
-
-
-<h2 style="text-align: center;">SM-2302</h2>
-<p style="text-align: center;">Spatial DAta Analysis.</p>
-
-
 ## Hey! 👋
 
-We are from the group SINE(rs)! 
+We are from the group [SINE(rs)! ](#3944Bc)
+[Angela](https://github.com/Angela-29) | [Syafiqah](https://github.com/SyafYus) | [Irdina](https://github.com/nrirdnbtrsy)
+--- | --- | --- | 
 
 Hi. These are the questions that we are going to focus on :
 
