@@ -2,11 +2,10 @@
 
 ![Untitled11_20241011102559](https://github.com/user-attachments/assets/922dee37-1e98-4350-a6df-ab25c2e3bd9d)
 
+<h2 align='center'>【📊 Spatial Data Analysis  🖥️🧾】⤿ of:</h2>
 
-<h2 align='center'>【Spatial Data Analysis】....of:</h2>
 
-
-<p align='center'><b>⤿ Hospitals and Clinics! 🏥🧑🏻‍⚕️/ under Ministry Of Health
+<p align='center'><b> Hospitals and Clinics! 🏥🧑🏻‍⚕️/ under Ministry Of Health
 
 ## Hello! 👋
 
