@@ -28,4 +28,8 @@ And welcome to our Read.me! Introducing our team members ...
 | **3. How do the travel times to the nearest hospital vary across the districts?** | *Analyze travel time data to visualize accessibility differences.* |
 | **4. How does population density relate to hospital distribution?** | *Investigate if there are multiple hospitals in high population density areas.* |
 
-<p align='center'><b> CLick [here](Hospitals.md) for our research
+
+➨ 📄  Click [here](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Hospitals.md) for our research
+ ---
+
+![Untitled11_20241011131441](https://github.com/user-attachments/assets/8578947a-8f4f-4503-a768-3ad4de46ccd0)
