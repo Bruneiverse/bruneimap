@@ -7,23 +7,24 @@
 
 <p align='center'><b> Hospitals and Clinics! 🏥🧑🏻‍⚕️/ under Ministry Of Health
 
-## Hello! 👋
+## Hello! 👋 
 
-🔎 **SM-2302.com** ㅤ [Angela](https://github.com/Angela-29) |  [Syafiqah](https://github.com/SyafYus)  | [Irdina](https://github.com/nrirdnbtrsy)
+And welcome to our Read.me! Introducing our team members ...
+🔎 **SM-2302.com** ★  ㅤ [Angela](https://github.com/Angela-29) |  [Syafiqah](https://github.com/SyafYus)  | [Irdina](https://github.com/nrirdnbtrsy)
 --- | --- | --- |
 
+![Untitled13_20241011123840](https://github.com/user-attachments/assets/40d1a0b5-409c-4c7e-ad75-d32477994ad3)
 
-Hi. These are the questions that we are going to focus on :
 
-1. What is the spatial distribution of hospitals in Brunei?
-   - Analyze the geographic spread and clustering of hospital locations.
+ ㅤ| Moving on:
 
-2. Are there significant patterns in the distance of hospitals from residential areas?
-   - Examine the distances from housing to the nearest hospital.
+ ㅤ ?ㅤ| Questions to be discussed ...
+  -- | -- 
+  
+| **Research Question** | **Description** |
+| --- | --- |
+| **1. What is the spatial distribution of hospitals in Brunei?** | *Analyze the geographic spread and clustering of hospital locations.* |
+| **2. Are there significant patterns in the distance of hospitals from residential areas?** | *Examine the distances from housing to the nearest hospital.* |
+| **3. How do the travel times to the nearest hospital vary across the districts?** | *Analyze travel time data to visualize accessibility differences.* |
+| **4. How does population density relate to hospital distribution?** | *Investigate if there are multiple hospitals in high population density areas.* |
 
-3. How do the travel times to the nearest hospital vary across the districts?
-   - Analyze travel time data to visualize accessibility differences.
-
-4. How does population density relate to hospital distribution?
-   - Is there multiple hospital in a high population density area
-     
