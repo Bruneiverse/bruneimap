@@ -5,7 +5,7 @@
 <h2 align='center'>【📊 Spatial Data Analysis  🖥️🧾】⤿ of:</h2>
 
 
-<p align='center'><b> Hospitals and Clinics! 🏥🧑🏻‍⚕️/ under Ministry Of Health
+<p align='center'><b> Hospitals! 🏥🧑🏻‍⚕️/ under Ministry Of Health
 
 ## Hello! 👋 
 
