@@ -1,11 +1,12 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/EM3FG0CJ)
 
+![Untitled11_20241011102559](https://github.com/user-attachments/assets/922dee37-1e98-4350-a6df-ab25c2e3bd9d)
 
 
-<h2 align='center'>Spatial Data Analysis</h2>
+<h2 align='center'>【Spatial Data Analysis】....of:</h2>
 
 
-<p align='center'><b>Hospitals and Clinics 🏥🧑🏻‍⚕️/
+<p align='center'><b>⤿ Hospitals and Clinics! 🏥🧑🏻‍⚕️/
 
 
 
@@ -15,7 +16,7 @@
 
 ## Hey! 👋
 
-SINE(RS)
+We are from the group SINE(rs)! 
 
 Hi. These are the questions that we are going to focus on :
 
