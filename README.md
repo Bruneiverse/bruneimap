@@ -6,13 +6,13 @@
 <h2 align='center'>【Spatial Data Analysis】....of:</h2>
 
 
-<p align='center'><b>⤿ Hospitals and Clinics! 🏥🧑🏻‍⚕️/
+<p align='center'><b>⤿ Hospitals and Clinics! 🏥🧑🏻‍⚕️/ under Ministry Of Health
 
 ## Hello! 👋
 
-We are from the group [SINE(rs)! ](#900603)
-[Angela](https://github.com/Angela-29) | [Syafiqah](https://github.com/SyafYus) | [Irdina](https://github.com/nrirdnbtrsy)
---- | --- | --- | 
+🔎 **SM-2302.com** ㅤ [Angela](https://github.com/Angela-29) |  [Syafiqah](https://github.com/SyafYus)  | [Irdina](https://github.com/nrirdnbtrsy)
+--- | --- | --- |
+
 
 Hi. These are the questions that we are going to focus on :
 
