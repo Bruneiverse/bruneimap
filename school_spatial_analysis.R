@@ -1,41 +1,19 @@
 library(tidyverse)
+# remotes::install_github("propertypricebn/bruneimap")
 library(bruneimap)
 library(ggrepel)
 library(kernlab)
 library(osrm)
 library(osmdata)
+library(readxl)
 
 
-# Data Collection ---------------------------------------------------------
-dis_sf
-# Brunei districts geometries.
-mkm_sf 
-# Brunei mukim geometries.
-kpg_sf
-# Brunei kampong geometries.
-brn_sf
-# Brunei outline geometries.
-bn_census2021
-# Brunei 2021 census data.
-
-<<<<<<< Updated upstream
-
-# Data - GIS School-----------------------------------------------------
-# @ Aniq @ Rayme
-# Make sure to clean out schools not in brunei
-# Make sure total count of schools match the total count from MOE source
-# Format:
-# school |  district  | kampung | geometry | school type
+# 1. DATA COLLECTION/CLEANING
+#   A. GIS - School-----------------------------------------------------
 
 # Boundary boxes for each districts ---------------------------------------
 
 
-
-=======
-# Boundary boxes for each districts ---------------------------------------
-
-
->>>>>>> Stashed changes
 # Bounding box for Brunei Muara
 bm_sf <- filter(kpg_sf, district == "Brunei Muara")
 bm_bbox <- st_bbox(bm_sf)
@@ -130,26 +108,23 @@ schools_sf_bel <-
 
 print(schools_sf_bel)
 
-<<<<<<< Updated upstream
-bind_rows(schools_sf_bel, schools_sf_tut, schools_sf_tem, schools_sf_bm)
-
-
-
-# Data - study variable - MOE Data ---------------------------------------------------
-# trimmed pdf using pdftools: pdf_subset("moe2.pdf", pages = c(127:145), output = "moe2018.pdf")
-=======
 schools_sf_all <- bind_rows(schools_sf_bel, schools_sf_tut, schools_sf_tem, schools_sf_bm)
 
 #   B. Study variable - MOE 2018 ---------------------------------------------------
 # Trimmed pdf using pdftools: pdf_subset("moe2018.pdf", pages = c(127:145), output = "moe2018_extracted.pdf")
->>>>>>> Stashed changes
 # Split landscape (2 pages per page) to portrait using https://deftpdf.com/split-pdf-down-the-middle
 # Converted to excel using online ilovepdf.com
+# Clean and tidy on MS Excel
 
-read_csv("data/Count of Student by District and School Type.csv")
-# count of students
 
-# EDA ---------------------------------------------------------------------
+# 2. DATA CLEANING --------------------------------------------------------
+#   A. GIS - School ---------------------------------------------------------------------
+# Filter out schools not in Brunei
+# Match to MOE school listing
+
+
+# B. Study variable - MOE 2018 ---------------------------------------------------
+
 
 
 
