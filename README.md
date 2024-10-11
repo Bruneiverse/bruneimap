@@ -21,7 +21,7 @@ And welcome to our Read.me! Introducing our team members ...
  ㅤ ?ㅤ| Questions to be discussed ...
   -- | -- 
   
-| **Research Question** | **Description** |
+| **Research Questions** | **Description** |
 | --- | --- |
 | **1. What is the spatial distribution of hospitals in Brunei?** | *Analyze the geographic spread and clustering of hospital locations.* |
 | **2. Are there significant patterns in the distance of hospitals from residential areas?** | *Examine the distances from housing to the nearest hospital.* |
