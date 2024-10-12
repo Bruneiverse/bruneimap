@@ -123,8 +123,77 @@ schools_sf_all <- bind_rows(schools_sf_bel, schools_sf_tut, schools_sf_tem, scho
 # Match to MOE school listing
 
 
-# B. Study variable - MOE 2018 ---------------------------------------------------
+#   B. Study variable - MOE 2018 ---------------------------------------------------
+#     tchr ----------------------------------------------------------------------
+# Create a list of sheet numbers and corresponding sector names
+sheets <- list(
+  list(sheet = 2, sector = "MOE"),
+  list(sheet = 7, sector = "MORA"),
+  list(sheet = 9, sector = "private")
+)
 
+# Initialize an empty list to store data frames
+tchr <- list()
+
+# Loop through each sheet
+for (i in sheets) {
+  df <- read_excel("MOE2018/moe2018_final.xlsx", i$sheet)
+  colnames(df) <- df[2, ]
+  df <- df %>% 
+    slice(3:nrow(df)) %>% 
+    mutate(Sector = i$sector)
+  
+  # Store the processed data frame in the list
+  tchr[[i$sector]] <- df
+}
+
+# Combine
+tchr <- bind_rows(tchr)
+
+#     enrolment (district, sector) ---------------------------------------------------------
+# Create a list of sheet numbers and corresponding sector names
+sheets <- list(
+  list(sheet = 3, sector = "MOE"),
+  list(sheet = 8, sector = "MORA"),
+  list(sheet = 9, sector = "private")
+)
+
+# Initialize an empty list to store data frames
+enrolment <- list()
+
+# Loop through each sheet
+for (i in sheets) {
+  df <- read_excel("MOE2018/moe2018_final.xlsx", i$sheet)
+  colnames(df) <- df[2, ]
+  df <- df %>% 
+    slice(3:nrow(df)) %>% 
+    mutate(Sector = i$sector)
+  
+  # Store the processed data frame in the list
+  enrolment[[i$sector]] <- df
+}
+
+# Combine all data frames into one
+enrolment <- bind_rows(enrolment)
+view(enrolment)
+
+#     enrolment_cluster (MOE cluster) -------------------------------------------
+# Initialize an empty list to store data frames
+enrolment_MOE <- list()
+
+for (i in 4:6) {
+  df <- read_excel("MOE2018/moe2018_final.xlsx", i)
+  colnames(df) <- df[2, ]
+  df <- df %>% 
+    slice(3:nrow(df))
+  
+  # Store the processed data frame in the list
+  enrolment_MOE[[i]] <- df
+}
+
+# Combine all data frames into one
+enrolment_MOE <- bind_rows(enrolment_MOE)
+view(enrolment_MOE)
 
 
 
