@@ -7,6 +7,8 @@ library(kernlab)
 library(osrm)
 library(osmdata)
 library(readxl)
+library(sfhotspot)
+library(sfdep)
 
 # 1. GIS - School---------------------------------------------------------------
 #   A. Data Cleaning - 175 entries--------------------------------------
@@ -88,10 +90,10 @@ df_sf <- st_drop_geometry(df_sf) %>% data.frame()
 # New version saved as "school listing.xlsx"
 
 #   C. Data Processing - join kpg_sf --------------------------------
-schools <- read_excel("data/school listing.xlsx", 1)
-schools_sf <- (st_as_sf(schools, coords = c("longitude", "latitude"), crs = 4326))
-schools_sf <- st_join(schools_sf, kpg_sf, join = st_within)
-view(schools_sf)
+sch <- read_excel("data/school listing.xlsx", 1)
+sch_sf <- (st_as_sf(sch, coords = c("longitude", "latitude"), crs = 4326))
+sch_sf <- st_join(sch_sf, kpg_sf, join = st_within)
+view(sch_sf)
 
 # 2. Study variable - MOE2018 --------------------------------------------------
 #   A. Data Cleaning ---------------------------------------------------
@@ -173,13 +175,121 @@ for (i in 4:6) {
 enrolment_MOE <- bind_rows(enrolment_MOE)
 view(enrolment_MOE)
 
-
-
-
-
 # TOPIC QUESTION ----------------------------------------------------------
 # 1. School Distribution ------------------------------------------------------
-
-
-
+  # a. points of all schools ------------------------------------------------
+  ggplot() +
+    geom_sf(data = kpg_sf) +
+    geom_sf(data = sch_sf)
+  
+  # b. schools by kampong ---------------------------------------------------
+  sch_kpg <-
+    sch_sf %>% 
+    tibble() %>% 
+    group_by(kampong) %>% 
+    summarise("count_of_schools" = n())
+  
+  kpg_sch <-
+    kpg_sf %>% 
+    left_join(sch_kpg) %>% 
+    select(kampong, count_of_schools)
+  
+  ggplot(kpg_sch, aes(count_of_schools)) +
+    geom_histogram()
+  
+  ggplot() +
+    geom_sf(data = kpg_sf) +
+    geom_sf(data = kpg_sch, 
+            aes(fill = count_of_schools),
+            alpha = 0.8,
+            colour = NA) +
+    scale_fill_viridis_b(direction = 1)
+  
+  # c. schools by mukim -----------------------------------------------------
+  sch_mkm <-
+    sch_sf %>% 
+    tibble() %>% 
+    group_by(mukim) %>% 
+    summarise("count_of_schools" = n())
+  
+  mkm_sch <-
+    mkm_sf %>% 
+    left_join(sch_mkm) %>% 
+    select(mukim, count_of_schools)
+  
+  ggplot(mkm_sch, aes(count_of_schools)) +
+    geom_histogram()
+  
+  ggplot() +
+    geom_sf(data = mkm_sf) +
+    geom_sf(data = mkm_sch, 
+            aes(fill = count_of_schools),
+            alpha = 0.8,
+            colour = NA) +
+    scale_fill_viridis_b(direction = 1)
+  
+  # d. kde ------------------------------------------------------------------
+  sch_kde <- 
+    sch_sf %>% 
+    st_transform("EPSG:27700") %>% 
+    hotspot_kde(cell_size = 3000, bandwidth = 50000, grid_type = "hex") %>% 
+    st_intersection(st_transform(brn_sf, "EPSG:27700"))
+  
+  ggplot() +
+    geom_sf(data = kpg_sf) +
+    geom_sf(data = sch_kde,
+            aes(fill = kde),
+            alpha = 0.8,
+            colour = NA) +
+    scale_fill_viridis_c(direction = -1) 
+  
+  # maybe can consider changing the colout of low
+  # since overlap by darker colour
+  
+  # e. kde by district ------------------------------------------------------
+  district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
+  
+  for (i in district) {
+    sch_kde <- 
+      sch_sf %>% 
+      filter(district == i) %>% 
+      st_transform("EPSG:27700") %>% 
+      hotspot_kde() %>% 
+      st_intersection(st_transform(brn_sf, "EPSG:27700"))
+    
+    # consider filling up the remaining regions?
+    print(
+      ggplot(sch_kde, aes(x = kde)) +
+        geom_histogram()
+    )
+    
+    print(
+      ggplot() +
+        geom_sf(data = filter(mkm_sf, district == i)) +
+        geom_sf(aes(fill = kde),
+                data = sch_kde,
+                alpha = 0.85,
+                colour = NA) +
+        scale_fill_viridis_c(direction = -1)
+    )
+  }
+  
+  # f. global moran ---------------------------------------------------------
+  # 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
+  # there are different types of weights?
+  
+  # Duplicate: for reference
+  # kpg_sch <-
+  #   kpg_sf %>% 
+  #   left_join(sch_kpg) %>% 
+  #   select(kampong, count_of_schools)
+  
+  kpg_sch$count_of_schools[is.na(kpg_sch$count_of_schools)] <- 0
+  
+  nb <- st_knn(st_centroid(kpg_sch), k = 5) # multiple islands in brunei so cannot use st_contiguity
+  wt <- st_weights(nb, style = "W")
+  global_moran_test(kpg_sch$count_of_schools, nb, wt)
+  
+  # Reject H0, there is statistically significant clustering of schools
+  
 # 2. Proximity to School from Home -------------------------------------------
