@@ -277,19 +277,43 @@ view(enrolment_MOE)
   # f. global moran ---------------------------------------------------------
   # 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
   # there are different types of weights?
-  
-  # Duplicate: for reference
-  # kpg_sch <-
-  #   kpg_sf %>% 
-  #   left_join(sch_kpg) %>% 
-  #   select(kampong, count_of_schools)
-  
-  kpg_sch$count_of_schools[is.na(kpg_sch$count_of_schools)] <- 0
-  
-  nb <- st_knn(st_centroid(kpg_sch), k = 5) # multiple islands in brunei so cannot use st_contiguity
-  wt <- st_weights(nb, style = "W")
-  global_moran_test(kpg_sch$count_of_schools, nb, wt)
-  
-  # Reject H0, there is statistically significant clustering of schools
-  
+    # i. kpg - st_knn (5 nearest neighbour) -----------------------------------
+      # Duplicate 1b : for reference
+      # kpg_sch <-
+      #   kpg_sf %>% 
+      #   left_join(sch_kpg) %>% 
+      #   select(kampong, count_of_schools)
+      
+      # replace NA with 0
+      kpg_sch$count_of_schools[is.na(kpg_sch$count_of_schools)] <- 0
+      
+      nb <- st_knn(st_centroid(kpg_sch), k = 5)
+      wt <- st_weights(nb, style = "W")
+      global_moran_test(kpg_sch$count_of_schools, nb, wt)
+      
+      # Reject H0, there is statistically significant (minor) clustering of schools
+      # moran value >0 clustered; <0 dispersed
+      # z,p value for hyp test
+      
+    # ii. kpg - st_contiguity (literal neighbour) -----------------------------
+      nb <- st_contiguity(st_geometry(kpg_sch)) 
+      wt <- st_weights(nb, style = "W")
+      global_moran_test(kpg_schools$count_of_schools, nb, wt)
+      
+      # error: empty neighbour
+      # Is the issue: multiple islands in brunei so cannot use st_contiguity?
+      # fix: add one kota batu point to (polygon) of mukim labu?
+      mkm_sf %>% 
+        filter(mukim == "Mukim Kota Batu" | mukim == "Mukim Labu") %>% 
+        st_geometry()
+      
+      # *** BUT st_contiguity works for mkm (despite having 2 sub-graphs?)
+      
+    
+    # iii. mkm - st_contiguity ------------------------------------------------
+      mkm_sch$count_of_schools[is.na(mkm_sch$count_of_schools)] <- 0
+      nb <- st_contiguity(st_geometry(mkm_sch))
+      wt <- st_weights(nb, style = "W")
+      global_moran_test(mkm_sch$count_of_schools, nb, wt)
+    
 # 2. Proximity to School from Home -------------------------------------------
