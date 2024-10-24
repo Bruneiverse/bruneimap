@@ -44,7 +44,7 @@ Below is our research...
 | Temburong district      | 1         |
 
 
-### — 📝**Our Analysis**
+### — 📝**Our Analysis:**
 ***1. Brunei Muara district***
 * Most of the hospitals are located near to each other
 * Indicates a *clustering pattern*
@@ -61,8 +61,8 @@ Below is our research...
 
 ## 📍 (Question 2.)  How does population density relate to hospital distribution? 
 **Our objective**: *Investigate if there are multiple hospitals in high population density areas.*
+![picture-2](https://github.com/user-attachments/assets/b7cd510c-3131-4bbd-ab1e-91a409c42f82)
 
-![pic 2](https://github.com/user-attachments/assets/b77aade1-84f3-49ef-9f9a-f54a3f9a0ec7)
 
 
 
