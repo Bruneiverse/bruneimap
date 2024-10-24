@@ -13,6 +13,8 @@ Below is our research...
 
 </div>
 
+![WCC banner](https://github.com/user-attachments/assets/61635994-4371-4782-a968-ad2c86dbd046)
+
 
 ## 📍❓ QUESTIONS PREVIEW
 
