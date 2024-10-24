@@ -81,6 +81,18 @@ No. | Population Density | Hospital and Health Centres distributions
 * Hospital distributions are not as multiple and clustered as Brunei Muara.
 * Far from each other, however they are mainly at the center for accessibility.
 
+### — 📝 **Investigating Belait district;**
+No. | Population Density | Hospital and Health Centres distributions
+-- | -- | --
+1 | Has the highest population on the yellow part of the district at the most left side | Multiple healthcare facilities observed (2)
+2 | High population on top left and bottom left | For each, only 1 healthcare facility
+
+### — 📝 **Investigating Temburong district;**
+No. | Population Density | Hospital and Health Centres distributions
+-- | -- | --
+1 | population ranging from 1,000-10,000 | No multiple healthcare facilities available (1)
+
+
 
 
 
