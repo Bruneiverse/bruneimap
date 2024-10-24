@@ -34,13 +34,13 @@ Below is our research...
 <p align="center"><i>Figure : Total of 18 hospitals & healthcare under MOH in Brunei</i></p>
 
 
-### **Here is our data overview;**
+###  🖊️ **Here is our data overview;**
 * 9 hospitals in **Brunei Muara district**
 * ⁠4 hospitals in **Tutong district**
 * ⁠4 hospitals in **Belait district**
 * ⁠1 hospital in **Temburong district**
 
-### **Our Analysis**
+### 🖊️**Our Analysis**
 ***1. Brunei Muara district***
 * Most of the hospitals are located near to each other
 * Indicates a *clustering pattern*
