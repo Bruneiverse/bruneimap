@@ -70,6 +70,20 @@ No. | Population Density | Hospital and Health Centres distributions
 1 | The top part of the district has the highest population density (yellow) of over 10,000 | However, the healthcare facilities are *not as clustered as the center of the district.
 2 | The center and bottom part of the district has a high population density (Yellow, Green areas) ranging from 1000 to over 10,000 in certain high density areas | Shows multiple hospitals and health centres *clustered* heavily in these areas
 
+### — 📝 **Investigating Tutong district;**
+
+No. | Population Density | Hospital and Health Centres distributions
+-- | -- | --
+1 | High density population on the left sides of the disrict | 2 health facilities on the left side, top and bottom of the district
+2 | High population at the center and top of the district | 2 health facilities
+
+**What can be deduced;** 
+* Hospital distributions are not as multiple and clustered as Brunei Muara.
+* Far from each other, however they are mainly at the center for accessibility.
+
+
+
+
 
 
 
