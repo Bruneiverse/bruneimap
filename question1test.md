@@ -58,9 +58,8 @@ view(hpex)
 
 plotm <- ggplot() +
   geom_sf(data = mkm_sf, aes(fill = district), alpha = 0.3) +
-  geom_sf(data = st_filter(hospitalsh_sf, mkm_sf), size = 2, color = "blue") +  # Existing hospitals
-  #geom_sf(data = st_filter(hpex, mkm_sf), size = 3, color = "red", fill = "yellow") +  # Hospitals from Excel
-  geom_sf(data = st_filter(hpex, mkm_sf), size = 2, color = "red", fill = "yellow") +
+  geom_sf(data = st_filter(hospitalsh_sf, mkm_sf), size = 2, color = "black") +  # Existing hospitals
+  geom_sf(data = st_filter(hpex, mkm_sf), size = 2, color = "black") + #Hosptials from Excel
   labs(title = "Hospitals around Brunei",
        fill = "District")
 
