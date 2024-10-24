@@ -62,5 +62,4 @@ plotm <- ggplot() +
   geom_sf(data = st_filter(hpex, mkm_sf), size = 2, color = "black") + #Hosptials from Excel
   labs(title = "Hospitals around Brunei",
        fill = "District")
-
 plotm
