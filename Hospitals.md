@@ -27,7 +27,7 @@ Below is our research...
 
 ㅤ
 
-## Question 1.  What is the spatial distribution of hospitals in Brunei?
+## 📍 (Question 1.)  What is the spatial distribution of hospitals in Brunei?
 **Our objective**: *Analyze the geographic spread and clustering of hospital locations.*
 
 ![8b44b8c2-fbc3-49e6-9075-79f3e93201c9](https://github.com/user-attachments/assets/d98654b4-9751-4c85-93a1-8048b24bfa8b)
@@ -59,10 +59,11 @@ Below is our research...
 
 ㅤ
 
-## Question 2.  How does population density relate to hospital distribution? 
+## 📍 (Question 2.)  How does population density relate to hospital distribution? 
 **Our objective**: *Investigate if there are multiple hospitals in high population density areas.*
 
-![379768649-c7166d45-b804-4083-b1a3-889949189587 (1)](https://github.com/user-attachments/assets/76c90959-57a5-4056-b1c0-2ef6eac8c4ac)
+![pic 2](https://github.com/user-attachments/assets/b77aade1-84f3-49ef-9f9a-f54a3f9a0ec7)
+
 
 
 
