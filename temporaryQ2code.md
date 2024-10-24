@@ -46,7 +46,12 @@ plotpop <- bn_pop_sf |>
     box.padding = 1,
     size = 2,
     max.overlaps = Inf
-  ) +
+  ) + 
+  labs(
+    title = "Population in Brunei",
+    x = "Longitude",
+    y = "Latitdue"
+  )+
   scale_fill_viridis_b(
     name = "Population",
     na.value = NA,
@@ -56,4 +61,4 @@ plotpop <- bn_pop_sf |>
   ) +
   theme_bw()
 plotpop
-plotpop + plotm + plot_layout(nrow = 2)
+plotpop + plotm + plot_layout(ncol = 2)
