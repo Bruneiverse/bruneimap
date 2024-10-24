@@ -22,13 +22,23 @@ Under Ministry Of Health 🏥
 
 
 ### **Here is our data overview;**
-* 9 hospitals in Brunei Muara district
-* ⁠4 hospitals in Tutong district
-* ⁠4 hospitals in Belait district
-* ⁠1 hospital in Temburong district 
+* 9 hospitals in **Brunei Muara district**
+* ⁠4 hospitals in **Tutong district**
+* ⁠4 hospitals in **Belait district**
+* ⁠1 hospital in **Temburong district**
 
-1. Brunei Muara district : Most of the hospitals are located near to each other meanwhile;
-2. ⁠Tutong and Belait district : Hospitals are located far from each other
+### **Our Analysis**
+1. Brunei Muara district
+* Most of the hospitals are located near to each other
+* Indicates a *clustering pattern*
+  
+3. ⁠Tutong and Belait district
+* Hospitals are located far from each other
+* Hospitals are more *dispersed*, with significant distances between each facility
+
+4. Temburong district
+* Only 1 Hospital available
+* Notably *sparse*, a single hospital serving the entire district as a central healthcare hub for the region
 
 
 
