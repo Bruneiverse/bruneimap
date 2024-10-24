@@ -8,7 +8,6 @@ library(readxl)
 library(patchwork)
 glimpse(bn_census2021)
 
-
 bn_pop_sf <- 
   left_join(
     kpg_sf, 
