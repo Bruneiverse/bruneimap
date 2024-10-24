@@ -16,7 +16,9 @@ Under Ministry Of Health 🏥
 
 ## Question 1.  What is the spatial distribution of hospitals in Brunei?
 
-![picture 1](https://github.com/user-attachments/assets/ccb16259-fff8-495c-847b-8f9af3accd3b)
+![8b44b8c2-fbc3-49e6-9075-79f3e93201c9](https://github.com/user-attachments/assets/d98654b4-9751-4c85-93a1-8048b24bfa8b)
+
+
 
 
 
