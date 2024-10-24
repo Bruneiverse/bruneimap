@@ -44,7 +44,7 @@ Below is our research...
 | Temburong district      | 1         |
 
 
-### 🖊️**Our Analysis**
+### 📝**Our Analysis**
 ***1. Brunei Muara district***
 * Most of the hospitals are located near to each other
 * Indicates a *clustering pattern*
