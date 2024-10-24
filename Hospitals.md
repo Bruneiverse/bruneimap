@@ -57,5 +57,12 @@ Below is our research...
 * Only 1 Hospital available
 * Notably *sparse*, a single hospital serving the entire district as a central healthcare hub for the region
 
+ㅤ
+
+## Question 2.  How does population density relate to hospital distribution? 
+**Our objective**: *Investigate if there are multiple hospitals in high population density areas.*
+
+![379768649-c7166d45-b804-4083-b1a3-889949189587 (1)](https://github.com/user-attachments/assets/76c90959-57a5-4056-b1c0-2ef6eac8c4ac)
+
 
 
