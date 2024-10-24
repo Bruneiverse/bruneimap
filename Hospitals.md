@@ -10,3 +10,10 @@ Under Ministry Of Health 🏥
 | **2. Are there significant patterns in the distance of hospitals from residential areas?** | *Examine the distances from housing to the nearest hospital.* |
 | **3. How do the travel times to the nearest hospital vary across the districts?** | *Analyze travel time data to visualize accessibility differences.* |
 | **4. How does population density relate to hospital distribution?** | *Investigate if there are multiple hospitals in high population density areas.* |
+
+
+
+## Question 1.  What is the spatial distribution of hospitals in Brunei?
+
+![WhatsApp Image 2024-10-24 at 10 56 23](https://github.com/user-attachments/assets/33106916-42f8-424b-86f7-50dafae37337)
+
