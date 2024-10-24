@@ -41,15 +41,15 @@ Below is our research...
 * ⁠1 hospital in **Temburong district**
 
 ### **Our Analysis**
-1. Brunei Muara district
+***1. Brunei Muara district***
 * Most of the hospitals are located near to each other
 * Indicates a *clustering pattern*
   
-3. ⁠Tutong and Belait district
+***2. ⁠Tutong and Belait district***
 * Hospitals are located far from each other
 * Hospitals are more *dispersed*, with significant distances between each facility
 
-4. Temburong district
+***3. Temburong district***
 * Only 1 Hospital available
 * Notably *sparse*, a single hospital serving the entire district as a central healthcare hub for the region
 
