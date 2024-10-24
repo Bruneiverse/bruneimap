@@ -31,12 +31,6 @@ hospitalsh_sf <- hospitalsh_sf %>%
 
 glimpse(hospitalsh_sf)
 view(hospitalsh_sf)
-#ploth <- (ignore this one for now, just testing out)
-#  ggplot() +
-#  geom_sf(data = dis_sf, aes(fill = name), alpha = 0.3) +
-#  geom_sf(data = st_filter(hospitalsh_sf, mkm_sf), size = 2, alpha = 0.3) #points might be overlapping thats why it looks like theres less points
-# ^ data = st_filter(hospitalsh_sf, mkm_sf) is how we filter out the outliers btw; so it just has Brunei
-
 
 # Read Excel file
 hospitalexcel <- read_excel("excel coordinates.xlsx")
