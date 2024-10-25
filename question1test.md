@@ -1,5 +1,6 @@
  #code test 
  #temporary code
+```r
 library(tidyverse)
 #remotes::install_github("propertypricebn/bruneimap")
 library(bruneimap)
@@ -10,7 +11,9 @@ library(osmdata)
 library (osmdata)
 library(readxl)
 packageVersion ("osmdata")
+```
 
+```r
 h <- 
   opq("brunei") %>%
   add_osm_feature(
@@ -19,7 +22,8 @@ h <-
   ) %>%
   osmdata_sf()
 glimpse(h$osm_polygons)
-
+```
+```r
 hospitalsh_sf <-
   h$osm_polygons |>
   as_tibble() |>  # these two lines convert to tibble-like object
@@ -31,7 +35,8 @@ hospitalsh_sf <- hospitalsh_sf %>%
 
 glimpse(hospitalsh_sf)
 view(hospitalsh_sf)
-
+```
+```r
 # Read Excel file
 hospitalexcel <- read_excel("excel coordinates.xlsx")
 
@@ -63,3 +68,4 @@ plotm <- ggplot() +
   labs(title = "Hospitals around Brunei",
        fill = "District")
 plotm
+```
