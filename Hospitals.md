@@ -70,7 +70,7 @@ Below is our research...
 No. | Population Density | Hospital and Health Centres distributions
 -- | -- | --
 1 | The top part of the district has the highest population density (yellow) of over 10,000 | However, the healthcare facilities are *not as clustered as the center of the district.
-2 | The center and bottom part of the district has a high population density (Yellow, Green areas) ranging from 1000 to over 10,000 in certain high density areas | Shows multiple hospitals and health centres *clustered* heavily in these areas
+2 | The center and bottom part of the district has a high population density (Green areas, Blue areas) ranging from 1000 to over 10,000 in certain high density areas | Shows multiple hospitals and health centres *clustered* heavily in these areas
 
 ### — 📝 **Investigating Tutong district;**
 
