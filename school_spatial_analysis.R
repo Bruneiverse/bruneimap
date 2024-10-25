@@ -328,6 +328,16 @@ ggplot(mkm_sch_sf) +
   scale_fill_viridis_c() +
   theme_bw()
 
+# The above plot seems to be spatially dependent. If schools are not spatially
+# dependent, it would look something like this:
+mkm_sch_sf |>
+  mutate(rand_count = sample(count)) |>
+  ggplot() +
+  geom_sf(aes(fill = rand_count)) +
+  # geom_sf_text(aes(label = count)) +
+  scale_fill_viridis_c() +
+  theme_bw()
+
 # Now we can do the Moran's test
 library(spdep)
 mor_sf <- drop_na(mkm_sch_sf, count)  
