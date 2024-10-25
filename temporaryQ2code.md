@@ -1,3 +1,6 @@
+A scuffed explaination cause to be honest, I don't know what's going on half of the time
+Loading packages
+```r
 library(tidyverse)
 library(bruneimap)
 library(ggrepel)
@@ -7,7 +10,9 @@ library(osmdata)
 library(readxl)
 library(patchwork)
 glimpse(bn_census2021)
-
+```
+Saving the population file and joining it with teh kpg_sf 
+```r
 bn_pop_sf <- 
   left_join(
     kpg_sf, 
@@ -17,11 +22,16 @@ bn_pop_sf <-
 
 bn_popdist <- bn_pop_sf %>%
   select(population, district)
+```
 
+Checking the data
+```r
 view(bn_popdist)
 view(bn_pop_sf)
+```
 
-
+The labeling for pointing towards the top 3 kampongs in terms of population
+```r
 mkm_labels_sf <-
   bn_pop_sf |>
   arrange(desc(population)) |>
@@ -31,7 +41,10 @@ mkm_labels_sf <-
 # btw the reason its theres 2 from Brunei Muara is cause they count the populations by each kampong,
 # so theres 2 kampongs with high population from Brunei Muara
 view(mkm_labels_sf) 
+```
 
+Plotting
+```r
 plotpop <- bn_pop_sf |>
   # filter(population > 50) |>
   ggplot() +
@@ -61,3 +74,4 @@ plotpop <- bn_pop_sf |>
   theme_bw()
 plotpop
 plotpop + plotm + plot_layout(ncol = 2)
+```
