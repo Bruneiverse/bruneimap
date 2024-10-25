@@ -175,8 +175,7 @@ for (i in 4:6) {
 enrolment_MOE <- bind_rows(enrolment_MOE)
 view(enrolment_MOE)
 
-# TOPIC QUESTION ----------------------------------------------------------
-# 1. School Distribution ------------------------------------------------------
+# TOPIC QUESTION: DISTRIBUTION ----------------------------------------------------------------------------------------------------------
   # a. points of all schools ------------------------------------------------
   ggplot() +
     geom_sf(data = kpg_sf) +
@@ -228,56 +227,85 @@ view(enrolment_MOE)
             colour = NA) +
     scale_fill_viridis_b(direction = 1)
   
-  # d. kde ------------------------------------------------------------------
-  sch_kde <- 
+  # d. global moran by mukim ------------------------------------------------
+  mkm_sch$count_of_schools[is.na(mkm_sch$count_of_schools)] <- 0
+  
+  nb <- st_contiguity(mkm_sch)
+  wt <- st_weights(nb)
+  global_moran_test(mkm_sch$count_of_schools, nb, wt)
+  
+# e. lisa - getis ord -----------------------------------------------------
+  sch_gi <-
     sch_sf %>% 
-    st_transform("EPSG:27700") %>% 
-    hotspot_kde(cell_size = 3000, bandwidth = 50000, grid_type = "hex") %>% 
-    st_intersection(st_transform(brn_sf, "EPSG:27700"))
+    st_transform("EPSG:27700") %>%  # sfhotspot rejects 4326 format
+    hotspot_gistar() %>%  
+    filter(gistar > 0, pvalue < 0.05)
+  
+  ggplot(sch_gi) +
+    geom_histogram(aes(kde))
   
   ggplot() +
-    geom_sf(data = kpg_sf) +
-    geom_sf(data = sch_kde,
-            aes(fill = kde),
-            alpha = 0.8,
-            colour = NA) +
-    scale_fill_viridis_c(direction = -1) 
+    geom_sf(data = mkm_sf) +
+    #annotation_map_tile(type = "cartolight", zoomin = 0) +
+    geom_sf(
+      aes(fill = kde),
+      data = sch_gi,
+      alpha = 0.8,
+      colour = NA
+    ) +
+    scale_fill_viridis_c()
   
-  # maybe can consider changing the colout of low
-  # since overlap by darker colour
-  
-  # e. kde by district ------------------------------------------------------
-  district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
-  
-  for (i in district) {
-    sch_kde <- 
-      sch_sf %>% 
-      filter(district == i) %>% 
-      st_transform("EPSG:27700") %>% 
-      hotspot_kde() %>% 
-      st_intersection(st_transform(brn_sf, "EPSG:27700"))
-    
-    # consider filling up the remaining regions?
-    print(
-      ggplot(sch_kde, aes(x = kde)) +
-        geom_histogram()
-    )
-    
-    print(
+## Backup ------------------------------------------------------------------------
+# d. kde ------------------------------------------------------------------
+      sch_kde <- 
+        sch_sf %>% 
+        st_transform("EPSG:27700") %>% 
+        hotspot_kde(cell_size = 3000, bandwidth = 50000, grid_type = "hex") %>% 
+        st_intersection(st_transform(brn_sf, "EPSG:27700"))
+      
       ggplot() +
-        geom_sf(data = filter(mkm_sf, district == i)) +
-        geom_sf(aes(fill = kde),
-                data = sch_kde,
-                alpha = 0.85,
+        geom_sf(data = kpg_sf) +
+        geom_sf(data = sch_kde,
+                aes(fill = kde),
+                alpha = 0.8,
                 colour = NA) +
-        scale_fill_viridis_c(direction = -1)
-    )
-  }
-  
-  # f. global moran ---------------------------------------------------------
-  # 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
-  # there are different types of weights?
-    # i. kpg - st_knn (5 nearest neighbour) -----------------------------------
+        scale_fill_viridis_c(direction = -1) 
+      
+      # maybe can consider changing the colout of low
+      # since overlap by darker colour
+      
+# e. kde by district ------------------------------------------------------
+      district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
+      
+      for (i in district) {
+        sch_kde <- 
+          sch_sf %>% 
+          filter(district == i) %>% 
+          st_transform("EPSG:27700") %>% 
+          hotspot_kde() %>% 
+          st_intersection(st_transform(brn_sf, "EPSG:27700"))
+        
+        # consider filling up the remaining regions?
+        print(
+          ggplot(sch_kde, aes(x = kde)) +
+            geom_histogram()
+        )
+        
+        print(
+          ggplot() +
+            geom_sf(data = filter(mkm_sf, district == i)) +
+            geom_sf(aes(fill = kde),
+                    data = sch_kde,
+                    alpha = 0.85,
+                    colour = NA) +
+            scale_fill_viridis_c(direction = -1)
+        )
+      }
+      
+# f. global moran ---------------------------------------------------------
+      # 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
+      # there are different types of weights?
+  # i. kpg - st_knn (5 nearest neighbour) -----------------------------------
       # Duplicate 1b : for reference
       # kpg_sch <-
       #   kpg_sf %>% 
@@ -295,7 +323,7 @@ view(enrolment_MOE)
       # moran value >0 clustered; <0 dispersed
       # z,p value for hyp test
       
-    # ii. kpg - st_contiguity (literal neighbour) -----------------------------
+  # ii. kpg - st_contiguity (literal neighbour) -----------------------------
       nb <- st_contiguity(st_geometry(kpg_sch)) 
       wt <- st_weights(nb, style = "W")
       global_moran_test(kpg_schools$count_of_schools, nb, wt)
@@ -309,11 +337,6 @@ view(enrolment_MOE)
       
       # *** BUT st_contiguity works for mkm (despite having 2 sub-graphs?)
       
-    
-    # iii. mkm - st_contiguity ------------------------------------------------
-      mkm_sch$count_of_schools[is.na(mkm_sch$count_of_schools)] <- 0
-      nb <- st_contiguity(st_geometry(mkm_sch))
-      wt <- st_weights(nb, style = "W")
-      global_moran_test(mkm_sch$count_of_schools, nb, wt)
-    
-# 2. Proximity to School from Home -------------------------------------------
+      
+
+      
