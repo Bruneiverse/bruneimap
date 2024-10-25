@@ -52,3 +52,4 @@ mew <- ggplot() +
 
 mew #district has color but too many lines bcoz of mukim boundaries
 ```
+
