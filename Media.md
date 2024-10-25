@@ -10,6 +10,6 @@ Pic comparison for Q2
 
 
 Pic for Qs 4
-![PicQs4](https://github.com/user-attachments/assets/7802d317-b7bb-4314-9ac7-392d1e2f668d)
+![PicQs4](https://github.com/user-attachments/assets/7a029638-cae5-46ee-86bf-53639bf3c3e7)
 
 
