@@ -62,6 +62,8 @@ Below is our research...
 ## 📍 (Question 2.)  How does population density relate to hospital distribution? 
 **Our objective**: *Investigate if there are multiple hospitals in high population density areas.*
 ![picture-2](https://github.com/user-attachments/assets/b7cd510c-3131-4bbd-ab1e-91a409c42f82)
+<p align="center"><i>Figure : Comparison between population density and healthcare facilities distribution</i></p>
+
 
 ### — 📝 **Investigating Brunei-Muara district;**
 
