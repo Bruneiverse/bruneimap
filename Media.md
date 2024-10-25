@@ -9,6 +9,7 @@ Pic comparison for Q2
 ![Rplot04](https://github.com/user-attachments/assets/43b1dd25-6764-4569-9e5c-e6a57bb2cd26)
 
 
-
+Pic for Qs 4
+![PicQs4](https://github.com/user-attachments/assets/7802d317-b7bb-4314-9ac7-392d1e2f668d)
 
 
