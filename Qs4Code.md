@@ -1,5 +1,18 @@
 **Code for Qs 4**
-
+```r
+library(tidyverse)
+#remotes::install_github("propertypricebn/bruneimap")
+library(bruneimap)
+library(ggrepel)
+library(kernlab)
+library(osrm)
+library(osmdata)
+library (osmdata)
+library(readxl)
+packageVersion ("osmdata")
+library(ggsci)
+library(patchwork)
+```
 *File for road network*
 ```r
 brd <- 
@@ -51,5 +64,8 @@ mew <- ggplot() +
   ggsci::scale_colour_npg()
 
 mew #district has color but too many lines bcoz of mukim boundaries
+```
+```r
+roadn + mew + plot_layout(ncol=2)
 ```
 
