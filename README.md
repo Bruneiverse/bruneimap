@@ -5,7 +5,7 @@
 <h2 align='center'>【📊 Spatial Data Analysis  🖥️🧾】⤿ of:</h2>
 
 
-<p align='center'><b> Hospitals! 🏥🧑🏻‍⚕️/ under Ministry Of Health
+<p align='center'><b> Hospitals and Health Center! 🏥🧑🏻‍⚕️/ under Ministry Of Health
 
 ## Hello! 👋 
 
@@ -23,10 +23,10 @@ And welcome to our Read.me! Introducing our team members ...
   
 | **Research Questions** | **Description** |
 | --- | --- |
-| **1. What is the spatial distribution of hospitals in Brunei?** | *Analyze the geographic spread and clustering of hospital locations.* |
-| **2. How does population density relate to hospital distribution?**  | *Investigate if there are multiple hospitals in high population density areas.* |
-| **3. Are there significant patterns in the distance of hospitals from residential areas?** | *Examine the distances from housing to the nearest hospital.* |
-| **4. How does the accessibility of healthcare facilities vary across different districts?** | *Compare the accessibility of hospitals in different districts* |
+| **1. What is the spatial distribution of hospitals and health centers in Brunei?** | *Analyze the geographic spread and clustering of their locations.* |
+| **2. How does population density relate to hospital and health centers distribution?**  | *Investigate if there are multiple healthcare facilities in high population density areas.* |
+| **3. Are there significant patterns in the distance of hospitals and health centers from residential areas?** | *Examine the distances from housing to the nearest healthcare facilities.* |
+| **4. How does the accessibility of healthcare facilities vary across different districts?** | *Compare the accessibility of hospitals and health centers in different districts* |
 
 
 *Lastly...*
