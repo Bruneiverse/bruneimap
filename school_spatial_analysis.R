@@ -1,4 +1,4 @@
-# o. Libraries ---------------------------------------------------------------
+# 0. Libraries ---------------------------------------------------------------
 library(tidyverse)
 # remotes::install_github("propertypricebn/bruneimap")
 library(bruneimap)
@@ -177,119 +177,186 @@ view(enrolment_MOE)
 
 # TOPIC QUESTION ----------------------------------------------------------
 # 1. School Distribution ------------------------------------------------------
-  # a. points of all schools ------------------------------------------------
-  ggplot() +
-    geom_sf(data = kpg_sf) +
-    geom_sf(data = sch_sf)
-  
-  # b. schools by kampong ---------------------------------------------------
-  sch_kpg <-
-    sch_sf %>% 
-    tibble() %>% 
-    group_by(kampong) %>% 
-    summarise("count_of_schools" = n())
-  
-  kpg_sch <-
-    kpg_sf %>% 
-    left_join(sch_kpg) %>% 
-    select(kampong, count_of_schools)
-  
-  ggplot(kpg_sch, aes(count_of_schools)) +
-    geom_histogram()
-  
-  ggplot() +
-    geom_sf(data = kpg_sf) +
-    geom_sf(data = kpg_sch, 
-            aes(fill = count_of_schools),
-            alpha = 0.8,
-            colour = NA) +
-    scale_fill_viridis_b(direction = 1)
-  
-  # c. schools by mukim -----------------------------------------------------
-  sch_mkm <-
-    sch_sf %>% 
-    tibble() %>% 
-    group_by(mukim) %>% 
-    summarise("count_of_schools" = n())
-  
-  mkm_sch <-
-    mkm_sf %>% 
-    left_join(sch_mkm) %>% 
-    select(mukim, count_of_schools)
-  
-  ggplot(mkm_sch, aes(count_of_schools)) +
-    geom_histogram()
-  
-  ggplot() +
-    geom_sf(data = mkm_sf) +
-    geom_sf(data = mkm_sch, 
-            aes(fill = count_of_schools),
-            alpha = 0.8,
-            colour = NA) +
-    scale_fill_viridis_b(direction = 1)
-  
-  # d. kde ------------------------------------------------------------------
+# a. points of all schools ------------------------------------------------
+ggplot() +
+  geom_sf(data = kpg_sf) +
+  geom_sf(data = sch_sf)
+
+# b. schools by kampong ---------------------------------------------------
+sch_kpg <-
+  sch_sf %>% 
+  tibble() %>% 
+  group_by(kampong) %>% 
+  summarise("count_of_schools" = n())
+
+kpg_sch <-
+  kpg_sf %>% 
+  left_join(sch_kpg) %>% 
+  select(kampong, count_of_schools)
+
+ggplot(kpg_sch, aes(count_of_schools)) +
+  geom_histogram()
+
+ggplot() +
+  geom_sf(data = kpg_sf) +
+  geom_sf(data = kpg_sch, 
+          aes(fill = count_of_schools),
+          alpha = 0.8,
+          colour = NA) +
+  scale_fill_viridis_b(direction = 1)
+
+# c. schools by mukim -----------------------------------------------------
+sch_mkm <-
+  sch_sf %>% 
+  tibble() %>% 
+  group_by(mukim) %>% 
+  summarise("count_of_schools" = n())
+
+mkm_sch <-
+  mkm_sf %>% 
+  left_join(sch_mkm) %>% 
+  select(mukim, count_of_schools)
+
+ggplot(mkm_sch, aes(count_of_schools)) +
+  geom_histogram()
+
+ggplot() +
+  geom_sf(data = mkm_sf) +
+  geom_sf(data = mkm_sch, 
+          aes(fill = count_of_schools),
+          alpha = 0.8,
+          colour = NA) +
+  scale_fill_viridis_b(direction = 1)
+
+# d. kde ------------------------------------------------------------------
+sch_kde <- 
+  sch_sf %>% 
+  st_transform("EPSG:27700") %>% 
+  hotspot_kde(cell_size = 3000, bandwidth = 50000, grid_type = "hex") %>% 
+  st_intersection(st_transform(brn_sf, "EPSG:27700"))
+
+ggplot() +
+  geom_sf(data = kpg_sf) +
+  geom_sf(data = sch_kde,
+          aes(fill = kde),
+          alpha = 0.8,
+          colour = NA) +
+  scale_fill_viridis_c(direction = -1) 
+
+# maybe can consider changing the colout of low
+# since overlap by darker colour
+
+# e. kde by district ------------------------------------------------------
+district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
+
+for (i in district) {
   sch_kde <- 
     sch_sf %>% 
+    filter(district == i) %>% 
     st_transform("EPSG:27700") %>% 
-    hotspot_kde(cell_size = 3000, bandwidth = 50000, grid_type = "hex") %>% 
+    hotspot_kde() %>% 
     st_intersection(st_transform(brn_sf, "EPSG:27700"))
   
-  ggplot() +
-    geom_sf(data = kpg_sf) +
-    geom_sf(data = sch_kde,
-            aes(fill = kde),
-            alpha = 0.8,
-            colour = NA) +
-    scale_fill_viridis_c(direction = -1) 
+  # consider filling up the remaining regions?
+  print(
+    ggplot(sch_kde, aes(x = kde)) +
+      geom_histogram()
+  )
   
-  # maybe can consider changing the colout of low
-  # since overlap by darker colour
-  
-  # e. kde by district ------------------------------------------------------
-  district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
-  
-  for (i in district) {
-    sch_kde <- 
-      sch_sf %>% 
-      filter(district == i) %>% 
-      st_transform("EPSG:27700") %>% 
-      hotspot_kde() %>% 
-      st_intersection(st_transform(brn_sf, "EPSG:27700"))
-    
-    # consider filling up the remaining regions?
-    print(
-      ggplot(sch_kde, aes(x = kde)) +
-        geom_histogram()
+  print(
+    ggplot() +
+      geom_sf(data = filter(mkm_sf, district == i)) +
+      geom_sf(aes(fill = kde),
+              data = sch_kde,
+              alpha = 0.85,
+              colour = NA) +
+      scale_fill_viridis_c(direction = -1)
+  )
+}
+
+# f. global moran ---------------------------------------------------------
+# 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
+# there are different types of weights?
+
+# Duplicate: for reference
+# kpg_sch <-
+#   kpg_sf %>% 
+#   left_join(sch_kpg) %>% 
+#   select(kampong, count_of_schools)
+
+kpg_sch$count_of_schools[is.na(kpg_sch$count_of_schools)] <- 0
+
+nb <- st_knn(st_centroid(kpg_sch), k = 5) # multiple islands in brunei so cannot use st_contiguity
+wt <- st_weights(nb, style = "W")
+global_moran_test(kpg_sch$count_of_schools, nb, wt)
+
+# Reject H0, there is statistically significant clustering of schools
+
+## ----- Moran's test ----------------------------------------------------------
+
+# We can use the Moran's test to determine if there is spatial autocorrelation
+# in the distribution of number of schools. Probably best to do this by Mukim.
+
+# Checking that the kampong order is the same in both data sets
+all(kpg_sch_df$kampong == kpg_sf$kampong)
+
+kpg_sch_df <- st_set_geometry(kpg_sch, NULL)
+kpg_sch_df$mukim <- kpg_sf$mukim
+kpg_sch_df$district <- kpg_sf$district
+mkm_sch_df <- 
+  kpg_sch_df |>
+  summarise(
+    count = sum(count_of_schools),
+    .by = mukim
+  )
+
+# Create the sf object, with count as a feature
+mkm_sch_sf <-
+  mkm_sf |>
+  left_join(mkm_sch_df) |>
+  mutate(
+    count = case_when(
+      count == 0 ~ NA_real_,
+      TRUE ~ count
     )
-    
-    print(
-      ggplot() +
-        geom_sf(data = filter(mkm_sf, district == i)) +
-        geom_sf(aes(fill = kde),
-                data = sch_kde,
-                alpha = 0.85,
-                colour = NA) +
-        scale_fill_viridis_c(direction = -1)
-    )
-  }
-  
-  # f. global moran ---------------------------------------------------------
-  # 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
-  # there are different types of weights?
-  
-  # Duplicate: for reference
-  # kpg_sch <-
-  #   kpg_sf %>% 
-  #   left_join(sch_kpg) %>% 
-  #   select(kampong, count_of_schools)
-  
-  kpg_sch$count_of_schools[is.na(kpg_sch$count_of_schools)] <- 0
-  
-  nb <- st_knn(st_centroid(kpg_sch), k = 5) # multiple islands in brunei so cannot use st_contiguity
-  wt <- st_weights(nb, style = "W")
-  global_moran_test(kpg_sch$count_of_schools, nb, wt)
-  
-  # Reject H0, there is statistically significant clustering of schools
-  
+  ) 
+
+# Let's plot it first
+ggplot(mkm_sch_sf) +
+  geom_sf(aes(fill = count)) +
+  # geom_sf_text(aes(label = count)) +
+  scale_fill_viridis_c() +
+  theme_bw()
+
+# Now we can do the Moran's test
+library(spdep)
+mor_sf <- drop_na(mkm_sch_sf, count)  
+nb <- poly2nb(mor_sf, row.names = mor_sf$mukim) 
+
+# OPTIONAL: Connect Mukim Kota Batu to Mukim Labu (because of the bridge)
+idx_kotabatu <- which(mor_sf$mukim == "Mukim Kota Batu")
+idx_labu <- which(mor_sf$mukim == "Mukim Labu")
+nb[[idx_kotabatu]] <- c(nb[[idx_kotabatu]], idx_labu)
+nb[[idx_labu]] <- c(nb[[idx_labu]], idx_kotabatu)
+
+lw <- nb2listw(nb)   
+mt <- moran.test(mor_sf$count, lw)
+
+# The moran's test is effectively conducting this hypothesis test:
+#
+# H0: There is no spatial correlation 
+# H1: There is spatial correlation
+#
+# Results are I = 0.495, which is quite high, indicating positive spatial
+# correlation. The p-value is < 0.001 so we reject the null hypothesis.
+
+# Curious, plot the neighbours
+library(sp)
+mor_sp <- as(mor_sf, "Spatial")
+nb_sf <- as(nb2lines(nb, coords = coordinates(mor_sp)), "sf")
+nb_sf <- st_set_crs(nb_sf, st_crs(mor_sp)) 
+ggplot() +
+  geom_sf(data = mkm_sf) +
+  geom_sf(data = nb_sf, col = "red3")
+
 # 2. Proximity to School from Home -------------------------------------------
