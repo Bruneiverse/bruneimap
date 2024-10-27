@@ -100,6 +100,50 @@ No. | Population Density | Hospital and Health Centres distributions
 **Our objective**: *Compare the accessibility of hospitals and health centers in different districts*
 
 ![PicQs4](https://github.com/user-attachments/assets/aed39a4c-7f25-4251-8f91-e1720d1e2875)
+<p align="center"><i>Figure : Comparison between the highways and hospitals of different districts </i></p>
+
+
+*We will assess accessibility by using the number of highways surrounding the hospitals in each district and their distances. (As a higher number of highways provides more route options, particularly in situations like roadblocks caused by construction )*
+
+### — 📝 **Investigating Brunei-Muara district;**
+
+No. | Highways and Hospitals | Accessibilithy 
+-- | -- | --
+| 1. | The highways are closely clustered around the hospitals | Easier and quicker to reach hospitals in a short distances | 
+| 2. | There are many routes/highways leading to the hospitals (to keep up with the large number of hospitals) | Making hospitals highly accessible |
+
+### — 📝 **Investigating Beliat district;**
+
+No. | Highways and Hospitals | Accessibilithy 
+-- | -- | --
+| 1. | The highways are more spread apart due to the hospitals being further from one another | Slower to reach hospitals due to the distance | 
+| 2. | There are at least one or more routes leading to the hospitals | Making hospitals decently accessible |
+
+### — 📝 **Investigating Tutong district;**
+
+No. | Highways and Hospitals | Accessibilithy 
+-- | -- | --
+| 1. | The highways are more spread apart due to the hospitals being further from one another | Slower to reach hospitals due to the distance | 
+| 2. | There are at least one or more routes leading to the hospitals | Making hospitals decently accessible |
+
+### — 📝 **Investigating Temburong district;**
+
+No. | Highways and Hospitals | Accessibilithy 
+-- | -- | --
+| 1. | The highway is one long distnace leading to the hospital | Slower to reach the hospital due to the long distance | 
+| 2. | There is one highway leading to the hospital | Making accessibility to hospitals more limited |
+
+
+### - 🏁 Overall conclusion:
+* Accessibility in Brunei-Muara is higher compared to other districts, whereas in Temburong, it is lower.
+* The ranking of accessibility is as follows: Brunei-Muara is the highest, followed by Belait and Tutong, with Temburong having the lowest accessibility.
+* This may be attributed to the population density—higher in Brunei-Muara and lower in Temburong (which can be observed in Question 2)—indicating a greater need for accessibility in Brunei-Muara compared to Temburong.
+
+
+
+
+
+
 
 
 
