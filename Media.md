@@ -6,10 +6,10 @@ Pic for Qs 1
 
 Pic comparison for Q2
 
-![Rplot04](https://github.com/user-attachments/assets/43b1dd25-6764-4569-9e5c-e6a57bb2cd26)
+![Rplot05](https://github.com/user-attachments/assets/39f2fdc7-2312-4833-9db8-5991ef36918d)
 
+Pic for Qs 3
 
-Pic for Qs 4
 ![PicQs4](https://github.com/user-attachments/assets/7a029638-cae5-46ee-86bf-53639bf3c3e7)
 
 
