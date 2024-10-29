@@ -22,8 +22,7 @@ Below is our research...
 | --- | --- |
 | **1. What is the spatial distribution of hospitals and health centers in Brunei?** | *Analyze the geographic spread and clustering of their locations.* |
 | **2. How does population density relate to hospital and health centers distribution?**  | *Investigate if there are multiple healthcare facilities in high population density areas.* |
-| **3. Are there significant patterns in the distance of hospitals and health centers from residential areas?** | *Examine the distances from housing to the nearest healthcare facilities.* |
-| **4. How does the accessibility of healthcare facilities vary across different districts?** | *Compare the accessibility of hospitals and health centers in different districts* |
+| **3. How does the accessibility of healthcare facilities vary across different districts?** | *Compare the accessibility of hospitals and health centers in different districts* |
 
 ㅤ
 
@@ -61,7 +60,7 @@ Below is our research...
 
 ## 📍 (Question 2.)  How does population density relate to hospital and health centers distribution? 
 **Our objective**: *Investigate if there are multiple healthcare facilities in high population density areas.*
-![picture-2](https://github.com/user-attachments/assets/b7cd510c-3131-4bbd-ab1e-91a409c42f82)
+![Rplot05](https://github.com/user-attachments/assets/7afb9524-df5c-413b-b1b2-95554e155f1b)
 <p align="center"><i>Figure : Comparison between population density and healthcare facilities distribution</i></p>
 ㅤ
 
@@ -96,7 +95,7 @@ No. | Population Density | Hospital and Health Centres distributions
 
 
 
-## 📍 (Question 4.) How does the accessibility of healthcare facilities vary across different districts?
+## 📍 (Question 3.) How does the accessibility of healthcare facilities vary across different districts?
 **Our objective**: *Compare the accessibility of hospitals and health centers in different districts*
 
 ![PicQs4](https://github.com/user-attachments/assets/aed39a4c-7f25-4251-8f91-e1720d1e2875)
