@@ -255,8 +255,8 @@ view(enrolment_MOE)
   wt <- st_weights(nb)
   global_moran_test(mkm_sch$count_of_schools, nb, wt)
   
-# e. lisa - getis ord -----------------------------------------------------
-  sch_gi <-
+  # e. lisa - getis ord -----------------------------------------------------
+  sch_gi <- 
     sch_sf %>% 
     st_transform("EPSG:27700") %>%  # sfhotspot rejects 4326 format
     hotspot_gistar() %>%  
@@ -266,14 +266,14 @@ view(enrolment_MOE)
     sch_gi %>% 
     arrange(pvalue) %>% 
     slice(1:5)
-  
+
   view(sch_gi_labels)
   
   ggplot(sch_gi) +
     geom_histogram(aes(kde))
   
   ggplot() +
-    geom_sf(data = mkm_sf) +
+    geom_sf(data = kpg_sf) +
     #annotation_map_tile(type = "cartolight", zoomin = 0) +
     geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.8, col = NA) +
     geom_label_repel(data = sch_gi_labels,
@@ -285,14 +285,36 @@ view(enrolment_MOE)
                      max.overlaps = Inf) +
     scale_fill_viridis_c()
   
+  # f. school by cluster (not usable; too much overlaps betwen clusters) ----------------------------------------------------
+  ggplot() +
+  geom_sf(data = kpg_sf) +
+  geom_sf(data = sch_sf, aes(col = Cluster))
 
-# f. school by cluster ----------------------------------------------------
-    ggplot() +
-    geom_sf(data = kpg_sf) +
-    geom_sf(data = sch_sf, aes(col = Cluster)) +
-    
+# g. student teacher ratio by district -------------------------------------
+stratio <- tibble(district = c("Brunei Muara", "Tutong", "Belait", "Temburong"),
+                  str = c(10.3, 7.7, 10.2, 7.6))
   
-## Backup ------------------------------------------------------------------------
+# left join str to kpg_sf then ggplot
+
+
+# h. brunei population ---------------------------------------------------------------
+bn_pop_sf <- left_join(kpg_sf, bn_census2021, by = join_by(id, kampong, mukim, district))
+  
+bn_pop_sf |>
+  # filter(population > 50) |>
+  ggplot() +
+  geom_sf(aes(fill = population), col = NA, alpha = 0.8) +
+  geom_sf(data = kpg_sf, fill = NA, col = "black") +
+  scale_fill_viridis_b(
+    name = "Population",
+    na.value = NA,
+    labels = scales::comma,
+    breaks = c(0, 100, 1000, 10000, 20000)
+    # limits = c(0, 12000)
+  ) +
+  theme_bw()
+
+## Backup ------------------------------------------------------------------ -------------------------------------------------------------------------------------------
 # d. kde ------------------------------------------------------------------
       sch_kde <- 
         sch_sf %>% 
