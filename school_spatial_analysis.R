@@ -179,7 +179,8 @@ view(enrolment_MOE)
   # a. points of all schools ------------------------------------------------
   ggplot() +
     geom_sf(data = kpg_sf) +
-    geom_sf(data = sch_sf)
+    geom_sf(data = sch_sf) +
+    theme_bw()
   
   # b. schools by kampong ---------------------------------------------------
   sch_kpg <-
@@ -193,16 +194,26 @@ view(enrolment_MOE)
     left_join(sch_kpg) %>% 
     select(kampong, count_of_schools)
   
+  kpg_sch_labels <-
+    kpg_sch %>% 
+    arrange(desc(count_of_schools)) %>% 
+    slice(1:10)
+  
   ggplot(kpg_sch, aes(count_of_schools)) +
     geom_histogram()
   
   ggplot() +
-    geom_sf(data = kpg_sf) +
-    geom_sf(data = kpg_sch, 
-            aes(fill = count_of_schools),
-            alpha = 0.8,
-            colour = NA) +
-    scale_fill_viridis_b(direction = 1)
+    geom_sf(data = kpg_sch, aes(fill = count_of_schools), col = NA, alpha = 0.8) +
+    geom_sf(data = kpg_sf, fill = NA, col = "black") +
+    geom_label_repel(data = kpg_sch_labels,
+                     aes(label = kampong, geometry = geometry),
+                     stat = "sf_coordinates",
+                     inherit.aes = FALSE,
+                     box.padding = 1,
+                     size = 2,
+                     max.overlaps = Inf) +
+    scale_fill_viridis_b() +
+    theme_bw()
   
   # c. schools by mukim -----------------------------------------------------
   sch_mkm <-
@@ -216,16 +227,26 @@ view(enrolment_MOE)
     left_join(sch_mkm) %>% 
     select(mukim, count_of_schools)
   
+  mkm_sch_labels <-
+    mkm_sch %>% 
+    arrange(desc(count_of_schools)) %>% 
+    slice(1:5)
+  
   ggplot(mkm_sch, aes(count_of_schools)) +
     geom_histogram()
   
   ggplot() +
-    geom_sf(data = mkm_sf) +
-    geom_sf(data = mkm_sch, 
-            aes(fill = count_of_schools),
-            alpha = 0.8,
-            colour = NA) +
-    scale_fill_viridis_b(direction = 1)
+    geom_sf(data = mkm_sch, aes(fill = count_of_schools), colour = NA, alpha = 0.8) +
+    geom_sf(data = mkm_sf, fill = NA, col = "black") +
+    geom_label_repel(data = mkm_sch_labels,
+                     aes(label = mukim, geometry = geometry),
+                     stat = "sf_coordinates",
+                     inherit.aes = FALSE,
+                     box.padding = 1,
+                     size = 2,
+                     max.overlaps = Inf) +
+    scale_fill_viridis_b() +
+    theme_bw()
   
   # d. global moran by mukim ------------------------------------------------
   mkm_sch$count_of_schools[is.na(mkm_sch$count_of_schools)] <- 0
@@ -241,19 +262,35 @@ view(enrolment_MOE)
     hotspot_gistar() %>%  
     filter(gistar > 0, pvalue < 0.05)
   
+  sch_gi_labels <-
+    sch_gi %>% 
+    arrange(pvalue) %>% 
+    slice(1:5)
+  
+  view(sch_gi_labels)
+  
   ggplot(sch_gi) +
     geom_histogram(aes(kde))
   
   ggplot() +
     geom_sf(data = mkm_sf) +
     #annotation_map_tile(type = "cartolight", zoomin = 0) +
-    geom_sf(
-      aes(fill = kde),
-      data = sch_gi,
-      alpha = 0.8,
-      colour = NA
-    ) +
+    geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.8, col = NA) +
+    geom_label_repel(data = sch_gi_labels,
+                     aes(label = pvalue, geometry = geometry),
+                     stat = "sf_coordinates",
+                     inherit.aes = FALSE,
+                     box.padding = 1,
+                     size = 2,
+                     max.overlaps = Inf) +
     scale_fill_viridis_c()
+  
+
+# f. school by cluster ----------------------------------------------------
+    ggplot() +
+    geom_sf(data = kpg_sf) +
+    geom_sf(data = sch_sf, aes(col = Cluster)) +
+    
   
 ## Backup ------------------------------------------------------------------------
 # d. kde ------------------------------------------------------------------
