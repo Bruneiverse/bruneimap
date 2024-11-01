@@ -9,6 +9,7 @@ library(osmdata)
 library(readxl)
 library(sfhotspot)
 library(sfdep)
+library(ggspatial)
 
 # 1. GIS - School---------------------------------------------------------------
 #   A. Data Cleaning - 175 entries--------------------------------------
@@ -178,8 +179,9 @@ view(enrolment_MOE)
 # TOPIC QUESTION: DISTRIBUTION ----------------------------------------------------------------------------------------------------------
   # a. points of all schools ------------------------------------------------
   ggplot() +
-    geom_sf(data = kpg_sf) +
-    geom_sf(data = sch_sf) +
+    annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.8) +
+    geom_sf(data = mkm_sf, alpha = 0.6, col = "black", lwd = 0.6) +
+    geom_sf(data = sch_sf) + 
     theme_bw()
   
   # b. schools by kampong ---------------------------------------------------
@@ -203,6 +205,7 @@ view(enrolment_MOE)
     geom_histogram()
   
   ggplot() +
+    annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
     geom_sf(data = kpg_sch, aes(fill = count_of_schools), col = NA, alpha = 0.8) +
     geom_sf(data = kpg_sf, fill = NA, col = "black") +
     geom_label_repel(data = kpg_sch_labels,
@@ -236,7 +239,8 @@ view(enrolment_MOE)
     geom_histogram()
   
   ggplot() +
-    geom_sf(data = mkm_sch, aes(fill = count_of_schools), colour = NA, alpha = 0.8) +
+    annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
+    geom_sf(data = mkm_sch, aes(fill = count_of_schools), colour = NA, alpha = 1) +
     geom_sf(data = mkm_sf, fill = NA, col = "black") +
     geom_label_repel(data = mkm_sch_labels,
                      aes(label = mukim, geometry = geometry),
@@ -273,6 +277,7 @@ view(enrolment_MOE)
     geom_histogram(aes(kde))
   
   ggplot() +
+    annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
     geom_sf(data = kpg_sf) +
     #annotation_map_tile(type = "cartolight", zoomin = 0) +
     geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.8, col = NA) +
@@ -295,24 +300,29 @@ stratio <- tibble(district = c("Brunei Muara", "Tutong", "Belait", "Temburong"),
                   str = c(10.3, 7.7, 10.2, 7.6))
   
 # left join str to kpg_sf then ggplot
+ggplot() + 
+  annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
+  geom_sf(data = left_join(mkm_sf, stratio, by = join_by(district)) %>% 
+            select(district, geometry, str),
+          aes(fill = str)) +
+  scale_fill_viridis_c() + 
+  theme_bw()
 
 
 # h. brunei population ---------------------------------------------------------------
 bn_pop_sf <- left_join(kpg_sf, bn_census2021, by = join_by(id, kampong, mukim, district))
   
-bn_pop_sf |>
-  # filter(population > 50) |>
-  ggplot() +
-  geom_sf(aes(fill = population), col = NA, alpha = 0.8) +
+ggplot() +
+  geom_sf(data = bn_pop_sf, aes(fill = population), col = NA, alpha = 0.8) +
   geom_sf(data = kpg_sf, fill = NA, col = "black") +
   scale_fill_viridis_b(
     name = "Population",
     na.value = NA,
     labels = scales::comma,
     breaks = c(0, 100, 1000, 10000, 20000)
-    # limits = c(0, 12000)
   ) +
   theme_bw()
+
 
 ## Backup ------------------------------------------------------------------ -------------------------------------------------------------------------------------------
 # d. kde ------------------------------------------------------------------
