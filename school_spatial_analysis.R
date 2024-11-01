@@ -225,7 +225,7 @@ view(enrolment_MOE)
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
+    geom_sf(data = dis_sf, fill = NA, lwd = 1) +
     geom_sf(data = kpg_sch, aes(fill = count_of_schools), col = "black") +
     geom_label_repel(data = kpg_sch_labels,
                      aes(label = kampong, geometry = geometry),
@@ -296,8 +296,8 @@ view(enrolment_MOE)
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = kpg_sf, fill = NA) +
-    geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
+    geom_sf(data = kpg_sf, fill = NA, col = "grey") +
+    geom_sf(data = mkm_sf, fill = NA, lwd = 1) +
     geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.9, col = NA) +
     # geom_label_repel(data = sch_gi_labels,
     #                  aes(label = pvalue, geometry = geometry),
@@ -314,7 +314,7 @@ view(enrolment_MOE)
   geom_sf(data = kpg_sf) +
   geom_sf(data = sch_sf, aes(col = Cluster))
 
-  # g. student teacher ratio by district -------------------------------------
+  # g. student teacher ratio by district (not very informative) -------------------------------------
 stratio <- tibble(district = c("Brunei Muara", "Tutong", "Belait", "Temburong"),
                   str = c(10.3, 7.7, 10.2, 7.6))
   
