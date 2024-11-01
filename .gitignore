@@ -3,3 +3,4 @@
 *.pper
 /.Rproj.user
 /rosm.cache/osm
+/rosm.cache
