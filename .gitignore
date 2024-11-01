@@ -49,3 +49,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# ggspatial, base map
+*.pper
+/rosm.cache/osm
+/rosm.cache
+
