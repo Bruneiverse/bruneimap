@@ -332,12 +332,26 @@ ggplot() +
 
   # h. brunei population ---------------------------------------------------------------
 bn_pop_sf <- left_join(kpg_sf, bn_census2021, by = join_by(id, kampong, mukim, district))
-  
+
+bn_pop_labels <-
+  bn_pop_sf %>% 
+  arrange(desc(population)) %>% 
+  slice_head(n = 10)
+
 ggplot() +
   annotation_map_tile(type = "osm", zoomin =  0, , alpha = 0.6) +
   geom_sf(data = bn_pop_sf, aes(fill = population), col = NA, alpha = 0.8) +
   geom_sf(data = dis_sf, fill = NA, lwd = 1) +
   geom_sf(data = kpg_sf, fill = NA, col = "black") +
+  ggrepel::geom_label_repel(
+    data = bn_pop_labels,
+    aes(label = kampong, geometry = geometry),
+    stat = "sf_coordinates",
+    inherit.aes = FALSE,
+    box.padding = 1,
+    size = 2,
+    max.overlaps = Inf
+  ) +
   scale_fill_viridis_b(
     name = "Population",
     na.value = NA,
@@ -345,7 +359,6 @@ ggplot() +
     breaks = c(0, 100, 1000, 10000, 20000)
   ) +
   theme_bw()
-
 
 ## Backup ------------------------------------------------------------------ -------------------------------------------------------------------------------------------
 # d. kde ------------------------------------------------------------------
