@@ -10,6 +10,8 @@ library(readxl)
 library(sfhotspot)
 library(sfdep)
 library(ggspatial)
+library(sf) # some older version RStudio requires this
+library(prettymapr) # some older version RStudio requires this
 
 # 1. GIS - School---------------------------------------------------------------
 #   A. Data Cleaning - 175 entries--------------------------------------
