@@ -25,8 +25,7 @@ And welcome to our Read.me! Introducing our team members ...
 | --- | --- |
 | **1. What is the spatial distribution of hospitals and health centers in Brunei?** | *Analyze the geographic spread and clustering of their locations.* |
 | **2. How does population density relate to hospital and health centers distribution?**  | *Investigate if there are multiple healthcare facilities in high population density areas.* |
-| **3. Are there significant patterns in the distance of hospitals and health centers from residential areas?** | *Examine the distances from housing to the nearest healthcare facilities.* |
-| **4. How does the accessibility of healthcare facilities vary across different districts?** | *Compare the accessibility of hospitals and health centers in different districts* |
+| **3. How does the accessibility of healthcare facilities vary across different districts?** | *Compare the accessibility of hospitals and health centers in different districts* |
 
 
 *Lastly...*
