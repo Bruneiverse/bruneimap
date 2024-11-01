@@ -1,4 +1,4 @@
-# o. Libraries ---------------------------------------------------------------
+# 0. Libraries ---------------------------------------------------------------
 library(tidyverse)
 # remotes::install_github("propertypricebn/bruneimap")
 library(bruneimap)
@@ -363,7 +363,7 @@ ggplot() +
   
   # maybe can consider changing the colout of low
   # since overlap by darker colour
-  
+
 # e. kde by district ------------------------------------------------------
   district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
 
@@ -427,6 +427,79 @@ ggplot() +
   
   # *** BUT st_contiguity works for mkm (despite having 2 sub-graphs?)
 
-  
+## ----- Moran's test ----------------------------------------------------------
 
-  
+# We can use the Moran's test to determine if there is spatial autocorrelation
+# in the distribution of number of schools. Probably best to do this by Mukim.
+
+# Checking that the kampong order is the same in both data sets
+all(kpg_sch_df$kampong == kpg_sf$kampong)
+
+kpg_sch_df <- st_set_geometry(kpg_sch, NULL)
+kpg_sch_df$mukim <- kpg_sf$mukim
+kpg_sch_df$district <- kpg_sf$district
+mkm_sch_df <- 
+  kpg_sch_df |>
+  summarise(
+    count = sum(count_of_schools),
+    .by = mukim
+  )
+
+# Create the sf object, with count as a feature
+mkm_sch_sf <-
+  mkm_sf |>
+  left_join(mkm_sch_df) |>
+  mutate(
+    count = case_when(
+      count == 0 ~ NA_real_,
+      TRUE ~ count
+    )
+  ) 
+
+# Let's plot it first
+ggplot(mkm_sch_sf) +
+  geom_sf(aes(fill = count)) +
+  # geom_sf_text(aes(label = count)) +
+  scale_fill_viridis_c() +
+  theme_bw()
+
+# The above plot seems to be spatially dependent. If schools are not spatially
+# dependent, it would look something like this:
+mkm_sch_sf |>
+  mutate(rand_count = sample(count)) |>
+  ggplot() +
+  geom_sf(aes(fill = rand_count)) +
+  # geom_sf_text(aes(label = count)) +
+  scale_fill_viridis_c() +
+  theme_bw()
+
+# Now we can do the Moran's test
+library(spdep)
+mor_sf <- drop_na(mkm_sch_sf, count)  
+nb <- poly2nb(mor_sf, row.names = mor_sf$mukim) 
+
+# OPTIONAL: Connect Mukim Kota Batu to Mukim Labu (because of the bridge)
+idx_kotabatu <- which(mor_sf$mukim == "Mukim Kota Batu")
+idx_labu <- which(mor_sf$mukim == "Mukim Labu")
+nb[[idx_kotabatu]] <- c(nb[[idx_kotabatu]], idx_labu)
+nb[[idx_labu]] <- c(nb[[idx_labu]], idx_kotabatu)
+
+lw <- nb2listw(nb)   
+mt <- moran.test(mor_sf$count, lw)
+
+# The moran's test is effectively conducting this hypothesis test:
+#
+# H0: There is no spatial correlation 
+# H1: There is spatial correlation
+#
+# Results are I = 0.495, which is quite high, indicating positive spatial
+# correlation. The p-value is < 0.001 so we reject the null hypothesis.
+
+# Curious, plot the neighbours
+library(sp)
+mor_sp <- as(mor_sf, "Spatial")
+nb_sf <- as(nb2lines(nb, coords = coordinates(mor_sp)), "sf")
+nb_sf <- st_set_crs(nb_sf, st_crs(mor_sp)) 
+ggplot() +
+  geom_sf(data = mkm_sf) +
+  geom_sf(data = nb_sf, col = "red3")
