@@ -111,7 +111,7 @@ No. | Highways and Hospitals | Accessibilithy
 | 1. | The highways are closely clustered around the hospitals | Easier and quicker to reach hospitals in a short distances | 
 | 2. | There are many routes/highways leading to the hospitals (to keep up with the large number of hospitals) | Making hospitals highly accessible |
 
-### — 📝 **Investigating Beliat district;**
+### — 📝 **Investigating Belait district;**
 
 No. | Highways and Hospitals | Accessibilithy 
 -- | -- | --
