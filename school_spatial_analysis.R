@@ -67,6 +67,7 @@ ggplot(data = bb2_polygon) +
 df <- read_csv("data/School listing.csv")
 # only 71 entries from OSM query match MOE listing of 251 entries
 schools_sf_temp <- schools_sf[schools_sf$name %in% df$School,]
+schools_sf_temp
 
 # Issue: school names slight variation/abbreviated
 # Solution: left join the matching entries, and fill up the remaining geometry manually
@@ -176,14 +177,30 @@ for (i in 4:6) {
 enrolment_MOE <- bind_rows(enrolment_MOE)
 view(enrolment_MOE)
 
-# TOPIC QUESTION: DISTRIBUTION ----------------------------------------------------------------------------------------------------------
+# TOPIC QUESTION: DISTRIBUTION --------------------------------------------- ----------------------------------------------------------------------------------------------------------
   # a. points of all schools ------------------------------------------------
+  dis_labels <- st_centroid(dis_sf)
+
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.8) +
-    geom_sf(data = mkm_sf, alpha = 0.6, col = "black", lwd = 0.6) +
+    # geom_sf(data = kpg_sf, alpha = 0.2) +
+    geom_sf(data = dis_sf, alpha = 0, lwd = 1) +
+    geom_sf(data = mkm_sf, alpha = 0.2, col = "black", lwd = 0.5) +
     geom_sf(data = sch_sf) + 
-    theme_bw()
-  
+    geom_label_repel(data = dis_labels,
+                     aes(label = name, geometry = geometry),
+                     stat = "sf_coordinates",
+                     #inherit.aes = FALSE,
+                     box.padding = 10,
+                     # nudge_x = 0,
+                     # nudge_y = 0,
+                     # hjust = 0.1,
+                     # vjust = 0,
+                     size = 4,
+                     max.overlaps = Inf) +
+    labs(x = NULL, y = NULL) +
+    theme_bw() 
+
   # b. schools by kampong ---------------------------------------------------
   sch_kpg <-
     sch_sf %>% 
@@ -206,16 +223,17 @@ view(enrolment_MOE)
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = kpg_sch, aes(fill = count_of_schools), col = NA, alpha = 0.8) +
-    geom_sf(data = kpg_sf, fill = NA, col = "black") +
+    geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
+    geom_sf(data = kpg_sch, aes(fill = count_of_schools), col = "black") +
     geom_label_repel(data = kpg_sch_labels,
                      aes(label = kampong, geometry = geometry),
                      stat = "sf_coordinates",
                      inherit.aes = FALSE,
-                     box.padding = 1,
-                     size = 2,
+                     box.padding = 1.5,
+                     size = 3,
+                     segment.size = 0.8,
                      max.overlaps = Inf) +
-    scale_fill_viridis_b() +
+    scale_fill_viridis_b(na.value = NA) +
     theme_bw()
   
   # c. schools by mukim -----------------------------------------------------
@@ -240,8 +258,8 @@ view(enrolment_MOE)
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = mkm_sch, aes(fill = count_of_schools), colour = NA, alpha = 1) +
-    geom_sf(data = mkm_sf, fill = NA, col = "black") +
+    geom_sf(data = mkm_sch, aes(fill = count_of_schools), col = "grey") +
+    # geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
     geom_label_repel(data = mkm_sch_labels,
                      aes(label = mukim, geometry = geometry),
                      stat = "sf_coordinates",
@@ -249,7 +267,7 @@ view(enrolment_MOE)
                      box.padding = 1,
                      size = 2,
                      max.overlaps = Inf) +
-    scale_fill_viridis_b() +
+    scale_fill_viridis_b(na.value = NA) +
     theme_bw()
   
   # d. global moran by mukim ------------------------------------------------
@@ -266,54 +284,57 @@ view(enrolment_MOE)
     hotspot_gistar() %>%  
     filter(gistar > 0, pvalue < 0.05)
   
-  sch_gi_labels <-
-    sch_gi %>% 
-    arrange(pvalue) %>% 
-    slice(1:5)
+  # sch_gi_labels <-
+  #   sch_gi %>% 
+  #   arrange(pvalue) %>% 
+  #   slice(1:5)
 
-  view(sch_gi_labels)
-  
   ggplot(sch_gi) +
     geom_histogram(aes(kde))
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = kpg_sf) +
-    #annotation_map_tile(type = "cartolight", zoomin = 0) +
-    geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.8, col = NA) +
-    geom_label_repel(data = sch_gi_labels,
-                     aes(label = pvalue, geometry = geometry),
-                     stat = "sf_coordinates",
-                     inherit.aes = FALSE,
-                     box.padding = 1,
-                     size = 2,
-                     max.overlaps = Inf) +
-    scale_fill_viridis_c()
+    geom_sf(data = kpg_sf, fill = NA) +
+    geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
+    geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.9, col = NA) +
+    # geom_label_repel(data = sch_gi_labels,
+    #                  aes(label = pvalue, geometry = geometry),
+    #                  stat = "sf_coordinates",
+    #                  inherit.aes = FALSE,
+    #                  box.padding = 1,
+    #                  size = 2,
+    #                  max.overlaps = Inf) +
+    scale_fill_viridis_c() +
+    theme_bw()
   
   # f. school by cluster (not usable; too much overlaps betwen clusters) ----------------------------------------------------
   ggplot() +
   geom_sf(data = kpg_sf) +
   geom_sf(data = sch_sf, aes(col = Cluster))
 
-# g. student teacher ratio by district -------------------------------------
+  # g. student teacher ratio by district -------------------------------------
 stratio <- tibble(district = c("Brunei Muara", "Tutong", "Belait", "Temburong"),
                   str = c(10.3, 7.7, 10.2, 7.6))
   
 # left join str to kpg_sf then ggplot
 ggplot() + 
   annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-  geom_sf(data = left_join(mkm_sf, stratio, by = join_by(district)) %>% 
-            select(district, geometry, str),
+  geom_sf(data = dis_sf, fill = NA, lwd = 1) +
+  geom_sf(data = mkm_sf %>% 
+                  left_join(stratio, by = join_by(district)) %>% 
+                  select(district, geometry, str),
           aes(fill = str)) +
   scale_fill_viridis_c() + 
   theme_bw()
 
 
-# h. brunei population ---------------------------------------------------------------
+  # h. brunei population ---------------------------------------------------------------
 bn_pop_sf <- left_join(kpg_sf, bn_census2021, by = join_by(id, kampong, mukim, district))
   
 ggplot() +
+  annotation_map_tile(type = "osm", zoomin =  0, , alpha = 0.6) +
   geom_sf(data = bn_pop_sf, aes(fill = population), col = NA, alpha = 0.8) +
+  geom_sf(data = dis_sf, fill = NA, lwd = 1) +
   geom_sf(data = kpg_sf, fill = NA, col = "black") +
   scale_fill_viridis_b(
     name = "Population",
@@ -326,86 +347,86 @@ ggplot() +
 
 ## Backup ------------------------------------------------------------------ -------------------------------------------------------------------------------------------
 # d. kde ------------------------------------------------------------------
-      sch_kde <- 
-        sch_sf %>% 
-        st_transform("EPSG:27700") %>% 
-        hotspot_kde(cell_size = 3000, bandwidth = 50000, grid_type = "hex") %>% 
-        st_intersection(st_transform(brn_sf, "EPSG:27700"))
-      
-      ggplot() +
-        geom_sf(data = kpg_sf) +
-        geom_sf(data = sch_kde,
-                aes(fill = kde),
-                alpha = 0.8,
-                colour = NA) +
-        scale_fill_viridis_c(direction = -1) 
-      
-      # maybe can consider changing the colout of low
-      # since overlap by darker colour
-      
+  sch_kde <- 
+    sch_sf %>% 
+    st_transform("EPSG:27700") %>% 
+    hotspot_kde(cell_size = 3000, bandwidth = 50000, grid_type = "hex") %>% 
+    st_intersection(st_transform(brn_sf, "EPSG:27700"))
+  
+  ggplot() +
+    geom_sf(data = kpg_sf) +
+    geom_sf(data = sch_kde,
+            aes(fill = kde),
+            alpha = 0.8,
+            colour = NA) +
+    scale_fill_viridis_c(direction = -1) 
+  
+  # maybe can consider changing the colout of low
+  # since overlap by darker colour
+  
 # e. kde by district ------------------------------------------------------
-      district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
-      
-      for (i in district) {
-        sch_kde <- 
-          sch_sf %>% 
-          filter(district == i) %>% 
-          st_transform("EPSG:27700") %>% 
-          hotspot_kde() %>% 
-          st_intersection(st_transform(brn_sf, "EPSG:27700"))
-        
-        # consider filling up the remaining regions?
-        print(
-          ggplot(sch_kde, aes(x = kde)) +
-            geom_histogram()
-        )
-        
-        print(
-          ggplot() +
-            geom_sf(data = filter(mkm_sf, district == i)) +
-            geom_sf(aes(fill = kde),
-                    data = sch_kde,
-                    alpha = 0.85,
-                    colour = NA) +
-            scale_fill_viridis_c(direction = -1)
-        )
-      }
-      
-# f. global moran ---------------------------------------------------------
-      # 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
-      # there are different types of weights?
-  # i. kpg - st_knn (5 nearest neighbour) -----------------------------------
-      # Duplicate 1b : for reference
-      # kpg_sch <-
-      #   kpg_sf %>% 
-      #   left_join(sch_kpg) %>% 
-      #   select(kampong, count_of_schools)
-      
-      # replace NA with 0
-      kpg_sch$count_of_schools[is.na(kpg_sch$count_of_schools)] <- 0
-      
-      nb <- st_knn(st_centroid(kpg_sch), k = 5)
-      wt <- st_weights(nb, style = "W")
-      global_moran_test(kpg_sch$count_of_schools, nb, wt)
-      
-      # Reject H0, there is statistically significant (minor) clustering of schools
-      # moran value >0 clustered; <0 dispersed
-      # z,p value for hyp test
-      
-  # ii. kpg - st_contiguity (literal neighbour) -----------------------------
-      nb <- st_contiguity(st_geometry(kpg_sch)) 
-      wt <- st_weights(nb, style = "W")
-      global_moran_test(kpg_schools$count_of_schools, nb, wt)
-      
-      # error: empty neighbour
-      # Is the issue: multiple islands in brunei so cannot use st_contiguity?
-      # fix: add one kota batu point to (polygon) of mukim labu?
-      mkm_sf %>% 
-        filter(mukim == "Mukim Kota Batu" | mukim == "Mukim Labu") %>% 
-        st_geometry()
-      
-      # *** BUT st_contiguity works for mkm (despite having 2 sub-graphs?)
-      
-      
+  district <- c("Brunei Muara", "Belait", "Tutong", "Temburong")
 
-      
+  for (i in district) {
+    sch_kde <- 
+      sch_sf %>% 
+      filter(district == i) %>% 
+      st_transform("EPSG:27700") %>% 
+      hotspot_kde() %>% 
+      st_intersection(st_transform(brn_sf, "EPSG:27700"))
+    
+    # consider filling up the remaining regions?
+    print(
+      ggplot(sch_kde, aes(x = kde)) +
+        geom_histogram()
+    )
+    
+    print(
+      ggplot() +
+        geom_sf(data = filter(mkm_sf, district == i)) +
+        geom_sf(aes(fill = kde),
+                data = sch_kde,
+                alpha = 0.85,
+                colour = NA) +
+        scale_fill_viridis_c(direction = -1)
+    )
+  }
+  
+# f. global moran ---------------------------------------------------------
+  # 2 types of neighbour: st_contiguity require polygon ;  st_knn require point
+  # there are different types of weights?
+  # i. kpg - st_knn (5 nearest neighbour) -----------------------------------
+  # Duplicate 1b : for reference
+  # kpg_sch <-
+  #   kpg_sf %>% 
+  #   left_join(sch_kpg) %>% 
+  #   select(kampong, count_of_schools)
+  
+  # replace NA with 0
+  kpg_sch$count_of_schools[is.na(kpg_sch$count_of_schools)] <- 0
+  
+  nb <- st_knn(st_centroid(kpg_sch), k = 5)
+  wt <- st_weights(nb, style = "W")
+  global_moran_test(kpg_sch$count_of_schools, nb, wt)
+  
+  # Reject H0, there is statistically significant (minor) clustering of schools
+  # moran value >0 clustered; <0 dispersed
+  # z,p value for hyp test
+  
+  # ii. kpg - st_contiguity (literal neighbour) -----------------------------
+  nb <- st_contiguity(st_geometry(kpg_sch)) 
+  wt <- st_weights(nb, style = "W")
+  global_moran_test(kpg_schools$count_of_schools, nb, wt)
+  
+  # error: empty neighbour
+  # Is the issue: multiple islands in brunei so cannot use st_contiguity?
+  # fix: add one kota batu point to (polygon) of mukim labu?
+  mkm_sf %>% 
+    filter(mukim == "Mukim Kota Batu" | mukim == "Mukim Labu") %>% 
+    st_geometry()
+  
+  # *** BUT st_contiguity works for mkm (despite having 2 sub-graphs?)
+
+  
+
+  
