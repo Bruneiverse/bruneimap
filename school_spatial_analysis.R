@@ -199,8 +199,9 @@ view(enrolment_MOE)
                      # hjust = 0.1,
                      # vjust = 0,
                      size = 5,
+                     segment.size = 0.8,
                      max.overlaps = Inf) +
-    labs(x = NULL, y = NULL) +
+    labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
     theme_bw() 
 
   # b. schools by kampong ---------------------------------------------------
@@ -226,7 +227,8 @@ view(enrolment_MOE)
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
     geom_sf(data = dis_sf, fill = NA, lwd = 1) +
-    geom_sf(data = kpg_sch, aes(fill = count_of_schools), col = "black") +
+    geom_sf(data = kpg_sch, aes(fill = count_of_schools), alpha = 0.8) +
+    geom_sf(data = kpg_sf, fill = NA, col = "black") +
     geom_label_repel(data = kpg_sch_labels,
                      aes(label = kampong, geometry = geometry),
                      stat = "sf_coordinates",
@@ -235,8 +237,8 @@ view(enrolment_MOE)
                      size = 3,
                      segment.size = 0.8,
                      max.overlaps = Inf) +
-    scale_fill_viridis_b(na.value = NA) +
-    labs(x = NULL, y = NULL) +
+    scale_fill_viridis_b(name = "Count of Schools", na.value = NA) +
+    labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
     theme_bw()
   
   # c. schools by mukim -----------------------------------------------------
@@ -269,9 +271,10 @@ view(enrolment_MOE)
                      inherit.aes = FALSE,
                      box.padding = 1,
                      size = 2,
+                     segment.size = 0.8,
                      max.overlaps = Inf) +
-    scale_fill_viridis_b(na.value = NA) +
-    labs(x = NULL, y = NULL) +
+    scale_fill_viridis_b(name = "Count of Schools", na.value = NA) +
+    labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
     theme_bw()
   
   # d. global moran by mukim ------------------------------------------------
@@ -308,8 +311,10 @@ view(enrolment_MOE)
     #                  inherit.aes = FALSE,
     #                  box.padding = 1,
     #                  size = 2,
+    #                  segment.size = 0.8,
     #                  max.overlaps = Inf) +
     scale_fill_viridis_c() +
+    labs(caption = "© OpenStreetMap") +
     theme_bw()
   
   # f. school by cluster (not usable; too much overlaps betwen clusters) ----------------------------------------------------
@@ -353,6 +358,7 @@ ggplot() +
     inherit.aes = FALSE,
     box.padding = 1,
     size = 2,
+    segment.size = 0.8,
     max.overlaps = Inf
   ) +
   scale_fill_viridis_b(
@@ -361,7 +367,7 @@ ggplot() +
     labels = scales::comma,
     breaks = c(0, 100, 1000, 10000, 20000)
   ) +
-  labs(x = NULL, y = NULL) +
+  labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
   theme_bw()
 
 ## Backup ------------------------------------------------------------------ -------------------------------------------------------------------------------------------
