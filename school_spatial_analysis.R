@@ -198,7 +198,7 @@ view(enrolment_MOE)
                      # nudge_y = 0,
                      # hjust = 0.1,
                      # vjust = 0,
-                     size = 4,
+                     size = 5,
                      max.overlaps = Inf) +
     labs(x = NULL, y = NULL) +
     theme_bw() 
@@ -236,6 +236,7 @@ view(enrolment_MOE)
                      segment.size = 0.8,
                      max.overlaps = Inf) +
     scale_fill_viridis_b(na.value = NA) +
+    labs(x = NULL, y = NULL) +
     theme_bw()
   
   # c. schools by mukim -----------------------------------------------------
@@ -260,8 +261,8 @@ view(enrolment_MOE)
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = mkm_sch, aes(fill = count_of_schools), col = "grey") +
-    # geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
+    geom_sf(data = mkm_sch, aes(fill = count_of_schools), col = "grey", lwd = 0.8) +
+    # geom_sf(data = dis_sf, fill = NA, lwd = 1, col = "black") +
     geom_label_repel(data = mkm_sch_labels,
                      aes(label = mukim, geometry = geometry),
                      stat = "sf_coordinates",
@@ -270,6 +271,7 @@ view(enrolment_MOE)
                      size = 2,
                      max.overlaps = Inf) +
     scale_fill_viridis_b(na.value = NA) +
+    labs(x = NULL, y = NULL) +
     theme_bw()
   
   # d. global moran by mukim ------------------------------------------------
@@ -296,8 +298,9 @@ view(enrolment_MOE)
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = kpg_sf, fill = NA, col = "grey") +
-    geom_sf(data = mkm_sf, fill = NA, lwd = 1) +
+    geom_sf(data = kpg_sf, fill = NA, col = "grey", lwd = 0.8) +
+    geom_sf(data = dis_sf, fill = NA, lwd = 1) +
+    geom_sf(data = mkm_sf, fill = NA, lwd = 0.7) +
     geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.9, col = NA) +
     # geom_label_repel(data = sch_gi_labels,
     #                  aes(label = pvalue, geometry = geometry),
@@ -340,10 +343,10 @@ bn_pop_labels <-
 
 ggplot() +
   annotation_map_tile(type = "osm", zoomin =  0, , alpha = 0.6) +
-  geom_sf(data = bn_pop_sf, aes(fill = population), col = NA, alpha = 0.8) +
   geom_sf(data = dis_sf, fill = NA, lwd = 1) +
+  geom_sf(data = bn_pop_sf, aes(fill = population), col = NA, alpha = 0.8) +
   geom_sf(data = kpg_sf, fill = NA, col = "black") +
-  ggrepel::geom_label_repel(
+  geom_label_repel(
     data = bn_pop_labels,
     aes(label = kampong, geometry = geometry),
     stat = "sf_coordinates",
@@ -358,6 +361,7 @@ ggplot() +
     labels = scales::comma,
     breaks = c(0, 100, 1000, 10000, 20000)
   ) +
+  labs(x = NULL, y = NULL) +
   theme_bw()
 
 ## Backup ------------------------------------------------------------------ -------------------------------------------------------------------------------------------
