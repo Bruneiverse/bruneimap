@@ -10,6 +10,8 @@ library(readxl)
 library(sfhotspot)
 library(sfdep)
 library(ggspatial)
+library(sf) # some older version RStudio requires this
+library(prettymapr) # some older version RStudio requires this
 
 # 1. GIS - School---------------------------------------------------------------
 #   A. Data Cleaning - 175 entries--------------------------------------
@@ -179,26 +181,25 @@ view(enrolment_MOE)
 
 # TOPIC QUESTION: DISTRIBUTION --------------------------------------------- ----------------------------------------------------------------------------------------------------------
   # a. points of all schools ------------------------------------------------
-  dis_labels <- st_centroid(dis_sf)
-
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.8) +
     # geom_sf(data = kpg_sf, alpha = 0.2) +
     geom_sf(data = dis_sf, alpha = 0, lwd = 1) +
     geom_sf(data = mkm_sf, alpha = 0.2, col = "black", lwd = 0.5) +
     geom_sf(data = sch_sf) + 
-    geom_label_repel(data = dis_labels,
+    geom_label_repel(data = dis_sf,
                      aes(label = name, geometry = geometry),
                      stat = "sf_coordinates",
-                     #inherit.aes = FALSE,
-                     box.padding = 10,
-                     # nudge_x = 0,
-                     # nudge_y = 0,
+                     inherit.aes = FALSE,
+                     box.padding = 6,
+                     nudge_x = 15,
+                     nudge_y = 20,
                      # hjust = 0.1,
                      # vjust = 0,
-                     size = 4,
+                     size = 5,
+                     segment.size = 0.8,
                      max.overlaps = Inf) +
-    labs(x = NULL, y = NULL) +
+    labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
     theme_bw() 
 
   # b. schools by kampong ---------------------------------------------------
@@ -211,29 +212,31 @@ view(enrolment_MOE)
   kpg_sch <-
     kpg_sf %>% 
     left_join(sch_kpg) %>% 
-    select(kampong, count_of_schools)
+    select(kampong, mukim, count_of_schools)
   
   kpg_sch_labels <-
     kpg_sch %>% 
     arrange(desc(count_of_schools)) %>% 
-    slice(1:10)
+    slice_head(n = 10)
   
   ggplot(kpg_sch, aes(count_of_schools)) +
     geom_histogram()
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
-    geom_sf(data = kpg_sch, aes(fill = count_of_schools), col = "black") +
+    geom_sf(data = dis_sf, fill = NA, lwd = 1) +
+    geom_sf(data = kpg_sch, aes(fill = count_of_schools), alpha = 0.8) +
+    geom_sf(data = kpg_sf, fill = NA, col = "black") +
     geom_label_repel(data = kpg_sch_labels,
                      aes(label = kampong, geometry = geometry),
                      stat = "sf_coordinates",
                      inherit.aes = FALSE,
-                     box.padding = 1.5,
-                     size = 3,
+                     box.padding = 1.9,
+                     size = 5,
                      segment.size = 0.8,
                      max.overlaps = Inf) +
-    scale_fill_viridis_b(na.value = NA) +
+    scale_fill_viridis_b(name = "Count of Schools", na.value = NA) +
+    labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
     theme_bw()
   
   # c. schools by mukim -----------------------------------------------------
@@ -251,23 +254,25 @@ view(enrolment_MOE)
   mkm_sch_labels <-
     mkm_sch %>% 
     arrange(desc(count_of_schools)) %>% 
-    slice(1:5)
+    slice_head(n = 10)
   
   ggplot(mkm_sch, aes(count_of_schools)) +
     geom_histogram()
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = mkm_sch, aes(fill = count_of_schools), col = "grey") +
-    # geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
+    geom_sf(data = mkm_sch, aes(fill = count_of_schools), col = "grey", lwd = 0.8) +
+    # geom_sf(data = dis_sf, fill = NA, lwd = 1, col = "black") +
     geom_label_repel(data = mkm_sch_labels,
                      aes(label = mukim, geometry = geometry),
                      stat = "sf_coordinates",
                      inherit.aes = FALSE,
                      box.padding = 1,
-                     size = 2,
+                     size = 5,
+                     segment.size = 0.8,
                      max.overlaps = Inf) +
-    scale_fill_viridis_b(na.value = NA) +
+    scale_fill_viridis_b(name = "Count of Schools", na.value = NA) +
+    labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
     theme_bw()
   
   # d. global moran by mukim ------------------------------------------------
@@ -282,29 +287,48 @@ view(enrolment_MOE)
     sch_sf %>% 
     st_transform("EPSG:27700") %>%  # sfhotspot rejects 4326 format
     hotspot_gistar() %>%  
-    filter(gistar > 0, pvalue < 0.05)
-  
-  # sch_gi_labels <-
-  #   sch_gi %>% 
-  #   arrange(pvalue) %>% 
-  #   slice(1:5)
+    filter(gistar > 0, pvalue < 0.05) %>% 
+    st_intersection(
+      st_union(dis_sf) %>% 
+      st_transform("EPSG:27700")
+    )
+
+  sch_gi_labels <-
+    mkm_sf %>% 
+      filter(mukim %in% c("Mukim Kuala Belait",
+                          "Mukim Seria",
+                          "Mukim Telisai",
+                          "Mukim Pekan Tutong",
+                          "Mukim Bangar"))
 
   ggplot(sch_gi) +
     geom_histogram(aes(kde))
   
   ggplot() +
     annotation_map_tile(type = "osm", zoomin =  0, alpha = 0.6) +
-    geom_sf(data = kpg_sf, fill = NA) +
-    geom_sf(data = dis_sf, fill = NA, lwd = 0.6) +
-    geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.9, col = NA) +
-    # geom_label_repel(data = sch_gi_labels,
-    #                  aes(label = pvalue, geometry = geometry),
-    #                  stat = "sf_coordinates",
-    #                  inherit.aes = FALSE,
-    #                  box.padding = 1,
-    #                  size = 2,
-    #                  max.overlaps = Inf) +
-    scale_fill_viridis_c() +
+    geom_sf(data = kpg_sf, fill = NA, col = "grey", lwd = 0.8) +
+    geom_sf(data = dis_sf, fill = NA, lwd = 1) +
+    geom_sf(data = mkm_sf, fill = NA, lwd = 0.7) +
+    geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.8, col = NA) +
+    geom_label_repel(data = sch_gi_labels,
+                     aes(label = mukim, geometry = geometry),
+                     stat = "sf_coordinates",
+                     inherit.aes = FALSE,
+                     box.padding = 3.5,
+                     direction = "y",
+                     size = 5,
+                     segment.size = 0.8,
+                     max.overlaps = Inf) +
+    scale_fill_gradient(name = "cluster intensity",
+                        low = "orange",
+                        high = "darkred",
+                        breaks = range(pull(sch_gi, kde)),
+                        labels = c("high", "intense")) +
+    labs(x = NULL, 
+         y = NULL,
+         title = "School Hotspots",
+         subtitle = "density of clustered schools (more than expected by chance)",
+         caption = "© OpenStreetMap") +
     theme_bw()
   
   # f. school by cluster (not usable; too much overlaps betwen clusters) ----------------------------------------------------
@@ -312,7 +336,7 @@ view(enrolment_MOE)
   geom_sf(data = kpg_sf) +
   geom_sf(data = sch_sf, aes(col = Cluster))
 
-  # g. student teacher ratio by district -------------------------------------
+  # g. student teacher ratio by district (not very informative) -------------------------------------
 stratio <- tibble(district = c("Brunei Muara", "Tutong", "Belait", "Temburong"),
                   str = c(10.3, 7.7, 10.2, 7.6))
   
@@ -328,22 +352,76 @@ ggplot() +
   theme_bw()
 
 
-  # h. brunei population ---------------------------------------------------------------
+  # h. brunei population by kampong---------------------------------------------------------------
 bn_pop_sf <- left_join(kpg_sf, bn_census2021, by = join_by(id, kampong, mukim, district))
-  
+
+bn_pop_labels <-
+  bn_pop_sf %>% 
+  arrange(desc(population)) %>% 
+  slice_head(n = 10)
+
 ggplot() +
   annotation_map_tile(type = "osm", zoomin =  0, , alpha = 0.6) +
-  geom_sf(data = bn_pop_sf, aes(fill = population), col = NA, alpha = 0.8) +
   geom_sf(data = dis_sf, fill = NA, lwd = 1) +
+  geom_sf(data = bn_pop_sf, aes(fill = population), col = NA, alpha = 0.8) +
   geom_sf(data = kpg_sf, fill = NA, col = "black") +
+  geom_label_repel(
+    data = bn_pop_labels,
+    aes(label = kampong, geometry = geometry),
+    stat = "sf_coordinates",
+    inherit.aes = FALSE,
+    box.padding = 1,
+    size = 5,
+    segment.size = 0.8,
+    max.overlaps = Inf
+  ) +
   scale_fill_viridis_b(
     name = "Population",
     na.value = NA,
     labels = scales::comma,
     breaks = c(0, 100, 1000, 10000, 20000)
   ) +
+  labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
   theme_bw()
 
+
+  # i. brunei population by mukim -----------------------------------------------------------
+bn_pop_mkm_sf <-
+  bn_pop_sf %>%
+  group_by(mukim) %>% 
+  summarise(population = sum(population, na.rm = TRUE))
+
+bn_pop_mkm_labels <-
+  bn_pop_mkm_sf %>% 
+  arrange(desc(population)) %>% 
+  slice_head(n = 10)
+
+view(bn_pop_mkm_sf %>% 
+       arrange(desc(population)))
+  
+ggplot() +
+  annotation_map_tile(type = "osm", zoomin =  0, , alpha = 0.6) +
+  geom_sf(data = dis_sf, fill = NA, lwd = 1) +
+  geom_sf(data = bn_pop_mkm_sf, aes(fill = population), col = NA, alpha = 0.8) +
+  # geom_sf(data = kpg_sf, fill = NA, col = "black") +
+  geom_label_repel(
+    data = bn_pop_mkm_labels,
+    aes(label = mukim, geometry = geometry),
+    stat = "sf_coordinates",
+    inherit.aes = FALSE,
+    box.padding = 1,
+    size = 5,
+    segment.size = 0.8,
+    max.overlaps = Inf
+  ) +
+  scale_fill_viridis_b(
+    name = "Population",
+    na.value = NA,
+    labels = scales::comma,
+    breaks = c(0, 100, 1000, 10000, 35000)
+  ) +
+  labs(x = NULL, y = NULL, caption = "© OpenStreetMap") +
+  theme_bw()
 
 ## Backup ------------------------------------------------------------------ -------------------------------------------------------------------------------------------
 # d. kde ------------------------------------------------------------------
