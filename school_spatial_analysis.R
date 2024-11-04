@@ -289,12 +289,19 @@ view(enrolment_MOE)
     sch_sf %>% 
     st_transform("EPSG:27700") %>%  # sfhotspot rejects 4326 format
     hotspot_gistar() %>%  
-    filter(gistar > 0, pvalue < 0.05)
-  
-  # sch_gi_labels <-
-  #   sch_gi %>% 
-  #   arrange(pvalue) %>% 
-  #   slice(1:5)
+    filter(gistar > 0, pvalue < 0.05) %>% 
+    st_intersection(
+      st_union(dis_sf) %>% 
+      st_transform("EPSG:27700")
+    )
+
+  sch_gi_labels <-
+    mkm_sf %>% 
+      filter(mukim %in% c("Mukim Kuala Belait",
+                          "Mukim Seria",
+                          "Mukim Telisai",
+                          "Mukim Pekan Tutong",
+                          "Mukim Bangar"))
 
   ggplot(sch_gi) +
     geom_histogram(aes(kde))
@@ -304,17 +311,25 @@ view(enrolment_MOE)
     geom_sf(data = kpg_sf, fill = NA, col = "grey", lwd = 0.8) +
     geom_sf(data = dis_sf, fill = NA, lwd = 1) +
     geom_sf(data = mkm_sf, fill = NA, lwd = 0.7) +
-    geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.9, col = NA) +
-    # geom_label_repel(data = sch_gi_labels,
-    #                  aes(label = pvalue, geometry = geometry),
-    #                  stat = "sf_coordinates",
-    #                  inherit.aes = FALSE,
-    #                  box.padding = 1,
-    #                  size = 2,
-    #                  segment.size = 0.8,
-    #                  max.overlaps = Inf) +
-    scale_fill_viridis_c() +
-    labs(caption = "© OpenStreetMap") +
+    geom_sf(data = sch_gi, aes(fill = kde), alpha = 0.8, col = NA) +
+    geom_label_repel(data = sch_gi_labels,
+                     aes(label = mukim, geometry = geometry),
+                     stat = "sf_coordinates",
+                     inherit.aes = FALSE,
+                     box.padding = 2,
+                     size = 4,
+                     segment.size = 0.8,
+                     max.overlaps = Inf) +
+    scale_fill_gradient(name = "cluster intensity",
+                        low = "orange",
+                        high = "darkred",
+                        breaks = range(pull(sch_gi, kde)),
+                        labels = c("high", "intense")) +
+    labs(x = NULL, 
+         y = NULL,
+         title = "School Hotspots",
+         subtitle = "density of clustered schools (more than expected by chance)",
+         caption = "© OpenStreetMap") +
     theme_bw()
   
   # f. school by cluster (not usable; too much overlaps betwen clusters) ----------------------------------------------------
