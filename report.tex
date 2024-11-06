@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass [12 pt]{article}
 \usepackage[a4paper, margin=1in]{geometry}
 \usepackage{graphicx, amsmath}
 
@@ -6,14 +6,13 @@
 \author{Alvin Bong JL, Aniq, Danish, Rayme}
 \date{November 2024}
 
+\setlength{\parindent}{0pt} % Remove paragraph indentation globally
 \begin{document}
 
 \maketitle
-
 \begin{abstract}
-    abstract here.
+    abstract here. blah blah blah blah blah blah blah blah blah blah blah blah
 \end{abstract}
-
 \section{Introduction}
 SDG
 Importance of educations etc
@@ -22,26 +21,145 @@ Topic Question:
 	2. Where are the clusters located?
 	3. Does the clusters match the population density?
 
-\section{Literature Review}
-DESCRIPTION OF STUDY AREA AND DATA
-1.	Brunei mukim, kpg, pop info -  (quote haziqj paper). What does mukims mean in english.
+Brunei mukim, kpg, pop info -  (quote haziqj paper). What does mukims mean in english.
 Brunei is known for high wealth? Robust education? Quote Pisa stats. Free education. But no paper highlighting if spatial distribution of schools is efficient or not, whether it is equally for rich and poor. We want to see if this is a factor behind. This paper itself does not tackle the application but sets up the distribution needed for answering any future questions, such as quality/exam results/
 
-2.	Data Collection
+\section{Literature Review}
+Motivation behind schools
+History of spatial autocorrelation
+Weights
 
-3.	Preliminary Data Analysis
+For the purposes of this spatial study, these
+ mukims are treated as non-overlapping polygons, and the neighbour contiguity structure
+ of the mukims is defined by the common boundary between two mukims.
+
+\section{Description of Study Area and Data}
+\subsection{Description of Study Area}
+Brunei Darussalam, commonly known as Brunei, is located on the northern coast of the island of Borneo in Southeast Asia. With an area of approximately 5,765 square kilometers, Brunei is bordered by the South China Sea to the north and surrounded by the Malaysian state of Sarawak. The nation’s territory is divided into two non-contiguous areas:  The larger western section comprising Brunei-Muara, Tutong, and Belait districts; and the smaller eastern Temburong district. In the Northeast of the larger section lies Brunei's capital, Bandar Seri Begawan. \\
+
+The districts of Brunei are subdivided into 39 smaller administrative zones known as mukims, each embraces a number of kampung (villages). Brunei’s geography is characterized by a mix of urban centers, dense forests, and coastal lowlands. More than 70\% of the nation is covered with forests, with majority locating inland, southern parts of Belait and Temburong districts. \\
+
+% pic
+as delineated and shown in Figure 1. green areas show forest. \\
+
+% Population
+According to census 2021, the population of Brunei stands at 445, 000. The population is concentrated along the coastline, especially around Bandar Seri Begawan, which serves as the nation’s administrative, cultural, and economic center. \\
+
+% Wealth 
+By major accounts, Brunei may be considered a high-income country. The Sultanate boasts the second-highest per capita income and Human Development Index (HDI) in Southeast Asia and the highest per capita Gross National Income (GNI) among OECD countries between 2005 and 2020 [43]. \\
+ 
+ %Education
+With education that is both free (for Brunei citizens) and compulsory from age 5 to 16, the vast majority of Brunei’s population is literate. In addition to the government schools are private Chinese schools and schools operated by religious institutions; all, however, generally follow the same government-developed curriculum. \\
+
+Given the high wealth and free and robust education, it would be interesting to leverage spatial analysis in finding patterns and understanding how schools are clustered and distributed across the country.\\
+
+\subsection{Data Collection \& Processing}
+The dataset encompasses N = 256 schools in Brunei Darussalam. The data was sourced from Ministry of Education as part of 2018 Education Statistic Book. The reason behind using 2018 data was because recent data set was not published in detail, only summarise version. Specifically, this paper looks into [2018] contains listing of all schools in brunei, schools listing by school types: MOE, MORA and private, as well as the MOE pre-primary to secondary schools being categorised into clusters: cluster 1 - 6 as administrative division, student teacher ratio by cluster, and type, which are not avaialble in statistic books later than 2018.  \\
+
+As the 2018 Education Statistic Book is available only as PDF, the data have to be converted to .xlsx file using online converter wwww. .com. This is then reorganised using excel before being read by R using \texttt{readxl()} function in R. Although we have attempt to query the Brunei school listing and locations using \texttt{osmdata\_sf()} from osm package in R, not all schools are updated accurately and some of the school names are abbreviated. Therefore, we only manage to gather a limited amount of school locations. The remaining school latitutes and longitutes are manually collected. \\
+
+\subsection{Preliminary Data Analysis}
+Data Processing?
 Count of schools in brunei
 Student teacher ratio
 
 \section{Methods}
+We are interested in correlation between values of a variable (in our case count of schools per region) among spatially located data. Why? Judging by eyes is clearly not accurate and therefore the invention of spatial autocorrelation statistics. There are generally two categories of spatial autocorrelation statistics – global and local statistics. The former are estimated for the entire region under study, while the latter are estimated for individual locations to measure the relationship between the observations in the nearby area. (https://onlinelibrary.wiley.com/doi/10.1111/risa.17663)
+assessing whether similar values cluster together across an entire study area. whether high or low values tend to be near each other or are randomly distributed. The test gives a single statistic for the entire dataset, summarizing the global spatial pattern.
+identify whether there are clusters of similar values or spatial outliers at specific locations in a dataset
+
+
+\subsection{Global test for spatial autocorrelation: Global Moran's I}
+To examine whether schools in Brunei exhibit a clustered, dispersed, or random spatial pattern, we apply the Global Moran’s I test using the \texttt{global\_moran\_test()} function from the \texttt{sfdep} package in R. This test is computed for each mukim (administrative division) in the study area, indexed by \( i, j = 1, 2, \dots, M \). The Moran’s I test statistic is defined as follows: 
+
+\begin{equation}
+I = \frac{N}{S_0} \frac{\sum_{i=1}^N \sum_{j=1}^N w_{ij} (X_i - \bar{X})(X_j - \bar{X})}{\sum_{i=1}^N (X_i - \bar{X})^2}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item \( X_i \) is the value of the study variable (count of schools) in area \( i \),
+    \item \( \bar{X} \) is the mean of the study variable,
+    \item \( w_{ij} \) is the spatial weight between mukims \( i \) and \( j \), with the weights matrix \( W \) defining the spatial relationship among regions.
+\end{itemize}
+
+For simplicity, a contiguity-based “rook” criterion is used for the spatial weights, as discussed in Section 1. %\ref{sec:literature-review} (Literature Review).% 
+\\
+
+Moran’s I values are standardized, with values close to \(+1\) indicating positive spatial autocorrelation (i.e., clustering), where high or low values are near each other. Values close to \(-1\) indicate negative spatial autocorrelation (i.e., dispersion), where neighboring values differ significantly. Values near \(0\) suggest randomness, indicating an absence of spatial pattern. \\
+
+To determine the significance of the Moran’s I statistic, we employ the Central Limit Theorem to calculate p-values based on a Z-score, allowing us to test the following hypotheses:
+\begin{itemize}
+    \item \( H_0: I = 0 \) (no spatial autocorrelation),
+    \item \( H_1: I \neq 0 \) (presence of spatial autocorrelation).
+\end{itemize}
+
+
+
+
+\subsection{Local indicators of spatial autocorrelation (LISA): Getis-Ord \( G_i^* \)}
+While a visual inspection suggests that certain \textit{kampungs} (villages) may have a higher concentration of schools, we aim to quantify this pattern. Whereas global spatial autocorrelation tests confirm whether clustering exists, we use the Getis-Ord \( G_i^* \) statistic to identify the specific areas where schools are concentrated. This statistic is computed using the \texttt{hotspot\_gistar} function from the \texttt{sfhotspot} package in R. \\
+
+In our analysis, the study area is subdivided into \( n \) rectangular grids, indexed by \( i = 1, 2, \dots, n \). For each \( i \)-th grid cell, the \( G_i^* \) statistic is calculated as:
+
+\begin{equation}
+G_i^* = \frac{\sum_j w_{ij} X_j}{\sum_j X_j}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item \( X_j \) is the value of the study variable (i.e., the count of schools) for grid cell \( j \),
+    \item \( w_{ij} \) is the spatial weight between grid cells \( i \) and \( j \), with 1 indicating neighboring cells and 0 for non-neighboring cells.
+\end{itemize}
+
+The spatial weights used are based on the same contiguity “rook” criterion applied in the Global Moran’s I test, with one modification: the spatial weight \( w_{ii} \) are set to 1 rather than 0. This adjustment gives \( G_i^* \) a more localized perspective, which is valuable for identifying clusters centered directly on a point of interest rather than merely in its surrounding areas. \\
+
+A statistically significant high \( G_i^* \) value indicates a “hotspot,” or a cluster of high values, whereas a low \( G_i^* \) value suggests a “coldspot,” or a cluster of low values. \\
+
+We then filter for significant \( G_i^* \) statistics, using p > 0.01?. The output dataset is cropped to Brunei’s boundary using \texttt{st\_intersection} to refine the analysis. This method identifies school hotspots, areas where there are more schools than would be expected if they were distributed randomly. \\
+
+
 
 \section{Results}
+The following section is split into 3 subsections corresponding to hypotheses as introduced in Section Introduction.
+
+\subsection{Are there cluster?}
+The Global Moran's I analysis yielded I value of 0.457. The positive Moran’s I statistic suggests a positive autocorrelation in count of schools across mukims. Given the statistically significant results (low p-value of $4.542 \times 10^{-6} < 0.001$ ), there is sufficient evidence to reject the null hypothesis, which assumes no spatial autocorrelation in the distribution of schools. \\
+
+This finding supports the presence of moderate to strong clustering tendency, implying that mukims with a similar number of schools, whether high or low, are geographically close to each other. This results of the Global Moran’s I test aligns with our preliminary observation of school clusters being more concentrated near Brunei’s coastal regions, particularly along the South China Sea, as per outlined in Section EDA. In the following subsection, we will further verify this pattern through a localized analysis of clustering. \\
+
+\subsection{Locations of School Clusters}
+Fig. x highlights areas with school clusters that are higher than expected. The primary concentration is located in central Bandar Seri Begawan, the capital district of Brunei. This is expected its status as the nation’s capital, urban and administrative center.
+
+Other notable clusters outside the capital are located in:
+\begin{itemize}
+    \item \textbf{Temburong District}: Mukim Bangar
+    \item \textbf{Tutong District}: Mukim Pekan Tutong, Mukim Telisai
+    \item \textbf{Kuala Belait District}: Mukim Kuala Belait, Mukim Seria
+\end{itemize}
+
+This result confirms out visual analysis outlined in the EDA section,  that school clusters tend to concentrate near the shoreline. \\
+
+The Getis-Ord analysis offers an advantage over density maps by pinpointing the exact areas of clustering within each mukim. For example, in Kampong Panaga, schools are concentrated on the eastern side of the village rather than being evenly distributed. This level of detail enables a more precise understanding of spatial clustering patterns. \\
+
+By providing this pinpoints of school clusters, it is hoped that this can help in future housing/amenity/etc planning? \\
+
+%pic%
+
+\subsection{Comparison to Distribution of Population}
+
+%pic1 pic2%
+Although visually, schools and population hotspots seems to match. When comparing the top 10 kampongs with more schools and population in Table. x below, we see that only 3 kampongs: Kampong A, Kg. B, Kg. C are in both categories. This suggests that clusters of schools are not located in exactly the areas with most population, but perhaps nearby. 
+
 
 \section{Conclusions}
 
 \section{Acknowledgements}
-
+ The authors expresses gratitude OpenStreetMap contributors for the spatial data used in this analysis, and Dr Haziq Jamil, instructor of the module SM2302, for his invaluable insights
+ which enriched this study.
+ 
 \section{Reference}
 
 
 \end{document}
+
