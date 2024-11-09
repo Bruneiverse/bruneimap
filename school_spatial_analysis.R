@@ -139,7 +139,7 @@ view(tchr)
 sheets <- list(
   list(sheet = 3, sector = "MOE"),
   list(sheet = 8, sector = "MORA"),
-  list(sheet = 9, sector = "private")
+  list(sheet = 10, sector = "private")
 )
 
 # Initialize an empty list to store data frames
@@ -178,6 +178,60 @@ for (i in 4:6) {
 # Combine all data frames into one
 enrolment_MOE <- bind_rows(enrolment_MOE)
 view(enrolment_MOE)
+
+
+
+# EDA ---------------------------------------------------------------------- --------------------------- 
+sch %>% 
+  group_by(Sector) %>% 
+  summarise(count = n())
+
+sch %>% 
+  group_by(Cluster) %>% 
+  summarise(count = n())
+
+tchr$M <- as.integer(tchr$M)
+tchr$F <- as.integer(tchr$F)
+enrolment$M <- as.integer(enrolment$M)
+enrolment$F <- as.integer(enrolment$F)
+
+enrolment_v1 <-
+  enrolment %>% 
+  mutate(student = enrolment$M + enrolment$F) %>% 
+  group_by(Sector, District) %>% 
+  summarise(student = sum(student))
+  
+tchr_v1 <-
+  tchr %>% 
+  mutate(teacher = tchr$M + tchr$F) %>% 
+  group_by(Sector, District) %>% 
+  summarise(teacher = sum(teacher))
+
+cbind(enrolment_v1, teacher = tchr_v1$teacher) %>% 
+  mutate(stud_tchr_ratio = student/teacher) %>% 
+  ggplot(aes(x = Sector, 
+             y = stud_tchr_ratio, 
+             fill = District)) +
+  geom_col(position = "dodge") +
+  labs(x = "sector",
+       y = "student teacher ratio",
+       fill = NULL) +
+  scale_fill_viridis_d() +
+  theme_bw() +
+  theme(legend.position = "bottom") 
+  
+cbind(enrolment_v1, teacher = tchr_v1$teacher) %>% 
+  group_by(Sector) %>% 
+  summarise(student = sum(student), teacher = sum(teacher)) %>% 
+  mutate(stud_tchr_ratio = student/teacher)
+
+cbind(enrolment_v1, teacher = tchr_v1$teacher) %>% 
+  group_by(District) %>% 
+  summarise(student = sum(student), teacher = sum(teacher)) %>% 
+  mutate(stud_tchr_ratio = student/teacher)
+
+
+# ggplot this with facets?
 
 # TOPIC QUESTION: DISTRIBUTION --------------------------------------------- ----------------------------------------------------------------------------------------------------------
   # a. points of all schools ------------------------------------------------
@@ -314,16 +368,16 @@ view(enrolment_MOE)
                      aes(label = mukim, geometry = geometry),
                      stat = "sf_coordinates",
                      inherit.aes = FALSE,
-                     box.padding = 3.5,
+                     box.padding = 3,
                      direction = "y",
                      size = 5,
                      segment.size = 0.8,
                      max.overlaps = Inf) +
-    scale_fill_gradient(name = "cluster intensity",
+    scale_fill_gradient(name = "Hotspot intensity",
                         low = "orange",
                         high = "darkred",
                         breaks = range(pull(sch_gi, kde)),
-                        labels = c("high", "intense")) +
+                        labels = c("Hot", "Very Hot")) +
     labs(x = NULL, 
          y = NULL,
          title = "School Hotspots",
