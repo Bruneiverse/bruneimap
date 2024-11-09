@@ -1,9 +1,11 @@
-\documentclass [12 pt]{article}
-\usepackage[a4paper, margin=1in]{geometry}
-\usepackage{graphicx, amsmath}
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin = 1in]{geometry}
+\usepackage{graphicx, amsmath, booktabs}
+\usepackage{biblatex} 
+
 
 \title{Spatial data analysis of school (locations?) in Brunei Darussalam }
-\author{Alvin Bong JL, Aniq, Danish, Rayme}
+\author{Alvin Bong JL, Aniq Najwa, Danish Ikhwan, Rayme Hijazi}
 \date{November 2024}
 
 \setlength{\parindent}{0pt} % Remove paragraph indentation globally
@@ -13,25 +15,27 @@
 \begin{abstract}
     abstract here. blah blah blah blah blah blah blah blah blah blah blah blah
 \end{abstract}
+
+%keywords section
+%cover page for report
+
 \section{Introduction}
 SDG
 Importance of educations etc
 Topic Question:
-	1. Is there any clusters?
+	1. Are there any clusters?
 	2. Where are the clusters located?
-	3. Does the clusters match the population density?
+	3. Do the clusters match the population density?
 
 Brunei mukim, kpg, pop info -  (quote haziqj paper). What does mukims mean in english.
 Brunei is known for high wealth? Robust education? Quote Pisa stats. Free education. But no paper highlighting if spatial distribution of schools is efficient or not, whether it is equally for rich and poor. We want to see if this is a factor behind. This paper itself does not tackle the application but sets up the distribution needed for answering any future questions, such as quality/exam results/
 
 \section{Literature Review}
-Motivation behind schools
-History of spatial autocorrelation
-Weights
+1. Motivation behind schools
+2. History of spatial autocorrelation
+3. Weights Matrix
 
-For the purposes of this spatial study, these
- mukims are treated as non-overlapping polygons, and the neighbour contiguity structure
- of the mukims is defined by the common boundary between two mukims.
+
 
 \section{Description of Study Area and Data}
 \subsection{Description of Study Area}
@@ -54,14 +58,68 @@ With education that is both free (for Brunei citizens) and compulsory from age 5
 Given the high wealth and free and robust education, it would be interesting to leverage spatial analysis in finding patterns and understanding how schools are clustered and distributed across the country.\\
 
 \subsection{Data Collection \& Processing}
-The dataset encompasses N = 256 schools in Brunei Darussalam. The data was sourced from Ministry of Education as part of 2018 Education Statistic Book. The reason behind using 2018 data was because recent data set was not published in detail, only summarise version. Specifically, this paper looks into [2018] contains listing of all schools in brunei, schools listing by school types: MOE, MORA and private, as well as the MOE pre-primary to secondary schools being categorised into clusters: cluster 1 - 6 as administrative division, student teacher ratio by cluster, and type, which are not avaialble in statistic books later than 2018.  \\
+The dataset comprises \( N = 252 \) schools in Brunei Darussalam, sourced from the Ministry of Education’s \textit{2018 Education Statistics Book}. The decision to use the 2018 dataset stems from the lack of detailed data in more recent publications, which only provide summary versions. Specifically, the 2018 dataset includes:
+\begin{enumerate}
+    \item A complete listing of all schools in Brunei,
+    \item A breakdown of schools by type (Ministry of Education [MOE], Ministry of Religious Affairs [MORA], and private),
+    \item Categorization of MOE pre-primary to secondary schools into administrative clusters (Cluster 1–6), and
+    \item Student-teacher ratios by cluster and type.
+\end{enumerate}
+,details which are not available in later editions of the statistical book. \\
 
-As the 2018 Education Statistic Book is available only as PDF, the data have to be converted to .xlsx file using online converter wwww. .com. This is then reorganised using excel before being read by R using \texttt{readxl()} function in R. Although we have attempt to query the Brunei school listing and locations using \texttt{osmdata\_sf()} from osm package in R, not all schools are updated accurately and some of the school names are abbreviated. Therefore, we only manage to gather a limited amount of school locations. The remaining school latitutes and longitutes are manually collected. \\
+Since the \textit{2018 Education Statistics Book} is only available in PDF format, the data was converted to an .xlsx file using an online converter. The data was then reorganized in Excel before being imported into R using the \texttt{readxl()} function. \\
+
+%on collecting locations?%
+Although we attempted to retrieve the locations (latitude and longitude) of all schools in Brunei using the \texttt{osmdata\_sf()} function from the \textit{osmdata} package in R, this approach proved incomplete. Some schools were missing, others were inaccurately located, and certain school names were abbreviated. Consequently, we only obtained partial location data. To address this, we used a \texttt{left\_join()} to merge the available locations with the school listing, and manually collected the remaining coordinates. \\
+
 
 \subsection{Preliminary Data Analysis}
-Data Processing?
-Count of schools in brunei
-Student teacher ratio
+other than 2 special schools, schools in Brunei are categorized into 3 main sectors, MOE, MORA, private. The numbers of school are 164, 9 , 77. respectively, 65\%MOE 30\%private. The preprimary to six formth public schools in brunei (MOE Sector) are  further dsitributed into cluster 1-6. As seen is fig.x there is some overlap/ number of schools are quite even per cluster/ no other data on top of enrollment, we cant do much analysis?
+% but can do global morann, compare cluster per areas to enrolment? 
+% not really cuz the moran i use is areal
+\\ 
+
+But limited analysis can be done since there is slight overlap and insufficient data. Only have enrolment by cluster but not teachers therefore the following student teacher ratio is by type and district. The actual paper focuses all schools in general (in section 5,6?) \\ 
+%maybe can consider global moran by sectors: MOE vs private? only 2 ctg, waste time?
+
+As student/teachers/structure of vocational schools and higher education varies (depending on classes/ not consistent), this section (Preliminary Data Anlaysis : student teacher ratio section) focuses only on preprimary to sixth forms. \\
+
+In regards to student teacher ratio, Belait and Brunei Muara districts have relatively higher values (at about 10) compared to Temburong and Tutong districts (approximately 7.6). Viewing this from sector pov, MOE and MORA school shares similar values. On the other hand, private schools generally have higher student teacher ratio, with the exception of Temburong district. 
+
+% pic
+
+\begin{table}[h!]
+\centering
+\setlength{\tabcolsep}{15pt} % Adjusts horizontal padding
+\begin{tabular}{lrrr}
+\hline
+\textbf{Sector} & \textbf{Student} & \textbf{Teacher} & \textbf{Student-Teacher Ratio} \\ 
+\hline
+MOE             & 53,890           & 6,574            & 8.20                           \\
+MORA            & 5,483            & 670              & 8.18                           \\
+Private         & 32,692           & 2,315            & 14.1                           \\
+\hline
+\end{tabular}
+\caption{Sector-wise Student-Teacher Ratio}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{lrrr}
+\hline
+\textbf{District}   & \textbf{Student}  & \textbf{Teacher}  & \textbf{Student-Teacher Ratio} \\ 
+\hline
+Belait              & 12,955            & 1,239             & 10.50 \\
+Brunei Muara        & 68,188            & 6,892             & 9.89 \\
+Temburong           & 1,893             & 248               & 7.63 \\
+Tutong              & 9,029             & 1,180             & 7.65 \\ 
+\hline
+\end{tabular}
+\caption{District-wise Student-Teacher Ratio}
+\end{table}
+
+
 
 \section{Methods}
 We are interested in correlation between values of a variable (in our case count of schools per region) among spatially located data. Why? Judging by eyes is clearly not accurate and therefore the invention of spatial autocorrelation statistics. There are generally two categories of spatial autocorrelation statistics – global and local statistics. The former are estimated for the entire region under study, while the latter are estimated for individual locations to measure the relationship between the observations in the nearby area. (https://onlinelibrary.wiley.com/doi/10.1111/risa.17663)
@@ -116,7 +174,7 @@ The spatial weights used are based on the same contiguity “rook” criterion a
 
 A statistically significant high \( G_i^* \) value indicates a “hotspot,” or a cluster of high values, whereas a low \( G_i^* \) value suggests a “coldspot,” or a cluster of low values. \\
 
-We then filter for significant \( G_i^* \) statistics, using p > 0.01?. The output dataset is cropped to Brunei’s boundary using \texttt{st\_intersection} to refine the analysis. This method identifies school hotspots, areas where there are more schools than would be expected if they were distributed randomly. \\
+To only highlight significant clusters, the output was filtered to include only values with Gistar > xxx and p > 0.01?. The output dataset is cropped to Brunei’s boundary using \texttt{st\_intersection} to refine the analysis. This method identifies school hotspots, areas where there are more schools than would be expected if they were distributed randomly. \\
 
 
 
