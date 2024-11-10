@@ -1,6 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage[a4paper, margin = 1in]{geometry}
 \usepackage{graphicx, amsmath, booktabs}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage[table,xcdraw]{xcolor}
 \usepackage{biblatex} 
 
 
@@ -8,19 +12,22 @@
 \author{Alvin Bong JL, Aniq Najwa, Danish Ikhwan, Rayme Hijazi}
 \date{November 2024}
 
+\setlength{\parskip}{1em} % Spacing per paragraph
 \setlength{\parindent}{0pt} % Remove paragraph indentation globally
 \begin{document}
 
 \maketitle
 \begin{abstract}
-This study analyzes the spatial distribution of schools across Brunei Darussalam to assess how well current educational facilities serve both urban and rural populations. Using spatial autocorrelation techniques like Moran’s I and the Getis-Ord \( G_i^* \) statistic, this research identifies clusters of schools and evaluates their alignment with population density. Findings indicate significant school clustering in urban areas, particularly near Bandar Seri Begawan, with comparatively fewer facilities in rural regions. This imbalance suggests potential challenges in accessing education for students in less populated areas. The study offers valuable insights for policymakers to improve resource distribution, aiming to support equitable access to education and inform future spatial planning in educational infrastructure. 
+\noindent
+    This study analyzes the spatial distribution of schools across Brunei Darussalam to assess how well current educational facilities serve both urban and rural populations. Using spatial autocorrelation techniques like Moran’s I and the Getis-Ord \( G_i^* \) statistic, this research identifies clusters of schools and evaluates their alignment with population density. Findings indicate significant school clustering in urban areas, particularly near Bandar Seri Begawan, with comparatively fewer facilities in rural regions. This imbalance suggests potential challenges in accessing education for students in less populated areas. The study offers valuable insights for policymakers to improve resource distribution, aiming to support equitable access to education and inform future spatial planning in educational infrastructure. 
 \end{abstract}
 
 %keywords section
 %cover page for report
 
 \section{Introduction}
-Education plays a critical role in fostering social and economic development, and equitable access to educational facilities is essential for ensuring equal opportunities for all students. In Brunei Darussalam, education is free for citizens and compulsory from ages 5 to 16. The country’s high literacy rate, robust educational system, and strong economic standing position it as a leader in Southeast Asian education. However, while Brunei’s achievements in educational access are widely recognized, little research has been conducted to determine whether the spatial distribution of schools is optimized to serve both urban and rural populations effectively. \\
+\label{sec: intro}
+Education plays a critical role in fostering social and economic development, and equitable access to educational facilities is essential for ensuring equal opportunities for all students. In Brunei Darussalam, education is free for citizens and compulsory from ages 5 to 16. The country’s high literacy rate, robust educational system, and strong economic standing position it as a leader in Southeast Asian education. However, while Brunei’s achievements in educational access are widely recognized, little research has been conducted to determine whether the spatial distribution of schools is optimized to serve both urban and rural populations effectively. 
 
 This study seeks to explore the distribution of schools in Brunei through three main questions:
 \begin{enumerate}
@@ -33,80 +40,137 @@ Brunei’s administrative divisions include districts, mukims (sub-districts), a
 
 In the study of GIS and spatial data analysis, Dr. Haziq Jamil (2024) highlights the importance of examining spatial patterns to address questions of access and resource allocation. This study builds on this approach by applying spatial autocorrelation methods to assess school clustering and distribution across Brunei. Although this research does not address school quality directly, it provides essential foundational data on spatial distribution that can support future investigations into educational outcomes and equity in Brunei. By evaluating the alignment between school locations and population density, this study offers valuable insights that can guide policymakers in optimizing educational infrastructure to ensure equitable access for all students. \\
 
+SDG
+Importance of educations etc
+Topic Question:
+	1. Are there any clusters?
+	2. Where are the clusters located?
+	3. Do the clusters match the population density?
+
+Brunei mukim, kpg, pop info -  (quote haziqj paper). What does mukims mean in english.
+Brunei is known for high wealth? Robust education? Quote Pisa stats. Free education. But no paper highlighting if spatial distribution of schools is efficient or not, whether it is equally for rich and poor. We want to see if this is a factor behind. This paper itself does not tackle the application but sets up the distribution needed for answering any future questions, such as quality/exam results/
+
 \section{Literature Review}
-1. Motivation behind schools
-2. History of spatial autocorrelation
-3. Weights Matrix
-
-
+\label{sec: lit rev}
+ 
 
 \section{Description of Study Area and Data}
+\label{sec: study area and data}
+In this section, we provide an overview of the study area, Brunei Darussalam, and the data used in this study. A preliminary data analysis of the study variable is also presented.
+
 \subsection{Description of Study Area}
-Brunei Darussalam, commonly known as Brunei, is located on the northern coast of the island of Borneo in Southeast Asia. With an area of approximately 5,765 square kilometers, Brunei is bordered by the South China Sea to the north and surrounded by the Malaysian state of Sarawak. The nation’s territory is divided into two non-contiguous areas:  The larger western section comprising Brunei-Muara, Tutong, and Belait districts; and the smaller eastern Temburong district. In the Northeast of the larger section lies Brunei's capital, Bandar Seri Begawan. \\
+\label{subsec: study area}
+Brunei Darussalam, commonly known as Brunei, is located on the northern coast of the island of Borneo in Southeast Asia. With an area of approximately 5,765 square kilometers, Brunei is bordered by the South China Sea to the north and surrounded by the Malaysian state of Sarawak. The nation’s territory is divided into two non-contiguous areas:  The larger western section comprising Brunei-Muara, Tutong, and Belait districts; and the smaller eastern Temburong district. In the Northeast of the larger section lies Brunei's capital, Bandar Seri Begawan. 
 
-The districts of Brunei are subdivided into 39 smaller administrative zones known as mukims, each embraces a number of kampung (villages). Brunei’s geography is characterized by a mix of urban centers, dense forests, and coastal lowlands. More than 70\% of the nation is covered with forests, with majority locating inland, southern parts of Belait and Temburong districts. \\
+The districts of Brunei are subdivided into 39 smaller administrative zones known as mukims, each embraces a number of kampung (villages). Brunei’s geography is characterized by a mix of urban centers, dense forests, and coastal lowlands. More than 70\% of the nation is covered with forests, with majority locating inland, southern parts of Belait and Tutong, as well as most of Temburong.
 
-% pic
-as delineated and shown in Figure 1. green areas show forest. \\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{sch_all.pdf}
+\caption{\label{fig:schools} Administrative zones of Brunei, showing the four main districts: Brunei-Muara, Tutong, Belait, and Temburong. Each point represents a school location. Grey lines indicate  kampong boundaries, with thicker lines marking mukim boundaries. Forested areas are shaded in green.}
+\end{figure} 
 
-% Population
-According to census 2021, the population of Brunei stands at 445, 000. The population is concentrated along the coastline, especially around Bandar Seri Begawan, which serves as the nation’s administrative, cultural, and economic center. \\
+% Population, Wealth , Education
+According to the 2021 census, Brunei has a population of approximately 445,000. The majority of the population is concentrated along the coastline, particularly in Bandar Seri Begawan, which serves as the administrative, cultural, and economic center of the nation. Brunei is a high-income country, boasting the second-highest per capita income and Human Development Index (HDI) in Southeast Asia, as well as the highest per capita Gross National Income (GNI) among OECD countries from 2005 to 2020 [43].
 
-% Wealth 
-By major accounts, Brunei may be considered a high-income country. The Sultanate boasts the second-highest per capita income and Human Development Index (HDI) in Southeast Asia and the highest per capita Gross National Income (GNI) among OECD countries between 2005 and 2020 [43]. \\
- 
- %Education
-With education that is both free (for Brunei citizens) and compulsory from age 5 to 16, the vast majority of Brunei’s population is literate. In addition to the government schools are private Chinese schools and schools operated by religious institutions; all, however, generally follow the same government-developed curriculum. \\
-
-Given the high wealth and free and robust education, it would be interesting to leverage spatial analysis in finding patterns and understanding how schools are clustered and distributed across the country.\\
+Education in Brunei is both free (for citizens) and compulsory for children aged 5 to 16, leading to a high literacy rate across the population. Given the nation’s wealth and commitment to education, it would be interesting to leverage spatial analysis in finding patterns and understanding how schools are clustered and distributed across the country.
 
 \subsection{Data Collection \& Processing}
+\label{subsec: data collection}
 The dataset comprises \( N = 252 \) schools in Brunei Darussalam, sourced from the Ministry of Education’s \textit{2018 Education Statistics Book}. The decision to use the 2018 dataset stems from the lack of detailed data in more recent publications, which only provide summary versions. Specifically, the 2018 dataset includes:
+
 \begin{enumerate}
-    \item A complete listing of all schools in Brunei,
-    \item A breakdown of schools by type (Ministry of Education [MOE], Ministry of Religious Affairs [MORA], and private),
-    \item Categorization of MOE pre-primary to secondary schools into administrative clusters (Cluster 1–6), and
-    \item Student-teacher ratios by cluster and type.
+    \item A complete listing of all schools in Brunei by sector
+    \item Categorization of pre-primary to sixth forms institutions from Ministry of Education (MOE Sector) into administrative clusters (Cluster 1–6)
+    \item Student-teacher ratios and enrolment by sector and cluster,
 \end{enumerate}
-,details which are not available in later editions of the statistical book. \\
 
-Since the \textit{2018 Education Statistics Book} is only available in PDF format, the data was converted to an .xlsx file using an online converter. The data was then reorganized in Excel before being imported into R using the \texttt{readxl()} function. \\
+details which are not available in the summarised editions of the statistical book from recent years.
 
-%on collecting locations?%
-Although we attempted to retrieve the locations (latitude and longitude) of all schools in Brunei using the \texttt{osmdata\_sf()} function from the \textit{osmdata} package in R, this approach proved incomplete. Some schools were missing, others were inaccurately located, and certain school names were abbreviated. Consequently, we only obtained partial location data. To address this, we used a \texttt{left\_join()} to merge the available locations with the school listing, and manually collected the remaining coordinates. \\
+Since the \textit{2018 Education Statistics Book} is only available in PDF format, we converted it to a spreadsheet format using online converter. The data was then extracted, cleaned and reorganized in Excel before being imported into R using the \texttt{read\_csv()} function.
 
+% on collecting locations?%
+In order to retrieve the latitudes and longitude of the schools, the \texttt{osmdata\_sf()} function from the \textit{osmdata} package was initially used. This approach however proved insufficient, as some schools were missing, and others had abbreviated names. Consequently, only partial location data was obtained. To address this, \texttt{left\_join()} was used to merge the available locations with the school listing, and remaining coordinates was manually collected.
+
+\begin{tcolorbox}[title=Corresponding Codes]
+\begin{verbatim}
+# 1. Query locations from OSM
+bb <- getbb("brunei darussalam", 
+            format_out = "polygon", 
+            featuretype = "country")
+
+q <- opq(bb[2]) %>% 
+    add_osm_feature(key = "amenity", value = "school") %>% 
+    osmdata_sf() %>% 
+    trim_osmdata(bb[2])
+
+sch_sf <- q$osm_polygons %>% 
+        as_tibble() %>% 
+        st_as_sf() %>%  
+        select(osm_id, name) %>% 
+        drop_na() %>% 
+        st_centroid()
+
+# 2. Join locations to matching schools
+sch_df <- 
+  left_join(sch_df, sch_sf_match, by = c("School" = "name")) %>% 
+  select(School, Sector, Cluster, `Education Level`, geometry)
+
+# 3a. Export joined dataset
+sch_sf <- st_as_sf(sch_df)
+sch_sf$longitude <- st_coordinates(sch_sf)[,1]
+sch_sf$latitude <- st_coordinates(sch_sf)[,2]
+sch_sf <- st_drop_geometry(sch_sf) %>% data.frame()
+write.csv(sch_sf, "school listing v2.csv", row.names = FALSE)
+
+# 3b. Manually add in remaining address using MS Excel
+      New version saved as "school listing.xlsx"
+
+# 4. Import and convert to sf 
+sch_df <- read_excel("data/school listing.xlsx", 1)
+sch_sf <- st_as_sf(sch_df, coords = c("longitude", "latitude"), 4326)
+sch_sf <- st_join(sch_sf, kpg_sf, join = st_within)
+\end{verbatim}
+\end{tcolorbox}
 
 \subsection{Preliminary Data Analysis}
-other than 2 special schools, schools in Brunei are categorized into 3 main sectors, MOE, MORA, private. The numbers of school are 164, 9 , 77. respectively, 65\%MOE 30\%private. The preprimary to six formth public schools in brunei (MOE Sector) are  further dsitributed into cluster 1-6. As seen is fig.x there is some overlap/ number of schools are quite even per cluster/ no other data on top of enrollment, we cant do much analysis?
-% but can do global morann, compare cluster per areas to enrolment? 
-% not really cuz the moran i use is areal
-\\ 
+\label{subsec: prelim data analysis}
+Generally, it seems that schools in Brunei are located near the shoreline, particularly towards the South China Sea. 
 
-But limited analysis can be done since there is slight overlap and insufficient data. Only have enrolment by cluster but not teachers therefore the following student teacher ratio is by type and district. The actual paper focuses all schools in general (in section 5,6?) \\ 
-%maybe can consider global moran by sectors: MOE vs private? only 2 ctg, waste time?
-
-As student/teachers/structure of vocational schools and higher education varies (depending on classes/ not consistent), this section (Preliminary Data Anlaysis : student teacher ratio section) focuses only on preprimary to sixth forms. \\
-
-In regards to student teacher ratio, Belait and Brunei Muara districts have relatively higher values (at about 10) compared to Temburong and Tutong districts (approximately 7.6). Viewing this from sector pov, MOE and MORA school shares similar values. On the other hand, private schools generally have higher student teacher ratio, with the exception of Temburong district. 
-
-% pic
-
-\begin{table}[h!]
+\begin{figure}[htbp]
 \centering
-\setlength{\tabcolsep}{15pt} % Adjusts horizontal padding
+\includegraphics[width=1\textwidth]{sch_mkm.pdf}
+\end{figure} 
+
+Apart from Pusat Pembangunan Belia and Pusat Latihan Kesenian dan Pertukangan Tangan which serves as youth and community training centers, academic schools in Brunei are categorized into three main sectors: Ministry of Education (MOE), Ministry of Religious Affairs (MORA) and private institutions. The distribution of schools across these sectors includes 164 under MOE, 9 under MORA, and 77 private, comprising approximately 70\% public (MOE, MORA) and 30\% private. 
+
+In the MOE sector, schools from pre-primary to sicth form are organized into Clusters 1 to 6. While the number of schools in each cluster is relatively balanced, Clusters 3 and 4 have notably higher class counts and student populations, followed by Clusters 1 and 2, with Clusters 5 and 6 having the lowest.
+
+\begin{table}[htbp]
+\centering
+\setlength{\tabcolsep}{10pt}
 \begin{tabular}{lrrr}
 \hline
-\textbf{Sector} & \textbf{Student} & \textbf{Teacher} & \textbf{Student-Teacher Ratio} \\ 
+\textbf{Cluster} & \textbf{School Count} & \textbf{Class Count} & \textbf{Students Count} \\ 
 \hline
-MOE             & 53,890           & 6,574            & 8.20                           \\
-MORA            & 5,483            & 670              & 8.18                           \\
-Private         & 32,692           & 2,315            & 14.1                           \\
+Cluster 1        & 25                    & 453                  & 9,505                   \\
+Cluster 2        & 26                    & 486                  & 9,606                   \\
+Cluster 3        & 25                    & 566                  & 11,064                  \\
+Cluster 4        & 27                    & 505                  & 10,648                  \\
+Cluster 5        & 29                    & 379                  & 6,183                   \\
+Cluster 6        & 21                    & 359                  & 6,884                   \\
 \hline
 \end{tabular}
-\caption{Sector-wise Student-Teacher Ratio}
 \end{table}
 
-\begin{table}[h!]
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{sch_moe.pdf}
+\end{figure} 
+
+In regards to student teacher ratio, we concentrate on pre-primary through sixth-form schools, excluding vocational and higher education institutions due to their inconsistent structures and varying class arrangements. Among districts, Belait and Brunei-Muara have relatively higher values (about 10) compared to Temburong and Tutong (approximately 7.6). By sector, MOE and MORA school shares similar values, whereas private schools have nearly double the student teacher ratio, except in the Temburong district. 
+
+\begin{table}[htbp]
 \centering
 \setlength{\tabcolsep}{10pt}
 \begin{tabular}{lrrr}
@@ -122,32 +186,55 @@ Tutong              & 9,029             & 1,180             & 7.65 \\
 \caption{District-wise Student-Teacher Ratio}
 \end{table}
 
+\begin{table}[htbp]
+\centering
+\setlength{\tabcolsep}{15pt} % Adjusts horizontal padding
+\begin{tabular}{lrrr}
+\hline
+\textbf{Sector} & \textbf{Student} & \textbf{Teacher} & \textbf{Student-Teacher Ratio} \\ 
+\hline
+MOE             & 53,890           & 6,574            & 8.20                           \\
+MORA            & 5,483            & 670              & 8.18                           \\
+Private         & 32,692           & 2,315            & 14.1                           \\
+\hline
+\end{tabular}
+\caption{Sector-wise Student-Teacher Ratio}
+\end{table}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\textwidth]{student_teacher_ratio.pdf}
+\end{figure} 
+
+Due to the relatively low amount of schools in Brunei ($N = 252$), the spatial autocorrelation analysis in Section \ref{sec: methods} and Section \ref{sec: results} will consider all schools as whole.
 
 \section{Methods}
-We are interested in correlation between values of a variable (in our case count of schools per region) among spatially located data. Why? Judging by eyes is clearly not accurate and therefore the invention of spatial autocorrelation statistics. There are generally two categories of spatial autocorrelation statistics – global and local statistics. The former are estimated for the entire region under study, while the latter are estimated for individual locations to measure the relationship between the observations in the nearby area. (https://onlinelibrary.wiley.com/doi/10.1111/risa.17663)
-assessing whether similar values cluster together across an entire study area. whether high or low values tend to be near each other or are randomly distributed. The test gives a single statistic for the entire dataset, summarizing the global spatial pattern.
-identify whether there are clusters of similar values or spatial outliers at specific locations in a dataset
+\label{sec: methods}
+This section provides detailed descriptions of the spatial autocorrelation methods used to analyse the hostpots and clusters of schools.
 
-
-\subsection{Global test for spatial autocorrelation: Global Moran's I}
-To examine whether schools in Brunei exhibit a clustered, dispersed, or random spatial pattern, we apply the Global Moran’s I test using the \texttt{global\_moran\_test()} function from the \texttt{sfdep} package in R. This test is computed for each mukim (administrative division) in the study area, indexed by \( i, j = 1, 2, \dots, M \). The Moran’s I test statistic is defined as follows: 
+\subsection{Global spatial autocorrelation: Global Moran's I}
+\label{subsec: gisa}
+To examine whether schools in Brunei exhibit a clustered, dispersed, or random spatial pattern, we apply the Global Moran’s I test using the \texttt{global\_moran\_test()} function from \texttt{sfdep} package. This test is computed for each mukim (administrative division) in the study area, indexed by \( i, j = 1, 2, \ldots, N \). The Moran’s I test statistic is defined as follows: 
 
 \begin{equation}
-I = \frac{N}{S_0} \frac{\sum_{i=1}^N \sum_{j=1}^N w_{ij} (X_i - \bar{X})(X_j - \bar{X})}{\sum_{i=1}^N (X_i - \bar{X})^2}
+I = \frac{N}{\sum_{i=1}^N \sum_{i=1}^N w_{ij}} \frac{\sum_{i=1}^N \sum_{j=1}^N w_{ij} (x_i - \bar{x})(x_j - \bar{x})}{\sum_{i=1}^N (x_i - \bar{x})^2} \in [-1,1],
 \end{equation}
 
 where:
 \begin{itemize}
-    \item \( X_i \) is the value of the study variable (count of schools) in area \( i \),
-    \item \( \bar{X} \) is the mean of the study variable,
-    \item \( w_{ij} \) is the spatial weight between mukims \( i \) and \( j \), with the weights matrix \( W \) defining the spatial relationship among regions.
+    \item $x_i$ is the value of the study variable (count of schools) in mukim $i$,
+    \item $\bar{x}$ is the mean number of schools per mukim,
+    \item $w_{ij}$ is the spatial weight between mukims $i$ and $j$
 \end{itemize}
 
-For simplicity, a contiguity-based “rook” criterion is used for the spatial weights, as discussed in Section 1. %\ref{sec:literature-review} (Literature Review).% 
-\\
+For simplicity, rook contiguity neighbours is used for the spatial weights, as discussed in Section \ref{sec: lit rev}. This approach assigns $w_{ij} = 1$ if mukims $i$ and $j$ share one or more boundaries, and $w_{ij} = 0$ otherwise. 
 
-Moran’s I values are standardized, with values close to \(+1\) indicating positive spatial autocorrelation (i.e., clustering), where high or low values are near each other. Values close to \(-1\) indicate negative spatial autocorrelation (i.e., dispersion), where neighboring values differ significantly. Values near \(0\) suggest randomness, indicating an absence of spatial pattern. \\
+Moran’s I values are standardized, with values close to $+1$ indicating positive spatial autocorrelation (i.e., clustering), where high or low values are near each other. Values close to $-1$ indicate negative spatial autocorrelation (i.e., dispersion), where neighboring values differ significantly. Values near $0$ suggest randomness, indicating an absence of spatial pattern. 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{autocorrelation.pdf}
+\end{figure} 
 
 To determine the significance of the Moran’s I statistic, we employ the Central Limit Theorem to calculate p-values based on a Z-score, allowing us to test the following hypotheses:
 \begin{itemize}
@@ -155,72 +242,142 @@ To determine the significance of the Moran’s I statistic, we employ the Centra
     \item \( H_1: I \neq 0 \) (presence of spatial autocorrelation).
 \end{itemize}
 
+\begin{tcolorbox}[title=Corresponding Codes]
+\begin{verbatim}
+mkm_sch <- mkm_sf %>% 
+            left_join(sch_mkm) %>% 
+            select(mukim, count_of_schools)
 
+mkm_sch$count_of_schools[is.na(mkm_sch$count_of_schools)] <- 0
 
+nb <- st_contiguity(mkm_sch)
+wt <- st_weights(nb)
+global_moran_test(mkm_sch$count_of_schools, nb, wt)
+\end{verbatim}
+\end{tcolorbox}
 
-\subsection{Local indicators of spatial autocorrelation (LISA): Getis-Ord \( G_i^* \)}
-While a visual inspection suggests that certain \textit{kampungs} (villages) may have a higher concentration of schools, we aim to quantify this pattern. Whereas global spatial autocorrelation tests confirm whether clustering exists, we use the Getis-Ord \( G_i^* \) statistic to identify the specific areas where schools are concentrated. This statistic is computed using the \texttt{hotspot\_gistar} function from the \texttt{sfhotspot} package in R. \\
+\subsection{Local spatial autocorrelation (LISA): Getis-Ord $G_i^*$}
+\label{subsec: lisa}
+While a visual inspection suggests that certain \textit{kampungs} (villages) may have a higher concentration of schools, we aim to quantify this pattern. Whereas global spatial autocorrelation tests confirm whether clustering exists, we use the Getis-Ord $G_i^*$ statistic to identify the specific areas where schools are concentrated. This statistic is computed using the \texttt{hotspot\_gistar} function from \texttt{sfhotspot} package.
 
-In our analysis, the study area is subdivided into \( n \) rectangular grids, indexed by \( i = 1, 2, \dots, n \). For each \( i \)-th grid cell, the \( G_i^* \) statistic is calculated as:
+In our analysis, the study area is subdivided into $n$ rectangular grids, indexed by $i=1, 2, \ldots, n$. For each $i$-th grid cell, the $G_i^*$ statistic is calculated as:
 
 \begin{equation}
-G_i^* = \frac{\sum_j w_{ij} X_j}{\sum_j X_j}
+G_i^* = \frac{\sum_j w_{ij} x_j}{\sum_j x_j}
 \end{equation}
 
 where:
 \begin{itemize}
-    \item \( X_j \) is the value of the study variable (i.e., the count of schools) for grid cell \( j \),
-    \item \( w_{ij} \) is the spatial weight between grid cells \( i \) and \( j \), with 1 indicating neighboring cells and 0 for non-neighboring cells.
+    \item $x_j$ is the value of the study variable (the count of schools) for grid cell $j$,
+    \item $w_{ij}$ is the spatial weight between grid cells $i$ and $j$, with 1 indicating neighboring cells and 0 for non-neighboring cells.
 \end{itemize}
 
-The spatial weights used are based on the same contiguity “rook” criterion applied in the Global Moran’s I test, with one modification: the spatial weight \( w_{ii} \) are set to 1 rather than 0. This adjustment gives \( G_i^* \) a more localized perspective, which is valuable for identifying clusters centered directly on a point of interest rather than merely in its surrounding areas. \\
+Similar to global spatial autocorrelation in Section \ref{subsec: gisa}, the spatial weights used are based on rook contiguity negihbours. However, there is one slight modification: the spatial weight $w_{ii}$ are set to 1 rather than 0. This adjustment gives $G_i^*$ a more localized perspective, which is valuable for identifying clusters centered directly on a point of interest rather than merely in its surrounding areas.
 
-A statistically significant high \( G_i^* \) value indicates a “hotspot,” or a cluster of high values, whereas a low \( G_i^* \) value suggests a “coldspot,” or a cluster of low values. \\
+A statistically significant high $G_i^*$ value indicates a “hotspot,” or a cluster of high values, whereas a low $G_i^*$ value suggests a “coldspot,” or a cluster of low values.
 
-To only highlight significant clusters, the output was filtered to include only values with Gistar > xxx and p > 0.01?. The output dataset is cropped to Brunei’s boundary using \texttt{st\_intersection} to refine the analysis. This method identifies school hotspots, areas where there are more schools than would be expected if they were distributed randomly. \\
+To only highlight significant clusters, the output was filtered to include only values with $G_i^* > 0$ and p-value $< 0.05$. The output dataset is then cropped to Brunei’s boundary using \texttt{st\_intersection} to refine the analysis. This method identifies school hotspots, areas where there are more schools than would be expected if they were distributed randomly. 
 
+The corresponding codes are as follow:
 
+\begin{tcolorbox}[title=Corresponding Codes]
+\begin{verbatim}
+sch_gi <- sch_sf %>% 
+    st_transform("EPSG:27700") %>%  # sfhotspot rejects EPSG 4326 
+    hotspot_gistar() %>%  
+    filter(gistar > 0, pvalue < 0.05) %>% 
+    st_intersection(st_union(dis_sf) %>% 
+                    st_transform("EPSG:27700"))
+\end{verbatim}
+\end{tcolorbox}
 
 \section{Results}
+\label{sec: results}
 The following section is split into 3 subsections corresponding to hypotheses as introduced in Section Introduction.
 
 \subsection{Are there cluster?}
-The Global Moran's I analysis yielded I value of 0.457. The positive Moran’s I statistic suggests a positive autocorrelation in count of schools across mukims. Given the statistically significant results (low p-value of $4.542 \times 10^{-6} < 0.001$ ), there is sufficient evidence to reject the null hypothesis, which assumes no spatial autocorrelation in the distribution of schools. \\
+The Global Moran's I analysis yielded I value of \textbf{0.457}. The positive Moran’s I statistic suggests a positive autocorrelation in count of schools across mukims. Given the statistically significant results (low p-value of $\mathbf{4.542 \times 10^{-6}} < 0.001$), there is sufficient evidence to reject the null hypothesis $H_0$, which assumes no spatial autocorrelation in the distribution of schools. 
 
-This finding supports the presence of moderate to strong clustering tendency, implying that mukims with a similar number of schools, whether high or low, are geographically close to each other. This results of the Global Moran’s I test aligns with our preliminary observation of school clusters being more concentrated near Brunei’s coastal regions, particularly along the South China Sea, as per outlined in Section EDA. In the following subsection, we will further verify this pattern through a localized analysis of clustering. \\
+This finding supports the presence of moderate to strong clustering tendency, implying that mukims with a similar number of schools, whether high or low, are geographically close to each other. This results of the Global Moran’s I test aligns with our preliminary observation in Section \ref{subsec: prelim data analysis}, that there exists schools clusters. In the following subsection, we will further verify that these clusters are more concentrated near the coastal regions through local spatial autocorrelation.
 
 \subsection{Locations of School Clusters}
-Fig. x highlights areas with school clusters that are higher than expected. The primary concentration is located in central Bandar Seri Begawan, the capital district of Brunei. This is expected its status as the nation’s capital, urban and administrative center.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{sch_lisa.pdf}
+\end{figure} 
 
-Other notable clusters outside the capital are located in:
+As highlighted in Fig. x, the primary concentration of schools is located in central Bandar Seri Begawan, the capital district of Brunei. This is expected its status as the nation’s capital, urban and administrative center. Other notable clusters outside the capital are located in:
 \begin{itemize}
-    \item \textbf{Temburong District}: Mukim Bangar
-    \item \textbf{Tutong District}: Mukim Pekan Tutong, Mukim Telisai
-    \item \textbf{Kuala Belait District}: Mukim Kuala Belait, Mukim Seria
+    \item Temburong District: \textbf{Mukim Bangar}
+    \item Tutong District: \textbf{Mukim Pekan Tutong}, \textbf{Mukim Telisai}
+    \item Kuala Belait District: \textbf{Mukim Kuala Belait}, \textbf{Mukim Seria}
 \end{itemize}
 
-This result confirms out visual analysis outlined in the EDA section,  that school clusters tend to concentrate near the shoreline. \\
+This result confirms that school clusters does indeed concentrate near the coastal regions. On top of this, it seems that schools may not be as abundant or accessible in the outskirts and outside of the capital district, Brunei-Muara. 
 
-The Getis-Ord analysis offers an advantage over density maps by pinpointing the exact areas of clustering within each mukim. For example, in Kampong Panaga, schools are concentrated on the eastern side of the village rather than being evenly distributed. This level of detail enables a more precise understanding of spatial clustering patterns. \\
-
-By providing this pinpoints of school clusters, it is hoped that this can help in future housing/amenity/etc planning? \\
-
-%pic%
+Another insight of Getis-Ord analysis is that it offers an advantage over the choropleth map in fig. x by pinpointing the exact areas of clustering within each mukim. For example, schools cluster in the northeastern areas of Mukim Telisai but are more concentrated toward the south in Mukim Bangar. This level of detail enables a more precise understanding of spatial clustering patterns. 
 
 \subsection{Comparison to Distribution of Population}
+\subsection{Locations of School Clusters}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{bn_pop.pdf}
+\end{figure} 
 
-%pic1 pic2%
+\subsection{Locations of School Clusters}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{sch_kpg.pdf}
+\end{figure} 
+
 Although visually, schools and population hotspots seems to match. When comparing the top 10 kampongs with more schools and population in Table. x below, we see that only 3 kampongs: Kampong A, Kg. B, Kg. C are in both categories. This suggests that clusters of schools are not located in exactly the areas with most population, but perhaps nearby. 
+
+\begin{table}[]
+\begin{tabular}{@{}llc|lr@{}}
+\toprule
+                        & Kampong                                 & Schools count             & Kampong                                 & Population                     \\ \midrule
+\multicolumn{1}{l|}{1}  & Kg. Kiarong                             & 6                         & Kg. Panchor Mentiri                     & 13,358                         \\
+\multicolumn{1}{l|}{2}  & \cellcolor[HTML]{FFFFC7}Kg. Mata-Mata   & \cellcolor[HTML]{FFFFC7}6 & Kg. Tanah Jambu                         & 11,695                         \\
+\multicolumn{1}{l|}{3}  & Kg. Parit Kianggeh                      & 6                         & \cellcolor[HTML]{FFFFC7}Kg. Panaga      & \cellcolor[HTML]{FFFFC7}10,301 \\
+\multicolumn{1}{l|}{4}  & Pekan Kuala Belait                      & 6                         & Kg. Bukit Beruang                       & 9,835                          \\
+\multicolumn{1}{l|}{5}  & Bukit Bendera                           & 6                         & Kg. Meragang                            & 9,190                          \\
+\multicolumn{1}{l|}{6}  & \cellcolor[HTML]{FFFFC7}Kg. Panaga      & \cellcolor[HTML]{FFFFC7}6 & \cellcolor[HTML]{FFFFC7}Kg. Mata-Mata   & \cellcolor[HTML]{FFFFC7}7,159  \\
+\multicolumn{1}{l|}{7}  & \cellcolor[HTML]{FFFFC7}Kg. Sungai Akar & \cellcolor[HTML]{FFFFC7}5 & Kg. Beribi                              & 6,490                          \\
+\multicolumn{1}{l|}{8}  & Kg. Tungkadeh                           & 5                         & Kg. Kilanas                             & 6,357                          \\
+\multicolumn{1}{l|}{9}  & Kg. Tungku                              & 5                         & \cellcolor[HTML]{FFFFC7}Kg. Sungai Akar & \cellcolor[HTML]{FFFFC7}6,129  \\
+\multicolumn{1}{l|}{10} & Kg. Kiulap                              & 4                         & Kg. Mulaut                              & 5,981                          \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{@{}llc|lr@{}}
+\toprule
+                        & Mukim                                     & Schools count             & Mukim                                     & Population                     \\ \midrule
+\multicolumn{1}{l|}{1}  & \cellcolor[HTML]{FFFFC7}Mukim Gadong B     & \cellcolor[HTML]{FFFFC7}24 & \cellcolor[HTML]{FFFFC7}Mukim Sengkurong  & \cellcolor[HTML]{FFFFC7}40,972 \\
+\multicolumn{1}{l|}{2}  & \cellcolor[HTML]{FFFFC7}Mukim Berakas B    & \cellcolor[HTML]{FFFFC7}21 & Mukim Mentiri                             & 39,324                         \\
+\multicolumn{1}{l|}{3}  & \cellcolor[HTML]{FFFFC7}Mukim Berakas A    & \cellcolor[HTML]{FFFFC7}21 & \cellcolor[HTML]{FFFFC7}Mukim Berakas B   & \cellcolor[HTML]{FFFFC7}39,284 \\
+\multicolumn{1}{l|}{4}  & Mukim Kianggeh                             & 20                         & \cellcolor[HTML]{FFFFC7}Mukim Gadong B    & \cellcolor[HTML]{FFFFC7}38,067 \\
+\multicolumn{1}{l|}{5}  & \cellcolor[HTML]{FFFFC7}Mukim Gadong A     & \cellcolor[HTML]{FFFFC7}14 & \cellcolor[HTML]{FFFFC7}Mukim Gadong A    & \cellcolor[HTML]{FFFFC7}35,424 \\
+\multicolumn{1}{l|}{6}  & \cellcolor[HTML]{FFFFC7}Mukim Seria        & \cellcolor[HTML]{FFFFC7}12 & \cellcolor[HTML]{FFFFC7}Mukim Kuala Belait & \cellcolor[HTML]{FFFFC7}28,793 \\
+\multicolumn{1}{l|}{7}  & Mukim Perkan Tutong                        & 12                         & \cellcolor[HTML]{FFFFC7}Mukim Berakas A   & \cellcolor[HTML]{FFFFC7}28,311 \\
+\multicolumn{1}{l|}{8}  & \cellcolor[HTML]{FFFFC7}Mukim Kuala Belait & \cellcolor[HTML]{FFFFC7}11 & Mukim Kilanas                             & 24,981                         \\
+\multicolumn{1}{l|}{9}  & \cellcolor[HTML]{FFFFC7}Mukim Sengkurong   & \cellcolor[HTML]{FFFFC7}10 & Mukim Serasa                              & 18,569                         \\
+\multicolumn{1}{l|}{10} & Mukim Pangkalan Batu                       & 9                          & \cellcolor[HTML]{FFFFC7}Mukim Seria       & \cellcolor[HTML]{FFFFC7}18,313 \\ \bottomrule
+\end{tabular}
+\end{table}
 
 
 \section{Conclusions}
-
+By providing this pinpoints of school clusters, it is hoped that this can help in future housing/amenity/etc planning? \\
+\label{sec: conclusions}
 \section{Acknowledgements}
  The authors expresses gratitude OpenStreetMap contributors for the spatial data used in this analysis, and Dr Haziq Jamil, instructor of the module SM2302, for his invaluable insights
  which enriched this study.
- 
-\section{Reference}
 
+ The brunei map and population dataset is sourced from propetyprice Github repo.  
+\section{Reference}
 
 \end{document}
 
