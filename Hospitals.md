@@ -77,7 +77,7 @@ No. | Population Density | Hospital and Health Centres distributions
 -- | -- | --
 1 | High density population on the left sides of the disrict | 2 health facilities on the left side, top and bottom of the district
 2 | High population at the center and top of the district | 2 health facilities
-
+ㅤ
 **What can be deduced;** 
 * Hospital distributions are not as multiple and clustered as Brunei Muara.
 * Far from each other, however they are mainly at the center for accessibility.
@@ -93,7 +93,7 @@ No. | Population Density | Hospital and Health Centres distributions
 -- | -- | --
 1 | population ranging from 1,000-10,000 | No multiple healthcare facilities available (1)
 
-
+ㅤ
 
 ## 📍 (Question 3.) How does the accessibility of healthcare facilities vary across different districts?
 **Our objective**: *Compare the accessibility of hospitals and health centers in different districts*
