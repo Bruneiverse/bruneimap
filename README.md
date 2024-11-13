@@ -48,7 +48,7 @@ And welcome to our Read.me! Introducing our team members ...
 | [REFERENCE LIST](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Data_Reference_List.md) | List of data references       |
 | [EXCEL SHEET](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/excel%20coordinates.xlsx)      | Excel needed to complete OSM data       |
 | [Q1](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Question1.R) [Q2](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Question2.R) [Q3](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Question3.R) | Separate codings for each question, to run       |
-| [BRUNEI ROAD LINES MAP](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/hotosm_brn_roads_lines_geojson.geojson) | For question 3 |
+| [BRUNEI ROAD LINES MAP](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/hotosm_brn_roads_lines_geojson.geojson) | For question 3M also included in reference list |
 
 
 
