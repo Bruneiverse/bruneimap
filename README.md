@@ -37,4 +37,21 @@ And welcome to our Read.me! Introducing our team members ...
 ➨ 📄  Click [here](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Hospitals.md) for our research
  ---
 
-![Untitled11_20241011131441](https://github.com/user-attachments/assets/8578947a-8f4f-4503-a768-3ad4de46ccd0)
+![Untitled11_20241011131441](https://github.com/user-attachments/assets/8578947a-8f4f-4503-a768-3ad4de46ccd0) 
+
+
+### **BETTER NAVIGATION TO FILES AND ITS DESCRIPTION**
+
+| LINK TO FILE    | DESCRIPTION     |
+|-----------------|-----------------|
+| [MEDIA](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Media.md)      | Compilation of pictures used in research       |
+| [REFERENCE LIST](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Data_Reference_List.md) | List of data references       |
+| [EXCEL SHEET](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/excel%20coordinates.xlsx)      | Excel needed to complete OSM data       |
+| [Q1](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Question1.R) [Q2](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Question2.R) [Q3](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/Question3.R) | Separate codings for each question, to run       |
+| [BRUNEI ROAD LINES MAP](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/hotosm_brn_roads_lines_geojson.geojson) | For question 3 |
+
+
+
+
+
+
