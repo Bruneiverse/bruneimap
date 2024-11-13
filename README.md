@@ -15,7 +15,7 @@ And welcome to our Read.me! Introducing our team members ...
 
 ![Untitled13_20241011123840](https://github.com/user-attachments/assets/40d1a0b5-409c-4c7e-ad75-d32477994ad3)
 
-<p align='center'><b>This project aims to analyze the spatial distribution of hospitals and health centers across Brunei's districts.
+<p align='center'><b>This research aims to analyze the spatial distribution of hospitals and health centers across Brunei's districts.
 <p align='center'><b>By examining spatial patterns, accessibility, and clustering of healthcare facilities.
  
 ‎ 
