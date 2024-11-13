@@ -77,6 +77,7 @@ No. | Population Density | Hospital and Health Centres distributions
 -- | -- | --
 1 | High density population on the left sides of the disrict | 2 health facilities on the left side, top and bottom of the district
 2 | High population at the center and top of the district | 2 health facilities
+
 ㅤ
 **What can be deduced;** 
 * Hospital distributions are not as multiple and clustered as Brunei Muara.
@@ -138,8 +139,9 @@ No. | Highways and Hospitals | Accessibilithy
 * The ranking of accessibility is as follows: Brunei-Muara is the highest, followed by Belait and Tutong, with Temburong having the lowest accessibility.
 * This may be attributed to the population density—higher in Brunei-Muara and lower in Temburong (which can be observed in Question 2)—indicating a greater need for accessibility in Brunei-Muara compared to Temburong.
 
-
-📄 Here is our list of references -> [Reference](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/DataRefList.md)
+ㅤ
+ㅤ
+## 📄 **Here is our list of references** -> [Reference](https://github.com/sm2302-aug24/grp-sine-rs/blob/main/DataRefList.md)
 
 
 
