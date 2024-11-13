@@ -1,6 +1,6 @@
 📄 References for each Qs
 
-| Questions | References |
+| Question number | References |
 |---|---|
 | 1. | reference: OpenStreetMap and https://www.moh.gov.bn/Pages/BruneiFacilities.aspx (for the excel)  |   
 | 2. | bn_census2021 and bruneimap packages |
