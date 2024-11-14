@@ -99,7 +99,7 @@ No. | Population Density | Hospital and Health Centres distributions
 ## 📍 (Question 3.) How does the accessibility of healthcare facilities vary across different districts?
 **Our objective**: *Compare the accessibility of hospitals and health centers in different districts*
 
-![Untitled3_20241114172454](https://github.com/user-attachments/assets/1512dd36-53b4-40d5-9d69-e2383c51b33d)
+![pic3](https://github.com/user-attachments/assets/29ff5b8c-f46c-4b4b-afd3-2277aca84253)
 <p align="center"><i>Figure : Comparison between the highways and hospitals of different districts </i></p>
 
 
