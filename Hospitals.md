@@ -92,7 +92,7 @@ No. | Population Density | Hospital and Health Centres distributions
 ### — 📝 **Investigating Temburong district;**
 No. | Population Density | Hospital and Health Centres distributions
 -- | -- | --
-1 | population ranging from 1,000-10,000 | No multiple healthcare facilities available (1)
+1 | population ranging from 1,00 to over 1000 | No multiple healthcare facilities available (1)
 
 ㅤ
 
