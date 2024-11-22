@@ -1,5 +1,5 @@
 library(tidyverse)
-library(map)
+library(bruneimap)
 library(ggrepel)
 library(kernlab)
 library(osrm)
@@ -82,22 +82,36 @@ mosques_sf3 <- st_as_sf(
 )
 
 ### Add a radius column to the data frame
-location_sf$radius <- c(
-  5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000)  # Radii in meters
+
+mosques_sf2$radius <- c(
+  3000, 3000, 4000, 2000, 5000, 3000, 2000, 2000, 2000, 4000, 
+  2000, 3000, 2000, 2000, 3000, 2000, 2000, 2000, 2000, 1000,
+  3000, 2000, 2000, 3000, 2000, 2000, 1000, 2000, 2000, 2000,
+  1000, 1000, 3000, 2000, 2000, 2000, 2000, 3000, 2000, 2000,
+  2000, 2000, 2000, 1000, 2000, 2000, 3000, 3000, 3000, 2000,
+  2000, 3000, 2000, 2000, 2000, 1000, 2000, 2000, 2000, 2000,
+  3000, 1000, 2000, 2000, 2000, 1000, 1000, 3000, 2000, 2000,
+  1000, 1000, 2000, 3000, 3000, 2000, 1000, 2000, 1000, 2000,
+  2000, 2000, 2000, 1000, 3000, 2000, 2000, 2000, 1000
+)
+
+mosques_sf3$radius <- c(
+  2000, 1000, 2000, 2000, 1000, 1000, 2000, 2000, 2000)  # Radii in meters
 
 ### Create buffers using the radius for each location
-buffer_sf <- st_buffer(location_sf, dist = location_sf$radius)
 
-ggplot() +
-  geom_sf(data = dis_sf, aes(fill = name), alpha = 0.3) +  # Background map
-  geom_sf(data = buffer_sf, fill = "blue", alpha = 0.3, color = "darkblue", 
-          linetype = "dashed") + # Buffers
-  geom_sf(data = location_sf, color = "black", size = 1.5) +  # Locations
-  theme_minimal()
+buffer_sf1 <- st_buffer(mosques_sf2, dist = mosques_sf2$radius)
+buffer_sf2 <- st_buffer(mosques_sf3, dist = mosques_sf3$radius)
 
 ### Plotting mosques on Brunei map
 
 ggplot() +
   geom_sf(data = dis_sf, aes(fill = name), alpha = 0.3) +
-  geom_sf(data = mosques_sf2, size = 1.5) +
-  geom_sf(data = mosques_sf3, size = 1.5) 
+  geom_sf(data = mosques_sf2, color = "black", size = 1.5) + 
+  geom_sf(data = buffer_sf1, fill = "blue", alpha = 0.3, color = "darkblue", 
+          linetype = "dashed") + 
+  geom_sf(data = mosques_sf3, color = "black", size = 1.5) +
+  geom_sf(data = buffer_sf2, fill = "blue", alpha = 0.3, color = "darkblue", 
+          linetype = "dashed") +
+  labs(title = "Mosques of Brunei" , subtitle = "with radius covering land") +
+  theme_minimal()
