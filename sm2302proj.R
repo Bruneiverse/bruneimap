@@ -115,7 +115,3 @@ ggplot() +
           linetype = "dashed") +
   labs(title = "Mosques of Brunei" , subtitle = "with radius covering land") +
   theme_minimal()
-<<<<<<< HEAD
-
-=======
->>>>>>> 4eaa8c0a7fcff7a412c4e34cc66ba2105abf033f
