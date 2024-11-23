@@ -35,7 +35,7 @@ mosques_sf1 <-
   st_centroid()
 print(mosques_sf1)
 
-### slice unwanted rows 
+### Slice unwanted rows 
 
 mosques_sf2 <- slice(.data = mosques_sf1 , -c(18,31,32,34,35,58,83,84,91,99,100))
 print(mosques_sf2)
@@ -116,27 +116,33 @@ ggplot() +
   labs(title = "Mosques of Brunei" , subtitle = "with radius covering land") +
   theme_minimal()
 
-# Assuming establishment years for mosques are added to both datasets
-mosques_sf2$year <- c(1980, 1980, 1990, 1990, 1990, 2000, 2000, 2010, 2010, 2020, 
-                      1970, 1970, 1980, 1980, 1990, 1990, 2000, 2000, 2010, 2010,
-                      2020, 1970, 1970, 1980, 1980, 1990, 1990, 2000, 2000, 2010,
-                      2010, 2020, 1970, 1970, 1980, 1980, 1990, 1990, 2000, 2000,
-                      2010, 2010, 2020, 1970, 1970, 1980, 1980, 1990, 1990, 2000,
-                      2000, 2010, 2010, 2020, 1970, 1970, 1980, 1980, 1990, 1990,
-                      2000, 2000, 2010, 2010, 2020, 1970, 1970, 1980, 1980, 1990,
-                      1990, 2000, 2000, 2010, 2010, 2020, 2000, 1970, 1990, 1970,
-                      1990, 2010, 2010, 2010, 1970, 1980, 1960, 2000, 1960)
+### Animating establishment of Mosques over the years
 
-mosques_sf3$year <- c(1960, 1970, 1980, 1990, 2000, 2010, 2010, 2010, 2020)
+### Adding establishment years of mosques to both datasets
 
-# Combine datasets
+mosques_sf2$year <- c(1990, 1990, 1960, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 
+                      1970, 1970, 1990, 1990, 2020, 1990, 1990, 2000, 2000, 2990,
+                      1970, 1990, 2000, 2020, 1980, 2000, 2010, 1980, 2000, 1990,
+                      1980, 1980, 2020, 2000, 1980, 1980, 1990, 1990, 2010, 1990,
+                      2000, 2000, 2000, 1990, 2000, 1980, 2000, 2020, 2020, 1990,
+                      2020, 2020, 2000, 1990, 1990, 2010, 1970, 1970, 1990, 2000,
+                      2000, 2000, 2010, 2010, 2020, 1970, 1970, 2000, 2000, 1990,
+                      1990, 2020, 1990, 2020, 2020, 2020, 2000, 1990, 1990, 1990,
+                      1990, 1980, 1990, 1990, 2020, 2000, 1980, 1980, 1980)
+
+mosques_sf3$year <- c(1970, 2000, 1990, 1960, 2010, 2000, 2000, 1990, 1980)
+
+# Combine both datasets
+
 all_mosques_sf <- bind_rows(mosques_sf2, mosques_sf3)
 
-# Generate buffers for all mosques
+# Generate buffers for all mosques 
+
 all_mosques_sf <- all_mosques_sf %>%
   mutate(buffer = st_buffer(geometry, dist = radius))
 
 # Create the animated plot
+
 library(gganimate)
 library(ggplot2)
 
@@ -151,13 +157,14 @@ animated_plot <- ggplot() +
        subtitle = "Year: {frame_time}",
        caption = "Establishment of Mosques over the years") +
   theme_minimal() +
-  transition_time(year) +  # Animate over the year
+  transition_time(year) +  
   ease_aes('linear') +
-  shadow_mark(alpha = 0.3)  # Retain previous points and buffers with reduced alpha
+  shadow_mark(alpha = 0.3)  
 
-# Render the animation with persistent points and save as a video
+# Commence animation
+
 animate(
   animated_plot, 
-  fps = 2,          # Frames per second
-  nframes = 7,      # Total frames
+  fps = 2,         # Frames per second
+  nframes = 7      # Total frames
 )
