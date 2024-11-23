@@ -115,3 +115,49 @@ ggplot() +
           linetype = "dashed") +
   labs(title = "Mosques of Brunei" , subtitle = "with radius covering land") +
   theme_minimal()
+
+# Assuming establishment years for mosques are added to both datasets
+mosques_sf2$year <- c(1980, 1980, 1990, 1990, 1990, 2000, 2000, 2010, 2010, 2020, 
+                      1970, 1970, 1980, 1980, 1990, 1990, 2000, 2000, 2010, 2010,
+                      2020, 1970, 1970, 1980, 1980, 1990, 1990, 2000, 2000, 2010,
+                      2010, 2020, 1970, 1970, 1980, 1980, 1990, 1990, 2000, 2000,
+                      2010, 2010, 2020, 1970, 1970, 1980, 1980, 1990, 1990, 2000,
+                      2000, 2010, 2010, 2020, 1970, 1970, 1980, 1980, 1990, 1990,
+                      2000, 2000, 2010, 2010, 2020, 1970, 1970, 1980, 1980, 1990,
+                      1990, 2000, 2000, 2010, 2010, 2020, 2000, 1970, 1990, 1970,
+                      1990, 2010, 2010, 2010, 1970, 1980, 1960, 2000, 1960)
+
+mosques_sf3$year <- c(1960, 1970, 1980, 1990, 2000, 2010, 2010, 2010, 2020)
+
+# Combine datasets
+all_mosques_sf <- bind_rows(mosques_sf2, mosques_sf3)
+
+# Generate buffers for all mosques
+all_mosques_sf <- all_mosques_sf %>%
+  mutate(buffer = st_buffer(geometry, dist = radius))
+
+# Create the animated plot
+library(gganimate)
+library(ggplot2)
+
+animated_plot <- ggplot() +
+  geom_sf(data = dis_sf, aes(fill = name), alpha = 0.3) +
+  geom_sf(data = all_mosques_sf, aes(geometry = geometry), 
+          color = "black", size = 1.5) +
+  geom_sf(data = all_mosques_sf, aes(geometry = buffer), 
+          fill = "blue", alpha = 0.3, color = "darkblue", 
+          linetype = "dashed") +
+  labs(title = "Mosques of Brunei", 
+       subtitle = "Year: {frame_time}",
+       caption = "Establishment of Mosques over the years") +
+  theme_minimal() +
+  transition_time(year) +  # Animate over the year
+  ease_aes('linear') +
+  shadow_mark(alpha = 0.3)  # Retain previous points and buffers with reduced alpha
+
+# Render the animation with persistent points and save as a video
+animate(
+  animated_plot, 
+  fps = 2,          # Frames per second
+  nframes = 7,      # Total frames
+)
