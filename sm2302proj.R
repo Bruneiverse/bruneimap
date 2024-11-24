@@ -166,5 +166,5 @@ animated_plot <- ggplot() +
 animate(
   animated_plot, 
   fps = 2,         # Frames per second
-  nframes = 7      # Total frames
-)
+  nframes = 7 )    # Total frames
+
