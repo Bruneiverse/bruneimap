@@ -14,6 +14,14 @@ library(osmdata)
 ggplot(dis_sf) +
   geom_sf()
 
+### Population of each district in Brunei
+
+dis_sf$population <- c(66900, 48000, 9600, 326000)
+
+ggplot(dis_sf, aes(fill = population), alpha = 0.3) +
+  geom_sf() +
+  theme_minimal()
+
 ### Bounding box for Brunei district
 
 dis_bbox <- st_bbox(dis_sf)
