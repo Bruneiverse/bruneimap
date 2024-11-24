@@ -73,7 +73,7 @@ mosques <- data.frame(
 )
 print(mosques)
 
-### Convert df to sf object
+### Convert to sf object
 
 mosques_sf3 <- st_as_sf(
   mosques, 
