@@ -16,7 +16,7 @@ Authors@R: c(
     person("Ahmad Syafi", "Mohammad Hilmy", role = "ctb"),
     person("Mohammad Syahir Deedat", "Al Jufri", role = "ctb")
   )
-Description: The bruneimap package provides a rich collection of spatial data in sf format for Brunei, including boundaries for districts, mukims, and kampongs, as well as a silhouette map of the country. Additional datasets include locations of masjids, hospitals, clinics, and schools.
+Description: Provides spatial data for mapping Brunei, including boundaries for districts, mukims, and kampongs, as well as locations of key infrastructure such as masjids, hospitals, clinics, and schools. The package supports researchers, analysts, and developers working with Brunei’s geographic and demographic data, offering a quick and accessible foundation for creating maps and conducting spatial studies.
 License: GPL (>= 3)
 URL: https://github.com/Bruneiverse/bruneimap, https://bruneiverse.github.io/bruneimap/
 BugReports: https://github.com/Bruneiverse/bruneimap/issues
