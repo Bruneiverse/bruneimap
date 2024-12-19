@@ -1,4 +1,4 @@
-# bruneimap (development version)
+# bruneimap 0.2.0
 
 * Reimported the GeoJSON files using geopandas in Python (owing to the weird geometries found in the plots).
 * Cleaned up the Mukim names (aiming for unique mukim names).
