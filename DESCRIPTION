@@ -1,7 +1,7 @@
 Package: bruneimap
 Type: Package
 Title: Maps of Brunei
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: 
     person("Haziq", "Jamil",              
            email = "haziq.jamil@gmail.com",
