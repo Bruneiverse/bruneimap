@@ -1,7 +1,7 @@
 Type: Package
 Package: bruneimap
 Title: Maps of Brunei
-Version: 0.3.0.9001
+Version: 0.3.0.9002
 Authors@R: 
     person("Haziq", "Jamil", , "haziq.jamil@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3298-1010"))
