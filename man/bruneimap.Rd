@@ -9,7 +9,7 @@
 \alias{brn_sf}
 \title{Simple feature objects to plot Brunei maps}
 \format{
-An \code{\link{sf}} object.
+An \code{\link[sf:sf]{sf::sf}} object.
 }
 \usage{
 dis_sf
