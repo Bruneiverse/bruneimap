@@ -6,9 +6,10 @@
 \alias{dis_sf}
 \alias{mkm_sf}
 \alias{kpg_sf}
-\title{Brunei map}
+\alias{brn_sf}
+\title{Simple feature objects to plot Brunei maps}
 \format{
-An `sf` object
+An \code{\link{sf}} object.
 }
 \usage{
 dis_sf
@@ -16,11 +17,35 @@ dis_sf
 mkm_sf
 
 kpg_sf
+
+brn_sf
 }
 \description{
-Brunei map
+Simple feature objects to plot Brunei maps
 }
 \details{
-Brunei map
+There are three simple feature objects in this package that can be used to
+plot Brunei maps:
+\itemize{
+\item \code{dis_sf}: District-level boundaries
+\item \code{mkm_sf}: Mukim-level boundaries
+\item \code{kpg_sf}: Kampong-level boundaries
+\item \code{brn_sf}: A sillhouette of Brunei
+}
+}
+\examples{
+library(ggplot2)
+
+# District-level boundaries
+ggplot(dis_sf) +
+  geom_sf()
+
+# Mukim-level boundaries
+ggplot(mkm_sf) +
+  geom_sf()
+
+# Kampong-level boundaries
+ggplot(kpg_sf) +
+  geom_sf()
 }
 \keyword{datasets}

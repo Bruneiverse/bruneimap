@@ -6,8 +6,8 @@
 \title{Brunei kampong data}
 \format{
 A tibble containing kampong, mukim, district information. All rows
-  correspond to an area on the map. Useful to combine with other unit-level
-  information for plotting.
+correspond to an area on the map. Useful to combine with other unit-level
+information for plotting.
 }
 \usage{
 bnkpg_df
