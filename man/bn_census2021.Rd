@@ -6,8 +6,8 @@
 \title{Brunei census data 2021}
 \format{
 A tibble containing the population, split into male/female or
-  Bruneian/PR/foreigners for each kampong. Also contains number of households
-  and occupied living quarters.
+Bruneian/PR/foreigners for each kampong. Also contains number of households
+and occupied living quarters.
 }
 \usage{
 bn_census2021
@@ -20,9 +20,9 @@ Brunei census data 2021
 }
 \references{
 DEPS. “The Population and Housing Census Report (BPP) 2021:
-  Demographic, Household and Housing Characteristics.” Department of Economic
-  Planning and Statistics, Ministry of Finance and Economy, Brunei
-  Darussalam, October 2022. URL:
-  \url{https://deps.mofe.gov.bn/SitePages/Population.aspx}
+Demographic, Household and Housing Characteristics.” Department of Economic
+Planning and Statistics, Ministry of Finance and Economy, Brunei
+Darussalam, October 2022. URL:
+\url{https://deps.mofe.gov.bn/SitePages/Population.aspx}
 }
 \keyword{datasets}

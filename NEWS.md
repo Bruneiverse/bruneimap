@@ -1,3 +1,7 @@
+# bruneimap (development version)
+
+* Updated documentation.
+
 # bruneimap 0.3.0
 
 * Rearranged the raw data folders.

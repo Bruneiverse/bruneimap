@@ -1,7 +1,7 @@
 Package: bruneimap
 Type: Package
 Title: Maps of Brunei
-Version: 0.3.0
+Version: 0.3.0.9000
 Authors@R: 
     person("Haziq", "Jamil",              
            email = "haziq.jamil@gmail.com",
@@ -13,10 +13,13 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Depends: 
-    R (>= 3.5),
-    sf
-RoxygenNote: 7.3.1
+    R (>= 3.5)
+Imports: 
+    sf    
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
 Suggests: 
+    ggplot2,
     tidyverse
 URL: https://github.com/propertypricebn/bruneimap
 BugReports: https://github.com/propertypricebn/bruneimap/issues

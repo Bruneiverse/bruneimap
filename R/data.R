@@ -1,12 +1,32 @@
-#' Brunei map
+#' Simple feature objects to plot Brunei maps
 #'
-#' Brunei map
+#' Simple feature objects to plot Brunei maps
 #'
-#' Brunei map
+#' There are three simple feature objects in this package that can be used to
+#' plot Brunei maps:
+#' - `dis_sf`: District-level boundaries
+#' - `mkm_sf`: Mukim-level boundaries
+#' - `kpg_sf`: Kampong-level boundaries
+#' - `brn_sf`: A sillhouette of Brunei
 #'
 #' @name bruneimap
 #' @rdname bruneimap
-#' @format An `sf` object
+#' @format An [`sf`] object.
+#'
+#' @examples
+#' library(ggplot2)
+#'
+#' # District-level boundaries
+#' ggplot(dis_sf) +
+#'   geom_sf()
+#'
+#' # Mukim-level boundaries
+#' ggplot(mkm_sf) +
+#'   geom_sf()
+#'
+#' # Kampong-level boundaries
+#' ggplot(kpg_sf) +
+#'   geom_sf()
 "dis_sf"
 
 #' @rdname bruneimap
@@ -16,6 +36,10 @@
 #' @rdname bruneimap
 #' @format NULL
 "kpg_sf"
+
+#' @rdname bruneimap
+#' @format NULL
+"brn_sf"
 
 #' Brunei kampong data
 #'
