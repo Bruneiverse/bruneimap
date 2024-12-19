@@ -1,9 +1,11 @@
 # bruneimap (development version)
 
 * Updated documentation.
-* Add hospitals and clinics data (`healthcare`).
-* Add masjid data (`masjid`).
-* Add schools data (`schools`).
+* Thanks to all contributors for the following:
+  * Add hospitals and clinics data (`healthcare`).
+  * Add masjid data (`masjid`).
+  * Add schools data (`schools`).
+* Added `pkgdown` site.
 
 # bruneimap 0.3.0
 
