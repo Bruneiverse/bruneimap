@@ -11,7 +11,7 @@
 #'
 #' @name bruneimap
 #' @rdname bruneimap
-#' @format An [`sf`] object.
+#' @format An [`sf::sf`] object.
 #'
 #' @examples
 #' library(ggplot2)
