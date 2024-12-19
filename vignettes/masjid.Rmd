@@ -1,0 +1,76 @@
+---
+title: "Masjids in Brunei"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Masjids in Brunei}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette introduces the `masjid` dataset included in the `{bruneimap}` package, which provides spatial data for masjids (mosques) across Brunei. 
+The dataset includes essential information such as the name, geographic coordinates (latitude and longitude), and district of each masjid.
+
+```{r setup}
+library(tidyverse)
+library(bruneimap)
+library(sf)
+```
+
+```{r}
+glimpse(masjid)
+```
+
+We can visualise the locations of masjids across Brunei 
+Below is an example where the masjids are overlaid on Brunei’s kampong boundaries:
+
+```{r}
+ggplot() +
+  geom_sf(data = kpg_sf, fill = NA) +
+  geom_point(data = masjid, aes(latitude, longitude), inherit.aes = FALSE) +
+  theme_bw()
+```
+
+<!-- To visualise the intensity of masjids based on their locations, a density heatmap is a good approach.  -->
+<!-- This can be done using `geom_density_2d` or `geom_density_2d_filled` in ggplot2.  -->
+
+<!-- ```{r} -->
+<!-- library(tidyverse) -->
+<!-- library(bruneimap) -->
+
+<!-- # Calculate bounding box of Brunei from the kampong boundaries -->
+<!-- brunei_bbox <- st_bbox(kpg_sf) -->
+
+<!-- # Crop the masjid data to the bounding box of Brunei -->
+<!-- masjid_cropped <- masjid %>% -->
+<!--   filter( -->
+<!--     latitude >= brunei_bbox["ymin"] & latitude <= brunei_bbox["ymax"], -->
+<!--     longitude >= brunei_bbox["xmin"] & longitude <= brunei_bbox["xmax"] -->
+<!--   ) -->
+
+<!-- # Visualize intensity of masjids within Brunei's boundaries -->
+<!-- ggplot() + -->
+<!--   # Add kampong boundaries -->
+<!--   geom_sf(data = kpg_sf, fill = NA, color = "gray70") + -->
+<!--   # Add density visualization of cropped masjid locations -->
+<!--   geom_density_2d_filled(data = masjid_cropped, aes(x = latitude, y = longitude), alpha = 0.7) + -->
+<!--   # Add masjid locations as points for reference -->
+<!--   geom_point(data = masjid_cropped, aes(x = latitude, y = longitude), color = "red", size = 1) + -->
+<!--   # Customize map appearance -->
+<!--   scale_fill_viridis_c(option = "C") + -->
+<!--   theme_minimal() + -->
+<!--   labs( -->
+<!--     title = "Intensity of Masjid Locations in Brunei", -->
+<!--     x = "Latitude", -->
+<!--     y = "Longitude", -->
+<!--     fill = "Intensity" -->
+<!--   ) -->
+
+<!-- ``` -->
+
