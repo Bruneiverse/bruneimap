@@ -1,7 +1,7 @@
 Package: bruneimap
 Type: Package
 Title: Maps of Brunei
-Version: 0.1.0.9005
+Version: 0.2.0
 Authors@R: 
     person("Haziq", "Jamil",              
            email = "haziq.jamil@gmail.com",
@@ -13,7 +13,7 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Depends: 
-    R (>= 2.10),
+    R (>= 3.5),
     sf
 RoxygenNote: 7.3.1
 Suggests: 
