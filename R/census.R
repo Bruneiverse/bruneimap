@@ -12,6 +12,6 @@
 #'   Darussalam, October 2022. URL:
 #'   \url{https://deps.mofe.gov.bn/SitePages/Population.aspx}
 #'
-"bn_census2021"
+"census2021"
 
 

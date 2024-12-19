@@ -5,6 +5,7 @@
   * Add hospitals and clinics data (`healthcare`).
   * Add masjid data (`masjid`).
   * Add schools data (`schools`).
+  * Add foret reserve areas (`fr_sf`).
 * Added `pkgdown` site.
 
 # bruneimap 0.3.0

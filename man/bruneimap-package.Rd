@@ -21,6 +21,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Hafeezul Raziq [contributor]
   \item Alvin Bong [contributor]
   \item Aniq Najwa Ariffin [contributor]
   \item Danish Ikhwan Mohamad Zainin [contributor]

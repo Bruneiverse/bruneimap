@@ -2,3 +2,16 @@ url: https://bruneiverse.github.io/bruneimap/
 template:
   bootstrap: 5
 
+reference:
+  - title: "Brunei sf objects"
+    desc: "Data sets containing geometries for Brunei"
+    contents:
+    - bruneimap
+    - fr_sf
+  - title: "Brunei-related data sets"
+    contents:
+    - census2021
+    - bnkpg_df
+    - schools
+    - healthcare
+    - masjid
