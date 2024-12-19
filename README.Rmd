@@ -68,4 +68,89 @@ ggplot(kpg_sf) +
 
 ## Acknowledgements
 
-- The Brunei map was generated from publically available [Survey Department](https://geoportal.survey.gov.bn/start-gp) data. The GeoJSON files were sourced from [thewheat/brunei_map](https://github.com/thewheat/brunei_map) GitHub repo. Comes with a neat [web app](http://thewheat.github.io/brunei_map/). Many thanks to these guys!
+The Brunei map was generated from publically available [Survey Department](https://geoportal.survey.gov.bn/start-gp) data. The GeoJSON files were sourced from [thewheat/brunei_map](https://github.com/thewheat/brunei_map) GitHub repo. Comes with a neat [web app](http://thewheat.github.io/brunei_map/). Many thanks to these guys!
+
+## Contributors
+
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropensci/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/nrirdnbtrsy">
+<img src="https://avatars.githubusercontent.com/u/178867095?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=nrirdnbtrsy">nrirdnbtrsy</a>
+</td>
+<td align="center">
+<a href="https://github.com/alvinbjl">
+<img src="https://avatars.githubusercontent.com/u/178853609?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=alvinbjl">alvinbjl</a>
+</td>
+<td align="center">
+<a href="https://github.com/haziqj">
+<img src="https://avatars.githubusercontent.com/u/16189362?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=haziqj">haziqj</a>
+</td>
+<td align="center">
+<a href="https://github.com/Angela-29">
+<img src="https://avatars.githubusercontent.com/u/178489098?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=Angela-29">Angela-29</a>
+</td>
+<td align="center">
+<a href="https://github.com/SyafYus">
+<img src="https://avatars.githubusercontent.com/u/178446986?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=SyafYus">SyafYus</a>
+</td>
+<td align="center">
+<a href="https://github.com/Dwaaz">
+<img src="https://avatars.githubusercontent.com/u/178873502?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=Dwaaz">Dwaaz</a>
+</td>
+<td align="center">
+<a href="https://github.com/ANajwa-20">
+<img src="https://avatars.githubusercontent.com/u/178689133?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=ANajwa-20">ANajwa-20</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/nswaaan">
+<img src="https://avatars.githubusercontent.com/u/178871934?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=nswaaan">nswaaan</a>
+</td>
+<td align="center">
+<a href="https://github.com/MrJaZzi">
+<img src="https://avatars.githubusercontent.com/u/178448019?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=MrJaZzi">MrJaZzi</a>
+</td>
+<td align="center">
+<a href="https://github.com/Syfii">
+<img src="https://avatars.githubusercontent.com/u/178873529?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=Syfii">Syfii</a>
+</td>
+</tr>
+
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
