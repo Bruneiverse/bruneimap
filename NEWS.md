@@ -2,6 +2,8 @@
 
 * Updated documentation.
 * Add hospitals and clinics data (`healthcare`).
+* Add masjid data (`masjid`).
+* Add schools data (`schools`).
 
 # bruneimap 0.3.0
 
