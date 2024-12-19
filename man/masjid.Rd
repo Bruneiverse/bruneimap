@@ -14,6 +14,9 @@ masjid
 \description{
 Masjid (mosques) in Brunei
 }
+\examples{
+dplyr::glimpse(masjid)
+}
 \references{
 https://www.mora.gov.bn/senaraimasjid/forms/viewall.aspx
 }

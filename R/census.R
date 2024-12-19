@@ -12,6 +12,13 @@
 #'   Darussalam, October 2022. URL:
 #'   \url{https://deps.mofe.gov.bn/SitePages/Population.aspx}
 #'
+#' @examples
+#' library(tidyverse)
+#' census2021 |>
+#'   summarise(
+#'     population = sum(population),
+#'     .by = district
+#'   )
 "census2021"
 
 

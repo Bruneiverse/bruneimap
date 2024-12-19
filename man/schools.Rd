@@ -38,6 +38,12 @@ There are four datasets related to schools in Brunei:
 \item \code{enrolment_MOE}: A tibble of the number of students in schools in Brunei
 }
 }
+\examples{
+library(ggplot2)
+ggplot() +
+  geom_sf(data = brn_sf) +
+  geom_sf(data = sch_sf)
+}
 \references{
 \itemize{
 \item \href{https://www.moe.gov.bn/DocumentDownloads/Forms/AllItems.aspx?RootFolder=\%2fDocumentDownloads\%2fEducation\%20Statistics\%20and\%20Indicators\%20Handbook&FolderCTID=0x012000686799B237388E4B93D164D060CACEC6}{Education Statistics and Indicators Handbook}.

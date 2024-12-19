@@ -18,6 +18,14 @@ A tibble containing the population, split into male/female or
 Bruneian/PR/foreigners for each kampong. Also contains number of households
 and occupied living quarters.
 }
+\examples{
+library(tidyverse)
+census2021 |>
+  summarise(
+    population = sum(population),
+    .by = district
+  )
+}
 \references{
 DEPS. “The Population and Housing Census Report (BPP) 2021:
 Demographic, Household and Housing Characteristics.” Department of Economic

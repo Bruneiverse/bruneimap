@@ -14,4 +14,8 @@ healthcare
 \description{
 Hospitals and Clinics (Health Centres) in Brunei
 }
+\examples{
+nrow(healthcare)
+ncol(healthcare)
+}
 \keyword{datasets}

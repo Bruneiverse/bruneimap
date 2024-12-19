@@ -5,7 +5,7 @@
 \alias{bruneimap-package}
 \title{bruneimap: Maps and Spatial Data of Brunei}
 \description{
-The bruneimap package provides a rich collection of spatial data in sf format for Brunei, including boundaries for districts, mukims, and kampongs, as well as a silhouette map of the country. Additional datasets include locations of masjids, hospitals, clinics, and schools. Designed for seamless integration with tools like ggplot2 and tidyverse, bruneimap supports geospatial visualization, analysis, and mapping projects, making it a valuable resource for researchers, analysts, and developers working with Brunei's geography.
+The bruneimap package provides a rich collection of spatial data in sf format for Brunei, including boundaries for districts, mukims, and kampongs, as well as a silhouette map of the country. Additional datasets include locations of masjids, hospitals, clinics, and schools.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Haziq Jamil \email{haziq.jamil@gmail.com} (\href{https://orcid.org/0000-0003-3298-1010}{ORCID})
+\strong{Maintainer}: Haziq Jamil \email{haziq.jamil@gmail.com} (\href{https://orcid.org/0000-0003-3298-1010}{ORCID}) [copyright holder]
 
 Other contributors:
 \itemize{
