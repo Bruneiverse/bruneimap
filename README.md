@@ -62,22 +62,22 @@ glimpse(kpg_sf)
 
 ``` r
 ggplot(kpg_sf) +
-  geom_sf(aes(fill = mukim), col = "gray50") +
+  geom_sf(aes(fill = mukim), col = "gray50", alpha = 0.8) +
   geom_sf(data = mkm_sf, col = "black", lwd = 0.5, fill = NA) +
-  geom_sf(data = filter(kpg_sf, is.na(mukim)), fill = "gray70", col = "gray70") +
+  geom_sf(data = dplyr::filter(kpg_sf, is.na(mukim)), fill = "gray70", col = "gray70") +
   theme(legend.position = "none") +
-  scale_fill_viridis_d(option = "turbo")
+  scale_fill_viridis_d(option = "mako")
 ```
 
 <img src="man/figures/README-brunei_map_plot-1.png" width="100%" />
 
 ## Acknowledgements
 
-The Brunei map was generated from publically available [Survey
+The Brunei map was generated from publicly available [Survey
 Department](https://geoportal.survey.gov.bn/start-gp) data. The GeoJSON
 files were sourced from
 [thewheat/brunei_map](https://github.com/thewheat/brunei_map) GitHub
-repo. Comes with a neat [web
+repo. It comes with a neat [web
 app](http://thewheat.github.io/brunei_map/). Many thanks to these guys!
 
 ## Contributors
