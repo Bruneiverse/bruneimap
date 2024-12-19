@@ -1,4 +1,4 @@
-# bruneimap (development version)
+# bruneimap 0.3.1
 
 * Updated documentation.
 * Thanks to all contributors for the following:
