@@ -48,7 +48,7 @@ ggplot() +
 \itemize{
 \item \href{https://www.moe.gov.bn/DocumentDownloads/Forms/AllItems.aspx?RootFolder=\%2fDocumentDownloads\%2fEducation\%20Statistics\%20and\%20Indicators\%20Handbook&FolderCTID=0x012000686799B237388E4B93D164D060CACEC6}{Education Statistics and Indicators Handbook}.
 Ministry of Education, Brunei.
-\item \href{https://deps.mofe.gov.bn/SitePages/Statistical\%20Publications.aspx|}{Summarised version, Y2023}
+\item \href{https://deps.mofe.gov.bn/SitePages/Statistical\%20Publications.aspx}{Summarised version, Y2023}
 }
 }
 \keyword{datasets}

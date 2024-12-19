@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/propertypricebn/bruneimap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/propertypricebn/bruneimap/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Provides Brunei GIS data in the form of a `sf` (simple features) object
