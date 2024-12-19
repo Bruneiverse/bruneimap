@@ -100,16 +100,16 @@ specification. Contributions of any kind are welcome!
 <a href="https://github.com/Bruneiverse/bruneimap/commits?author=nrirdnbtrsy">nrirdnbtrsy</a>
 </td>
 <td align="center">
-<a href="https://github.com/alvinbjl">
-<img src="https://avatars.githubusercontent.com/u/178853609?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/Bruneiverse/bruneimap/commits?author=alvinbjl">alvinbjl</a>
-</td>
-<td align="center">
 <a href="https://github.com/haziqj">
 <img src="https://avatars.githubusercontent.com/u/16189362?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/Bruneiverse/bruneimap/commits?author=haziqj">haziqj</a>
+</td>
+<td align="center">
+<a href="https://github.com/alvinbjl">
+<img src="https://avatars.githubusercontent.com/u/178853609?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=alvinbjl">alvinbjl</a>
 </td>
 <td align="center">
 <a href="https://github.com/Angela-29">
@@ -130,13 +130,19 @@ specification. Contributions of any kind are welcome!
 <a href="https://github.com/Bruneiverse/bruneimap/commits?author=Dwaaz">Dwaaz</a>
 </td>
 <td align="center">
+<a href="https://github.com/HafeezulRaziq">
+<img src="https://avatars.githubusercontent.com/u/99826145?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=HafeezulRaziq">HafeezulRaziq</a>
+</td>
+</tr>
+<tr>
+<td align="center">
 <a href="https://github.com/ANajwa-20">
 <img src="https://avatars.githubusercontent.com/u/178689133?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/Bruneiverse/bruneimap/commits?author=ANajwa-20">ANajwa-20</a>
 </td>
-</tr>
-<tr>
 <td align="center">
 <a href="https://github.com/nswaaan">
 <img src="https://avatars.githubusercontent.com/u/178871934?v=4" width="100px;" alt=""/>
