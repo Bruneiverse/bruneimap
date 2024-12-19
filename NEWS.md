@@ -1,6 +1,7 @@
 # bruneimap (development version)
 
 * Updated documentation.
+* Add hospitals and clinics data (`healthcare`).
 
 # bruneimap 0.3.0
 
