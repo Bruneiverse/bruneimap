@@ -17,8 +17,15 @@ which in turn is contained within mukims and districts.
 
 ## Installation
 
-You can install the development version of bruneimap from
-[GitHub](https://github.com/) with:
+Install the released version of bruneimap from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("bruneimap")
+```
+
+Or, if preferred, you may install the development version of bruneimap
+from [GitHub](https://github.com/) using:
 
 ``` r
 # install.packages("pak")
