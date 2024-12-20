@@ -21,6 +21,6 @@ s <-
     p_fontface = "plain", p_color = "#357BA2FF",
     h_size = 3, h_fill = "white", h_color = "black",
     # spotlight = TRUE,
-    filename = "inst/bruneimap.png", dpi = 300
+    filename = "inst/hexSticker.png", dpi = 300
   ); print(s)
-ggsave("inst/bruneimap.png", dpi = 200, width = 4, height = 4)
+ggsave("inst/hexSticker.png", dpi = 200, width = 4, height = 4)
