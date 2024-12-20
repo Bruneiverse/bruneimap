@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# bruneimap
+# bruneimap <a href="https://bruneiverse.github.io/bruneimap/"><img src="man/figures/logo.png" align="right" height="139" alt="bruneimap website" /></a>
 
 <!-- badges: start -->
 

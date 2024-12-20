@@ -1,5 +1,7 @@
 # bruneimap (development version)
 
+* Add logo.
+
 # bruneimap 0.3.1
 
 * Updated documentation.
@@ -9,6 +11,7 @@
   * Add schools data (`schools`).
   * Add foret reserve areas (`fr_sf`).
 * Added `pkgdown` site.
+* First CRAN release.
 
 # bruneimap 0.3
 
