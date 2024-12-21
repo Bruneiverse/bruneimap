@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -64,13 +66,32 @@ glimpse(kpg_sf)
 
 ### Plots
 
-```{r brunei_map_plot, message = FALSE, warning = FALSE}
+```{r}
+#| label: bruneimap
+#| message: false
+#| warning: false
+#| dpi: 300
 ggplot(kpg_sf) +
   geom_sf(aes(fill = mukim), col = "gray50", alpha = 0.8) +
   geom_sf(data = mkm_sf, col = "black", lwd = 0.5, fill = NA) +
   geom_sf(data = dplyr::filter(kpg_sf, is.na(mukim)), fill = "gray70", col = "gray70") +
-  theme(legend.position = "none") +
-  scale_fill_viridis_d(option = "mako")
+  ggrepel::geom_label_repel(
+    data = mutate(mkm_sf, mukim = gsub("Mukim ", "", mukim)),    
+    aes(label = mukim, geometry = geometry),
+    size = 2,
+    alpha = 0.9,
+    stat = "sf_coordinates",
+    box.padding = 0.3,
+    max.overlaps = Inf,
+    min.segment.length = 0,       
+    segment.size = 0.3,           
+    segment.curvature = 0.1,      
+    force = 5                     
+  ) +
+  scale_fill_viridis_d(option = "mako") +
+  labs(x = NULL, y = NULL, title = "Mukims in Brunei") +
+  theme_bw() +
+  theme(legend.position = "none") 
 ```
 
 
@@ -104,7 +125,7 @@ Special thanks to the creator of the [thewheat/brunei_map](https://github.com/th
 
 The `{bruneimap}` package is licensed under the [GPL-3](https://www.gnu.org/licenses/gpl-3.0.en.html). 
 
-```
+```plaintext
 bruneimap: Maps and Spatial Data of Brunei
 Copyright (C) 2024- Haziq Jamil
 

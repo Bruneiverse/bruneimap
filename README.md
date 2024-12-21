@@ -76,11 +76,26 @@ ggplot(kpg_sf) +
   geom_sf(aes(fill = mukim), col = "gray50", alpha = 0.8) +
   geom_sf(data = mkm_sf, col = "black", lwd = 0.5, fill = NA) +
   geom_sf(data = dplyr::filter(kpg_sf, is.na(mukim)), fill = "gray70", col = "gray70") +
-  theme(legend.position = "none") +
-  scale_fill_viridis_d(option = "mako")
+  ggrepel::geom_label_repel(
+    data = mutate(mkm_sf, mukim = gsub("Mukim ", "", mukim)),    
+    aes(label = mukim, geometry = geometry),
+    size = 2,
+    alpha = 0.9,
+    stat = "sf_coordinates",
+    box.padding = 0.3,
+    max.overlaps = Inf,
+    min.segment.length = 0,       
+    segment.size = 0.3,           
+    segment.curvature = 0.1,      
+    force = 5                     
+  ) +
+  scale_fill_viridis_d(option = "mako") +
+  labs(x = NULL, y = NULL, title = "Mukims in Brunei") +
+  theme_bw() +
+  theme(legend.position = "none") 
 ```
 
-<img src="man/figures/README-brunei_map_plot-1.png" width="100%" />
+<img src="man/figures/README-bruneimap-1.png" width="100%" />
 
 ## Citation
 
@@ -123,21 +138,23 @@ app](http://thewheat.github.io/brunei_map/) that inspired this work.
 The `{bruneimap}` package is licensed under the
 [GPL-3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-    bruneimap: Maps and Spatial Data of Brunei
-    Copyright (C) 2024- Haziq Jamil
+``` plaintext
+bruneimap: Maps and Spatial Data of Brunei
+Copyright (C) 2024- Haziq Jamil
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
 
 By using this package, you agree to comply with both licenses: the GPL-3
 license for the software and the CC BY 4.0 license for the data.
