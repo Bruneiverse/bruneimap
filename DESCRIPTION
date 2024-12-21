@@ -16,7 +16,7 @@ Authors@R: c(
     person("Ahmad Syafi", "Mohammad Hilmy", role = "ctb"),
     person("Mohammad Syahir Deedat", "Al Jufri", role = "ctb"),
     person("Nadi.BN", , , "info@aiti.gov.bn", role = "cph",
-           comment = "<https://www.nadi.bn/>")
+           comment = "CC BY 4.0 <https://www.nadi.bn/>")
   )
 Description: Provides spatial data for mapping Brunei, including
     boundaries for districts, mukims, and kampongs, as well as locations
