@@ -51,19 +51,30 @@
 Brunei</p>
     </div>
     <div class="section level2">
-    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>https://www.mora.gov.bn/senaraimasjid/forms/viewall.aspx</p>
-    </div>
+    <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
+
+<ul><li><p>Ministry of Religious Affairs Annual Statistics 2021. URL: <a href="https://www.mora.gov.bn/SiteCollectionDocuments/Statistik/Perangkaan%20Tahunan%20KHEU%202021.pdf" class="external-link">https://www.mora.gov.bn/SiteCollectionDocuments/Statistik/Perangkaan%20Tahunan%20KHEU%202021.pdf</a></p></li>
+<li><p>Senarai Masjid di Negara Brunei Darussalam. URL: &lt;https://www.mora.gov.bn/senaraimasjid/forms/viewall.aspx</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">masjid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ name      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Balai Ibadat Kampong Mata-Mata", "Balai Ibadat Kampong Pera…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ latitude  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 114.8957, 114.9425, 114.9468, 114.9392, 114.9469, 114.9218, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ longitude <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.900171, 4.881970, 4.881731, 4.880990, 4.878078, 4.897942, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ district  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Brunei Muara", "Brunei Muara", "Brunei Muara", "Brunei Muar…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 121</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Balai Ibadat Kg. Melilas", "Balai Ibadat Kg. Merangking", …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ kampong    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kg. Melilas", "Kg. Merangking", "Kg. Sukang", "Kg. Long Ma…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ mukim      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mukim Melilas", "Mukim Bukit Sawat", "Mukim Sukang", "Muki…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ district   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Belait", "Belait", "Belait", "Tutong", "Brunei-Muara", "Br…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ latitude   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 114.6605, 114.5780, 114.6246, 114.6353, 114.8957, 114.9425,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ longitude  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.257784, 4.522569, 4.311368, 4.560621, 4.900171, 4.881970,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ officiated <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1998, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1979, <span style="color: #BB0000;">NA</span>,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ used       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1994, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ completed  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1994, <span style="color: #BB0000;">NA</span>, 1994, <span style="color: #BB0000;">NA</span>, 1988, <span style="color: #BB0000;">NA</span>, 1989, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1994, 1992,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ capacity   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40, 180, 40, 150, 550, 100, 500, 300, 100, 150, 160, 120, 2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ type       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "balai ibadat", "balai ibadat", "balai ibadat", "balai ibad…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ category   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Balai Ibadat", "Balai Ibadat", "Balai Ibadat", "Balai Ibad…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ notes      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
