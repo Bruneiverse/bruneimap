@@ -1,7 +1,7 @@
 desc <- utils::packageDescription("bruneimap")
 bibentry(
   bibtype = "Manual",
-  title = paste0(desc$Package, ": ", desc$Title, " (R package version ", desc$Version, ")"),
+  title = paste0("bruneimap: {M}aps and {S}patial {D}ata of {B}runei ", "({R} package version ", desc$Version, ")"),
   author = person("Haziq", "Jamil"),
   year = format(Sys.Date(), "%Y"),
   url = "https://bruneiverse.github.io/bruneimap/"
