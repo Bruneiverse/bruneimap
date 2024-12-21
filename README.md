@@ -31,7 +31,7 @@ Or, if preferred, you may install the development version from
 
 ``` r
 # install.packages("pak")
-pak::pkg_install("propertypricebn/bruneimap")
+pak::pkg_install("bruneiverse/bruneimap")
 ```
 
 ## Features
