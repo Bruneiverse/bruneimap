@@ -8,6 +8,8 @@
 [![R-CMD-check](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/bruneimap)](https://CRAN.R-project.org/package=bruneimap)
+[![CRAN
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/bruneimap)](https://cran.r-project.org/package=bruneimap)
 <!-- badges: end -->
 
 Provides Brunei GIS data in the form of a `sf` (simple features) object
