@@ -5,12 +5,13 @@
 \alias{bruneimap-package}
 \title{bruneimap: Maps and Spatial Data of Brunei}
 \description{
-The bruneimap package provides a rich collection of spatial data in sf format for Brunei, including boundaries for districts, mukims, and kampongs, as well as a silhouette map of the country. Additional datasets include locations of masjids, hospitals, clinics, and schools.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+Provides spatial data for mapping Brunei, including boundaries for districts, mukims, and kampongs, as well as locations of key infrastructure such as masjids, hospitals, clinics, and schools. The package supports researchers, analysts, and developers working with Brunei’s geographic and demographic data, offering a quick and accessible foundation for creating maps and conducting spatial studies.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/Bruneiverse/bruneimap}
   \item \url{https://bruneiverse.github.io/bruneimap/}
   \item Report bugs at \url{https://github.com/Bruneiverse/bruneimap/issues}
 }
@@ -21,7 +22,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Hafeezul Raziq [contributor]
+  \item Hafeezul Raziq \email{hafeezul.rzq@gmail.com} [contributor]
   \item Alvin Bong [contributor]
   \item Aniq Najwa Ariffin [contributor]
   \item Danish Ikhwan Mohamad Zainin [contributor]
@@ -31,6 +32,7 @@ Other contributors:
   \item Nursyafiqah Mohammad Yusuf [contributor]
   \item Ahmad Syafi Mohammad Hilmy [contributor]
   \item Mohammad Syahir Deedat Al Jufri [contributor]
+  \item Nadi.BN \email{info@aiti.gov.bn} (CC BY 4.0 <https://www.nadi.bn/>) [copyright holder]
 }
 
 }
