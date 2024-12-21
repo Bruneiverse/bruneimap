@@ -124,9 +124,24 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">mukim</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"gray50"</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mkm_sf</span>, col <span class="op">=</span> <span class="st">"black"</span>, lwd <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">kpg_sf</span>, <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">mukim</span><span class="op">)</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"gray70"</span>, col <span class="op">=</span> <span class="st">"gray70"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-brunei_map_plot-1.png" width="100%"></p>
+<span>  <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu">geom_label_repel</span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">mkm_sf</span>, mukim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"Mukim "</span>, <span class="st">""</span>, <span class="va">mukim</span><span class="op">)</span><span class="op">)</span>,    </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">mukim</span>, geometry <span class="op">=</span> <span class="va">geometry</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    alpha <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>    stat <span class="op">=</span> <span class="st">"sf_coordinates"</span>,</span>
+<span>    box.padding <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>    max.overlaps <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>    min.segment.length <span class="op">=</span> <span class="fl">0</span>,       </span>
+<span>    segment.size <span class="op">=</span> <span class="fl">0.3</span>,           </span>
+<span>    segment.curvature <span class="op">=</span> <span class="fl">0.1</span>,      </span>
+<span>    force <span class="op">=</span> <span class="fl">5</span>                     </span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Mukims in Brunei"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> </span></code></pre></div>
+<p><img src="reference/figures/README-bruneimap-1.png" width="100%"></p>
 </div>
 </div>
 <div class="section level2">
@@ -154,21 +169,21 @@
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
 <p>The <a href="https://bruneiverse.github.io/bruneimap/">bruneimap</a> package is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link">GPL-3</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>bruneimap<span class="sc">:</span> Maps and Spatial Data of Brunei</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">Copyright</span> (C) <span class="dv">2024</span><span class="sc">-</span> Haziq Jamil</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>This program is free software<span class="sc">:</span> you can redistribute it and<span class="sc">/</span>or modify</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>it under the terms of the GNU General Public License as published by</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>the Free Software Foundation, either version <span class="dv">3</span> of the License, or</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>(at your option) any later version.</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>This program is distributed <span class="cf">in</span> the hope that it will be useful,</span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>GNU General Public License <span class="cf">for</span> more details.</span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>You should have received a copy of the GNU General Public License</span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>along with this program.  If not, see <span class="sc">&lt;</span>http<span class="sc">:</span><span class="er">//</span>www.gnu.org<span class="sc">/</span>licenses<span class="sc">/</span><span class="er">&gt;</span>.</span></code></pre></div>
+<pre class="plaintext"><code>bruneimap: Maps and Spatial Data of Brunei
+Copyright (C) 2024- Haziq Jamil
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</code></pre>
 <p>By using this package, you agree to comply with both licenses: the GPL-3 license for the software and the CC BY 4.0 license for the data.</p>
 </div>
 <div class="section level2">
