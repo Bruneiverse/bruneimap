@@ -175,23 +175,24 @@ Nadi.BN or any Brunei government entity.
 <!-- markdownlint-disable -->
 
 All contributions to this project are gratefully acknowledged using the
-[`allcontributors` package](https://github.com/ropensci/allcontributors)
-following the [all-contributors](https://allcontributors.org)
-specification. Contributions of any kind are welcome!
+[`{allcontributors}`
+package](https://github.com/ropensci/allcontributors) following the
+[all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
 
 <table>
 <tr>
-<td align="center">
-<a href="https://github.com/nrirdnbtrsy">
-<img src="https://avatars.githubusercontent.com/u/178867095?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/Bruneiverse/bruneimap/commits?author=nrirdnbtrsy">nrirdnbtrsy</a>
-</td>
 <td align="center">
 <a href="https://github.com/haziqj">
 <img src="https://avatars.githubusercontent.com/u/16189362?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/Bruneiverse/bruneimap/commits?author=haziqj">haziqj</a>
+</td>
+<td align="center">
+<a href="https://github.com/nrirdnbtrsy">
+<img src="https://avatars.githubusercontent.com/u/178867095?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/Bruneiverse/bruneimap/commits?author=nrirdnbtrsy">nrirdnbtrsy</a>
 </td>
 <td align="center">
 <a href="https://github.com/alvinbjl">
