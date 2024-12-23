@@ -1,0 +1,28 @@
+---
+title: "schools"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Schools in Brunei}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette introduces the `schools` dataset included in the `{bruneimap}` package, which provides spatial data for schools across Brunei. 
+The dataset includes essential information such as the name, geographic coordinates (latitude and longitude), and district of each school.
+
+```{r setup}
+library(tidyverse)
+library(bruneimap)
+library(sf)
+```
+
+```{r}
+glimpse(schools)
+```
