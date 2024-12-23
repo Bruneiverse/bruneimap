@@ -31,4 +31,4 @@ NULL
 "enrolment"
 
 #' @rdname schools
-"enrolment_MOE"
+"enrolment_moe"
