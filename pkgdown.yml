@@ -3,7 +3,8 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   masjid: masjid.html
-last_built: 2024-12-21T03:56Z
+  schools: schools.html
+last_built: 2024-12-24T05:23Z
 urls:
   reference: https://bruneiverse.github.io/bruneimap/reference
   article: https://bruneiverse.github.io/bruneimap/articles
