@@ -1,23 +1,22 @@
-#' Data sets relating to schools in Brunei
+#' Brunei schools datasets 2018
 #'
-#' Data sets relating to schools in Brunei
+#' Brunei schools datasets 2018
 #'
 #' There are four datasets related to schools in Brunei:
 #' - `sch_sf`: A spatial object of schools in Brunei
 #' - `tchr`: A tibble of the number of teachers in schools in Brunei
 #' - `enrolment`: A tibble of the number of students in schools in Brunei
-#' - `enrolment_MOE`: A tibble of the number of students in schools in Brunei
+#' - `enrolment_moe`: A tibble of the number of students in MOE schools (primary to sixth form) in Brunei
 #'
 #' @name schools
 #' @references
-#' - [Education Statistics and Indicators
-#'   Handbook](https://www.moe.gov.bn/DocumentDownloads/Forms/AllItems.aspx?RootFolder=%2fDocumentDownloads%2fEducation%20Statistics%20and%20Indicators%20Handbook&FolderCTID=0x012000686799B237388E4B93D164D060CACEC6).
+#' - [Brunei Darussalam Education Statistics 2018](https://www.moe.gov.bn/DocumentDownloads/Education%20Statistics%20and%20Indicators%20Handbook/Brunei%20Darussalam%20Education%20Statistics%202018.pdf).
 #'   Ministry of Education, Brunei.
-#' - [Summarised version, Y2023](https://deps.mofe.gov.bn/SitePages/Statistical%20Publications.aspx)
+#'   
 #' @examples
 #' library(ggplot2)
 #' ggplot() +
-#'   geom_sf(data = brn_sf) +
+#'   geom_sf(data = kpg_sf) +
 #'   geom_sf(data = sch_sf)
 NULL
 
@@ -31,4 +30,4 @@ NULL
 "enrolment"
 
 #' @rdname schools
-"enrolment_MOE"
+"enrolment_moe"

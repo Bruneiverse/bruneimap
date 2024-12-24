@@ -1,0 +1,43 @@
+---
+title: "Schools"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Schools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette introduces the datasets related to school and education included in the `{bruneimap}`. Datasets include GIS data - `sch_sf` and study variables -  `tchr`, `enrolment`, `enrolment_moe` for the year 2018.
+
+```{r, message=FALSE}
+# Load libraries
+library(tidyverse)
+library(sf)
+library(ggplot2)
+library(bruneimap)
+```
+
+## sch_sf
+The `sch_sf` dataset contains spatial information for all schools in Brunei. It includes school names and their geographic coordinates (latitude and longitude), along with the kampong, mukim, and district where each school is located.
+
+```{r}
+glimpse(sch_sf)
+```
+
+Schools in Brunei are categorised into three sectors: **MOE**, **MORA** (both public) and **private**. Additionally, MOE schools, ranging from primary to sixth form, are further organized into six clusters.
+
+Below is a visualization of all schools across Brunei:
+
+```{r, fig.width=7, fig.height=5}
+ggplot() +
+  geom_sf(data = kpg_sf, fill = NA) +
+  geom_sf(data = sch_sf) +
+  theme_bw()
+```
