@@ -1,65 +1,140 @@
 library(bruneimap)
 library(osmdata)
+library(MetricGraph)
 library(tidyverse)
 theme_set(theme_void())
 
-bb <- getbb("Brunei")
-
-# Query road network data for the area
+# Query road network data for Brunei
 road_data <-
-  opq(bbox = bb) |>
+  opq(bbox = "brunei") |>
   add_osm_feature(key = "highway") |>
   osmdata_sf()
 
 # Access the road lines as an `sf` object
 road_lines <-
   as_tibble(road_data$osm_lines) |>
-  st_set_geometry(road_data$osm_lines$geometry)
+  st_set_geometry(road_data$osm_lines$geometry) |>
+  janitor::clean_names()
 
-# Trim the data set
-road_lines_filtered <- road_lines |>
-  dplyr::select(
-    osm_id, name, highway, access, lanes, oneway, surface, maxspeed, bicycle,
-    foot, motor_vehicle, bridge, tunnel, geometry
+# Trim to ensure only roads in Brunei are included
+brn_rd <-
+  filter(road_lines, !grepl("Jambatan Temburong", name)) |>
+  st_intersection(brn_sf$geometry) |>
+  bind_rows(filter(road_lines, grepl("Jambatan Temburong", name)))
+
+# Add to district, mukims, and kampongs
+dis_rd <-
+  brn_rd |>
+  st_intersection(select(dis_sf, bm_id = id, district, geometry)) |>
+  bind_rows(filter(brn_rd, grepl("Jambatan Temburong", name)))
+
+mkm_rd <-
+  brn_rd |>
+  st_intersection(select(mkm_sf, id, mukim, district, geometry)) |>
+  bind_rows(filter(brn_rd, grepl("Jambatan Temburong", name)))
+
+kpg_rd <-
+  brn_rd |>
+  st_intersection(select(kpg_sf, id, kampong, mukim, district, geometry)) |>
+  bind_rows(filter(brn_rd, grepl("Jambatan Temburong", name)))
+
+place <- "Kiarong"
+ggplot() +
+  geom_sf(data = filter(kpg_sf, grepl(!!place, kampong))) +
+  geom_sf(data = filter(kpg_rd, grepl(!!place, kampong)))
+
+pl <-
+  map(
+    unique(filter(kpg_sf, grepl(!!place, mukim))$kampong),
+    \(x) {
+      ggplot() +
+        geom_sf(data = filter(kpg_sf, kampong == x)) +
+        geom_sf(data = filter(kpg_rd, kampong == x)) +
+        ggtitle(x)
+  })
+cowplot::plot_grid(plotlist = pl)
+
+## ----- Mukim Berakas A and distance to masjids -------------------------------
+place <- "Berakas A"
+ggplot() +
+  geom_sf(data = filter(mkm_sf, grepl(!!place, mukim))) +
+  geom_sf(
+    data = mkm_rd |>
+      filter(grepl(!!place, mukim)) |>
+      filter(grepl("motorway|trunk|primary|secondary|tertiary|unclassified|residential", highway))
+  ) +
+  geom_point(
+    data = filter(masjid, grepl(!!place, mukim)),
+    aes(latitude, longitude),
+    col = "red3"
   )
 
-road_lines_filtered |>
-  filter(grepl("Jalan Tungku", name)) |>
-  ggplot() +
-  # geom_sf(data = brn_sf) +
-  geom_sf(aes(col = bridge))
-
-# Brunei roads
-brn_rd <-
-  road_lines_filtered |>
+place <- "Berakas A"
+data <- kpg_rd |>
+  filter(grepl(!!place, mukim)) |>
   filter(grepl("motorway|trunk|primary|secondary|tertiary|unclassified|residential", highway)) |>
-  st_intersection(brn_sf) |>
-  st_union(filter(road_lines_filtered, grepl("Jambatan Temburong", name)))
+  st_cast("LINESTRING") |>
+  filter(st_geometry_type(geometry) == "LINESTRING" &
+           sapply(st_geometry(geometry), function(geom) nrow(st_coordinates(geom))) >= 2)
+graph <- metric_graph$new(data, merge_close_vertices = FALSE)
+graph$plot(vertex_size = 0.5)
 
-# Gadong Roads
-gadonga <-
-  kpg_sf |>
-  filter(grepl("Gadong A", mukim))
 
-total <- summarise(gadonga)
+graph$build_mesh(h = 100 / 1000)  # 100m mesh
+graph$plot(mesh = TRUE)
 
-gadonga_rd <- st_intersection(road_lines, gadonga)
 
-ggplot() +
-  geom_sf(data = kpg_sf, aes(fill = mukim), alpha = 0.5) +
-  geom_sf(data = road_lines |> filter(grepl("Jambatan Temburong", name))) +
-  scale_fill_viridis_d(option = "turbo", name = NULL)
+# locations of masjids in Berakas A
+mb <- filter(masjid, grepl("Berakas A", mukim)) |> drop_na(latitude, longitude)
 
-ggplot() +
-  geom_sf(data = kpg_sf, aes(fill = mukim), col = NA, alpha = 0.5) +
-  geom_sf(data = brn_rd) +
-  scale_fill_viridis_d(option = "turbo", name = NULL) +
-  theme(legend.position = "none")
+mesh <- tibble(
+  lon = graph$mesh$V[, 1],
+  lat = graph$mesh$V[, 2]
+)
+mesh_list <-
+  mesh |>
+  mutate(group = ceiling(row_number() / 100)) |>
+  group_split(group) |>
+  lapply(\(x) select(x, -group))
+mesh_dist <- map(
+  mesh_list,
+  \(x) {
+    out <- osrmTable(
+      src = x,
+      dst = select(mb, lon = latitude, lat = longitude), #|> column_to_rownames("name")
+      measure = "distance"
+    )
+    out$distances
+  }
+)
+mesh_dist <- as_tibble(do.call(rbind, mesh_dist))
+mesh_dist <-
+  mesh_dist |>
+  rowwise() |>
+  mutate(d = min(c_across(everything()), na.rm = TRUE)) |>
+  ungroup()
 
-ggplot() +
-  geom_sf(data = gadonga, alpha = 0.5, linetype = "solid") +
-  geom_sf(data = gadonga_rd |>
-            filter(grepl("motorway|trunk|primary|secondary|tertiary|unclassified|residential", highway)),
-          aes(col = as.numeric(maxspeed))) +
-  scale_colour_viridis_c(name = "Speed\nLimit")
-  scale_color_viridis_d(option = "turbo", name = NULL)
+d <- exp(- 0.5 * mesh_dist$d / 1000)
+
+p <- ggplot(data = filter(mkm_sf, grepl(!!place, mukim))) + geom_sf()
+
+graph$plot_function(
+  X = d,
+  vertex_size = 0,
+  edge_width = 0.6,
+  scale_color = ggplot2::scale_color_viridis_c(option = "magma")
+) +
+  geom_sf(data = filter(kpg_sf, grepl(!!place, mukim)), fill = NA) +
+  geom_point(data = mb, aes(latitude, longitude), col = "black", size = 2) +
+  # geom_emoji(data = mb, aes(latitude, longitude), size = 0.03, emoji = "1f54c") +
+  theme_void() +
+  theme(legend.position = "none") +
+  labs(title = "Distance to Masjids in Berakas A")
+
+# select(
+#   osm_id, name, highway, access, lanes, oneway, surface, maxspeed, bicycle,
+#   foot, motor_vehicle, bridge, tunnel, geometry
+# )
+#
+# filter(grepl("motorway|trunk|primary|secondary|tertiary|unclassified|residential",
+#              highway)) |>
