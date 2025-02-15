@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 # bruneimap <a href="https://bruneiverse.github.io/bruneimap/"><img src="man/figures/logo.png" align="right" height="139" alt="bruneimap website" /></a>
 
 <!-- badges: start -->
+![](https://img.shields.io/badge/brunei-yakin-yellow)
 [![R-CMD-check](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml)
 [![CRAN status](https://www.r-pkg.org/badges/version/bruneimap)](https://CRAN.R-project.org/package=bruneimap)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/bruneimap)](https://cran.r-project.org/package=bruneimap)

@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+![](https://img.shields.io/badge/brunei-yakin-yellow)
 [![R-CMD-check](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Bruneiverse/bruneimap/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/bruneimap)](https://CRAN.R-project.org/package=bruneimap)
