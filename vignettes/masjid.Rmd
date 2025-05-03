@@ -31,7 +31,7 @@ library(viridisLite)
 glimpse(masjid)
 ```
 
-According to Ministry of Religious Affairs, masjid in Brunei are divided into different categories: **Masjid Kampong** (village mosques), **Masjid Mukim** (sub-district mosques), **Masjid Utama** (main mosques), **Masjid Negara** (national mosques). It also includes Surau and \'Balai Ibadat\'
+According to Ministry of Religious Affairs, masjid in Brunei are divided into different categories: **Masjid Kampong** (village mosques), **Masjid Mukim** (sub-district mosques), **Masjid Utama** (main mosques), **Masjid Negara** (national mosques). It also includes Surau and 'Balai Ibadat'
 
 Below is a bar chart of the different religious infrastructures categories across Brunei:
 
@@ -45,12 +45,13 @@ masjid |>
   labs(x = "Categories",
        y = "Count",
        fill = "Types",
-       caption = "Source: MORA Annual Statistics (2021)") +
+       caption = "Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online") +
   theme_minimal() +
   scale_fill_viridis_d(option = "mako") +
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5),
-        axis.text.x = element_text(face = "italic"))
+        axis.text.x = element_text(face = "italic"),
+        plot.caption = element_text(size = 8, face = "italic", color = "#a4a4a4"))
 ```
 
 Here, we can see that in total there are 104 Masjid, 5 Surau and 12 Balai Ibadat inside the dataset. Meanwhile inside the masjid category, there are 64 Masjid Kampong, 26 Masjid Mukim, 12 Masjid Utama & 2 Masjid Negara. Furthermore, since the dataset includes the capacity of each infrastructure, we can see how many people can fit in each of the categories mentioned implying the size of each infrastructure.
@@ -62,16 +63,17 @@ masjid |>
   labs(x = "Capacity",
        y = "Categories",
        fill = "Types",
-       caption = "Source: MORA Annual Statistics (2021)") +
+       caption = "Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online") +
   theme_minimal() +
   scale_fill_viridis_d(option = "mako") +
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0),
-        axis.text.y = element_text(face = "italic"))
+        axis.text.y = element_text(face = "italic"),
+        plot.caption = element_text(size = 8, face = "italic", color = "#a4a4a4"))
 
 ```
 
-From this box plot, we can see that Masjid Negara is the biggest in capacity, followed by Masjid Utama, Masjid Mukim and Masjid Kampong. While Balai Ibadat holds the lowest capacity among all. The minimum and maximum capacity for Masjid Kampong is 120 and 2400, for Masjid Mukim is 300 and 2000, for Masjid Utama is 700 and 3000, for Masjid Negara is 3000 and 5000, for Surau is 40 and 1000 and for Balai Ibadat is 40 and 550. Outliers can be seen for \'Masjid Kampong\' where Masjid Suri Seri Begawan Raja Pengiran Anak Damit in Kg. Madang can accomodate 2400 people inside whereas the others in the same category typically have the capacity of 1700 & below.
+From this box plot, we can see that Masjid Negara is the biggest in capacity, followed by Masjid Utama, Masjid Mukim and Masjid Kampong. While Balai Ibadat holds the lowest capacity among all. The minimum and maximum capacity for Masjid Kampong is 120 and 2400, for Masjid Mukim is 300 and 2000, for Masjid Utama is 700 and 3000, for Masjid Negara is 3000 and 5000, for Surau is 40 and 1000 and for Balai Ibadat is 40 and 550. Outliers can be seen for 'Masjid Kampong' where Masjid Suri Seri Begawan Raja Pengiran Anak Damit in Kg. Madang can accomodate 2400 people inside whereas the others in the same category typically have the capacity of 1700 & below.
 
 ```{r}
 top_5_biggest <- masjid |>
@@ -83,7 +85,7 @@ top_5_biggest
 
 ```
 
-The top 5 biggest by capacity are Jame\' \'Asr Hassanil Bolkiah in Kg. Kiarong with 5000 capacity. Meanwhile, Masjid Omar Ali Saifuddien in Pusat Bandar, Masjid Hassanal Bolkiah in Kg. Mentiri, Masjid Sultan Sharif Ali in Kg. Sengkurong A and Masjid Mohamed Bolkiah in Kg. Serusop all can accomodate up to 3000 people.
+The top 5 biggest by capacity are Jame' 'Asr Hassanil Bolkiah in Kg. Kiarong with 5000 capacity. Meanwhile, Masjid Omar Ali Saifuddien in Pusat Bandar, Masjid Hassanal Bolkiah in Kg. Mentiri, Masjid Sultan Sharif Ali in Kg. Sengkurong A and Masjid Mohamed Bolkiah in Kg. Serusop all can accomodate up to 3000 people.
 
 ```{r}
 top_5_smallest <- masjid |>
@@ -95,7 +97,7 @@ top_5_smallest
 
 ```
 
-Whereas, the top 5 smallest by capacity are Balai Ibadat Kg. Melilas, Balai Ibadat Kg. Sukang, Surau Kg. Mapol in Hutan Simpan Bukit Ladan, Surau Kg. Belabau in Kg. Belabau can accomodate 40 people while Balai Ibadat Kg. Peramu in Kg. Peramu can accomdate 100 people.
+Whereas, the top 5 smallest by capacity are Balai Ibadat Kg. Melilas and Balai Ibadat Kg. Sukang, each accommodating 40 people; Balai Ibadat Kg. Peramu and Balai Ibadat Nur Taqwa, each accommodating 100 people; and Masjid Kg. Bukit Sawat, which accommodates 120 people.
 
 The bar chart below illustrates the number of masjid, surau, and balai ibadat by mukim . Mukim Kota Batu stand out with the highest count of 8 religious infrastructures as it is located near to Bandar Seri Begawan, the capital of Brunei Darussalam.
 
@@ -122,15 +124,16 @@ masjid |>
     x = "Counts",
     y = "Mukim",
     fill = "Number of Religious Infrastructures",
-    caption = "Source: MORA Annual Statistics (2021)"
+    caption = "Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online"
   ) +
   theme_minimal() +
   theme(
     legend.position = "top",
     plot.title = element_text(hjust = 0.5),
     legend.title = element_text(hjust = 0.5),
-    axis.text.y = element_text(face = "italic")
-  )
+    axis.text.y = element_text(face = "italic"),
+    plot.caption = element_text(size = 8, face = "italic", color = "#a4a4a4"))
+
 ```
 
 Using the \*\*sf\*\* package, we can visualize the geographic distribution of religious infrastructures across Brunei by Mukim. The map highlights areas with dense concentrations of mosques, such as Brunei-Muara, while identifying sparsely populated regions with fewer or no religious infrastructures. There are 3 mukim which does not have a record of religious infrastructure where one of them is in Mukim Kuala Balai where the population recorded is 16 (2021) which makes sense. However, the other 2 mukim with no religious infrastructure is located in Brunei Muara in Mukim Tamoi and Mukim Sungai Kedayan. This is because the area is considered small and there are available mosques nearby or around the border of the mukim.
@@ -145,7 +148,6 @@ masjid_by_mukim <- masjid |>
 mkm_sf <- mkm_sf |> 
   left_join(masjid_by_mukim, by = "mukim") # Joining by mukim
 ```
-
 
 ```{r, fig.width=7, fig.height=5}
 # Plot the number of mosques in each mukim
@@ -166,14 +168,14 @@ ggplot(data = mkm_sf) +
   ) +
   labs(
     title = "Distribution of Religious Infrastructures in Brunei by Mukim",
-    caption = "Source: MORA Annual Statistics (2021)"
+    caption = "Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online"
   ) +
   theme_minimal() +
   theme(
     legend.position = "top",
     plot.title = element_text(hjust = 0.5),
-    legend.title = element_text(hjust = 0.5)
-  )
+    legend.title = element_text(hjust = 0.5),
+    plot.caption = element_text(size = 8, face = "italic", color = "#a4a4a4"))
 ```
 
 Furthermore, since we have the longtitude and latitude coordiantes of the infrastructures, we can visualise the locations of each of them across Brunei. Below is an example where the masjids are overlaid on Brunei's mukim boundaries:
@@ -182,24 +184,22 @@ Furthermore, since we have the longtitude and latitude coordiantes of the infras
 ggplot() + 
   geom_sf(data = mkm_sf, fill = NA) + # change data to kpg_sf to view bordered by kampong
   geom_point(data = masjid, aes(latitude, longitude, color = as.factor(category)), 
-             size = 2, alpha = 1) + 
+             size = 1, alpha = 1) + 
   scale_color_viridis_d(option = "mako", 
                         name = "Category") +
   coord_sf() + 
   labs(
     title = "Distribution of Religious Infrastructures in Brunei",
-    caption = "Source: MORA Annual Statistics (2021)",
+    caption = "Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online",
     x = "Latitude",
     y = "Longitude"
   ) + 
   theme_minimal() + 
   theme(
     legend.position = "right",
-    plot.title = element_text(hjust = 0.5, size = 16),
-    plot.caption = element_text(hjust = 1, size = 10)
-  )
+    plot.title = element_text(hjust = 0.5),
+    plot.caption = element_text(size = 8, face = "italic", color = "#a4a4a4"))
 ```
-
 
 # Conclusion
 
@@ -210,4 +210,5 @@ For more details, refer to the `{bruneimap}` documentation or the source dataset
 # References
 
 -   Department of Economic Planning and Statistics, Ministry of Finance and Economy (2022)
--   Ministry of Religious Affairs (2021)
+-   Ministry of Religious Affairs Annual Statistics (2021) & Website
+-   Wikipedia
