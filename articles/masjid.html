@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Masjids in Brunei • bruneimap</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -88,7 +87,7 @@ each masjid.</p>
 <span><span class="co">#&gt; ── <span style="font-weight: bold;">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.1.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.1.5</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats  </span> 1.0.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr  </span> 1.5.1</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2  </span> 3.5.1     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble   </span> 3.2.1</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2  </span> 3.5.2     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble   </span> 3.2.1</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">lubridate</span> 1.9.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr    </span> 1.3.1</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr    </span> 1.0.4     </span></span>
 <span><span class="co">#&gt; ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
@@ -103,27 +102,28 @@ each masjid.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridisLite/" class="external-link">viridisLite</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">masjid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 121</span></span>
-<span><span class="co">#&gt; Columns: 13</span></span>
-<span><span class="co">#&gt; $ name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Balai Ibadat Kg. Melilas", "Balai Ibadat Kg. Merangking", …</span></span>
-<span><span class="co">#&gt; $ kampong    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kg. Melilas", "Kg. Merangking", "Kg. Sukang", "Kg. Long Ma…</span></span>
-<span><span class="co">#&gt; $ mukim      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mukim Melilas", "Mukim Bukit Sawat", "Mukim Sukang", "Muki…</span></span>
-<span><span class="co">#&gt; $ district   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Belait", "Belait", "Belait", "Tutong", "Brunei-Muara", "Br…</span></span>
-<span><span class="co">#&gt; $ latitude   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 114.6605, 114.5780, 114.6246, 114.6353, 114.8957, 114.9425,…</span></span>
-<span><span class="co">#&gt; $ longitude  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.257784, 4.522569, 4.311368, 4.560621, 4.900171, 4.881970,…</span></span>
-<span><span class="co">#&gt; $ officiated <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1998, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1979, <span style="color: #BB0000;">NA</span>,…</span></span>
-<span><span class="co">#&gt; $ used       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1994, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
-<span><span class="co">#&gt; $ completed  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1994, <span style="color: #BB0000;">NA</span>, 1994, <span style="color: #BB0000;">NA</span>, 1988, <span style="color: #BB0000;">NA</span>, 1989, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, 1994, 1992,…</span></span>
-<span><span class="co">#&gt; $ capacity   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 40, 180, 40, 150, 550, 100, 500, 300, 100, 150, 160, 120, 2…</span></span>
-<span><span class="co">#&gt; $ type       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "balai ibadat", "balai ibadat", "balai ibadat", "balai ibad…</span></span>
-<span><span class="co">#&gt; $ category   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Balai Ibadat", "Balai Ibadat", "Balai Ibadat", "Balai Ibad…</span></span>
-<span><span class="co">#&gt; $ notes      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span></code></pre></div>
+<span><span class="co">#&gt; Rows: 118</span></span>
+<span><span class="co">#&gt; Columns: 14</span></span>
+<span><span class="co">#&gt; $ name           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Surau Polis Gadong"<span style="color: #949494;">, </span>"Surau Maktab Teknik Sultan Saifu…</span></span>
+<span><span class="co">#&gt; $ kampong        <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Kg. Mata-Mata<span style="color: #949494;">, </span>Kg. Serusop<span style="color: #949494;">, </span>Lapangan Terbang Antarabang…</span></span>
+<span><span class="co">#&gt; $ mukim          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Mukim Gadong B<span style="color: #949494;">, </span>Mukim Berakas A<span style="color: #949494;">, </span>Mukim Berakas A<span style="color: #949494;">, </span>Mukim…</span></span>
+<span><span class="co">#&gt; $ district       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Brunei Muara<span style="color: #949494;">, </span>Brunei Muara<span style="color: #949494;">, </span>Brunei Muara<span style="color: #949494;">, </span>Temburong<span style="color: #949494;">, </span>Be…</span></span>
+<span><span class="co">#&gt; $ longitude      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.907070<span style="color: #949494;">, </span>4.946498<span style="color: #949494;">, </span>4.944105<span style="color: #949494;">, </span>4.707671<span style="color: #949494;">, </span>4.586281<span style="color: #949494;">, </span>4.585…</span></span>
+<span><span class="co">#&gt; $ latitude       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 114.9036<span style="color: #949494;">, </span>114.9547<span style="color: #949494;">, </span>114.9339<span style="color: #949494;">, </span>115.0708<span style="color: #949494;">, </span>114.2324<span style="color: #949494;">, </span>114.1…</span></span>
+<span><span class="co">#&gt; $ officiated     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1968<span style="color: #949494;">, </span>1996<span style="color: #949494;">, </span>1964<span style="color: #949494;">, </span>1954<span style="color: #949494;">, </span>1999<span style="color: #949494;">, </span>2017<span style="color: #949494;">, </span>1986<span style="color: #949494;">, </span>1…</span></span>
+<span><span class="co">#&gt; $ used           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1998<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1967<span style="color: #949494;">, </span>1996<span style="color: #949494;">, </span>1964<span style="color: #949494;">, </span>1954<span style="color: #949494;">, </span>1999<span style="color: #949494;">, </span>2017<span style="color: #949494;">, </span>1986<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ completed      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1999<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>1967<span style="color: #949494;">, </span>1995<span style="color: #949494;">, </span>1963<span style="color: #949494;">, </span>1954<span style="color: #949494;">, </span>1999<span style="color: #949494;">, </span>2017<span style="color: #949494;">, </span>1986<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ capacity       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 800<span style="color: #949494;">, </span>1000<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>800<span style="color: #949494;">, </span>2900<span style="color: #949494;">, </span>2500<span style="color: #949494;">, </span>2500<span style="color: #949494;">, </span>2000<span style="color: #949494;">, </span>3000<span style="color: #949494;">, </span>3000<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ estimated_cost <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>135000<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>395000<span style="color: #949494;">, </span>14000000<span style="color: #949494;">, </span>2600000<span style="color: #949494;">, </span>250000<span style="color: #949494;">, </span><span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ type           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> surau<span style="color: #949494;">, </span>surau<span style="color: #949494;">, </span>surau<span style="color: #949494;">, </span>masjid<span style="color: #949494;">, </span>masjid<span style="color: #949494;">, </span>masjid<span style="color: #949494;">, </span>masjid<span style="color: #949494;">, </span>ma…</span></span>
+<span><span class="co">#&gt; $ category       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Surau<span style="color: #949494;">, </span>Surau<span style="color: #949494;">, </span>Surau<span style="color: #949494;">, </span>Masjid Utama<span style="color: #949494;">, </span>Masjid Utama<span style="color: #949494;">, </span>Masjid…</span></span>
+<span><span class="co">#&gt; $ notes          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span><span style="color: #949494;">, </span>"Commonly said to be in Delima Satu but is within K…</span></span></code></pre></div>
 <p>According to Ministry of Religious Affairs, masjid in Brunei are
 divided into different categories: <strong>Masjid Kampong</strong>
 (village mosques), <strong>Masjid Mukim</strong> (sub-district mosques),
 <strong>Masjid Utama</strong> (main mosques), <strong>Masjid
-Negara</strong> (national mosques). It also includes Surau and 'Balai
-Ibadat'</p>
+Negara</strong> (national mosques). It also includes Surau and ‘Balai
+Ibadat’</p>
 <p>Below is a bar chart of the different religious infrastructures
 categories across Brunei:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -136,12 +136,13 @@ categories across Brunei:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Categories"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Count"</span>,</span>
 <span>       fill <span class="op">=</span> <span class="st">"Types"</span>,</span>
-<span>       caption <span class="op">=</span> <span class="st">"Source: MORA Annual Statistics (2021)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       caption <span class="op">=</span> <span class="st">"Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>        plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>        axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>        axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>        plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color <span class="op">=</span> <span class="st">"#a4a4a4"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="masjid_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 <p>Here, we can see that in total there are 104 Masjid, 5 Surau and 12
 Balai Ibadat inside the dataset. Meanwhile inside the masjid category,
@@ -156,12 +157,13 @@ categories mentioned implying the size of each infrastructure.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Capacity"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Categories"</span>,</span>
 <span>       fill <span class="op">=</span> <span class="st">"Types"</span>,</span>
-<span>       caption <span class="op">=</span> <span class="st">"Source: MORA Annual Statistics (2021)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       caption <span class="op">=</span> <span class="st">"Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>        plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
-<span>        axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span><span class="op">)</span></span>
+<span>        axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>        plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color <span class="op">=</span> <span class="st">"#a4a4a4"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Removed 1 row containing non-finite outside the scale range</span></span>
 <span><span class="co">#&gt; (`stat_boxplot()`).</span></span></code></pre></div>
 <p><img src="masjid_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
@@ -171,7 +173,7 @@ While Balai Ibadat holds the lowest capacity among all. The minimum and
 maximum capacity for Masjid Kampong is 120 and 2400, for Masjid Mukim is
 300 and 2000, for Masjid Utama is 700 and 3000, for Masjid Negara is
 3000 and 5000, for Surau is 40 and 1000 and for Balai Ibadat is 40 and
-550. Outliers can be seen for 'Masjid Kampong' where Masjid Suri Seri
+550. Outliers can be seen for ‘Masjid Kampong’ where Masjid Suri Seri
 Begawan Raja Pengiran Anak Damit in Kg. Madang can accomodate 2400
 people inside whereas the others in the same category typically have the
 capacity of 1700 &amp; below.</p>
@@ -184,13 +186,13 @@ capacity of 1700 &amp; below.</p>
 <span><span class="va">top_5_biggest</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 5</span></span></span>
 <span><span class="co">#&gt;   name                               kampong          mukim    category capacity</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Masjid Jame' 'Asr Hassanil Bolkiah Kg. Kiarong      Mukim G… Masjid …     <span style="text-decoration: underline;">5</span>000</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Masjid Omar Ali Saifuddien         Pusat Bandar     Mukim K… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Masjid Hassanal Bolkiah            Kg. Mentiri      Mukim M… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Masjid Sultan Sharif Ali           Kg. Sengkurong A Mukim S… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Masjid Mohamed Bolkiah             Kg. Serusop      Mukim B… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span></code></pre></div>
-<p>The top 5 biggest by capacity are Jame' 'Asr Hassanil Bolkiah in Kg.
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Masjid Hassanal Bolkiah            Kg. Mentiri      Mukim M… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Masjid Sultan Sharif Ali           Kg. Sengkurong A Mukim S… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Masjid Mohamed Bolkiah             Kg. Serusop      Mukim B… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Masjid Omar Ali Saifuddien         Pusat Bandar     Mukim K… Masjid …     <span style="text-decoration: underline;">3</span>000</span></span></code></pre></div>
+<p>The top 5 biggest by capacity are Jame’ ’Asr Hassanil Bolkiah in Kg.
 Kiarong with 5000 capacity. Meanwhile, Masjid Omar Ali Saifuddien in
 Pusat Bandar, Masjid Hassanal Bolkiah in Kg. Mentiri, Masjid Sultan
 Sharif Ali in Kg. Sengkurong A and Masjid Mohamed Bolkiah in Kg. Serusop
@@ -203,17 +205,17 @@ all can accomodate up to 3000 people.</p>
 <span></span>
 <span><span class="va">top_5_smallest</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 5</span></span></span>
-<span><span class="co">#&gt;   name                     kampong                  mukim      category capacity</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Balai Ibadat Kg. Melilas Kg. Melilas              Mukim Mel… Balai I…       40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Balai Ibadat Kg. Sukang  Kg. Sukang               Mukim Suk… Balai I…       40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Surau Kg. Mapol          Hutan Simpan Bukit Ladan Mukim Ram… Surau          40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Surau Kg. Belabau        Kg. Belabau              Mukim Ram… Surau          40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Balai Ibadat Kg. Peramu  Kg. Peramu               Mukim Per… Balai I…      100</span></span></code></pre></div>
-<p>Whereas, the top 5 smallest by capacity are Balai Ibadat Kg. Melilas,
-Balai Ibadat Kg. Sukang, Surau Kg. Mapol in Hutan Simpan Bukit Ladan,
-Surau Kg. Belabau in Kg. Belabau can accomodate 40 people while Balai
-Ibadat Kg. Peramu in Kg. Peramu can accomdate 100 people.</p>
+<span><span class="co">#&gt;   name                     kampong           mukim             category capacity</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Balai Ibadat Kg. Melilas Kg. Melilas       Mukim Melilas     Balai I…       40</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Balai Ibadat Kg. Sukang  Kg. Sukang        Mukim Sukang      Balai I…       40</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Balai Ibadat Kg. Peramu  Kg. Peramu        Mukim Peramu      Balai I…      100</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Balai Ibadat Nur Taqwa   Kg. Ujong Kelinik Mukim Sungai Keb… Balai I…      100</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Masjid Kg. Bukit Sawat   Kg. Bukit Sawat   Mukim Bukit Sawat Masjid …      120</span></span></code></pre></div>
+<p>Whereas, the top 5 smallest by capacity are Balai Ibadat Kg. Melilas
+and Balai Ibadat Kg. Sukang, each accommodating 40 people; Balai Ibadat
+Kg. Peramu and Balai Ibadat Nur Taqwa, each accommodating 100 people;
+and Masjid Kg. Bukit Sawat, which accommodates 120 people.</p>
 <p>The bar chart below illustrates the number of masjid, surau, and
 balai ibadat by mukim . Mukim Kota Batu stand out with the highest count
 of 8 religious infrastructures as it is located near to Bandar Seri
@@ -241,15 +243,15 @@ Begawan, the capital of Brunei Darussalam.</p>
 <span>    x <span class="op">=</span> <span class="st">"Counts"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Mukim"</span>,</span>
 <span>    fill <span class="op">=</span> <span class="st">"Number of Religious Infrastructures"</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Source: MORA Annual Statistics (2021)"</span></span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>    legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
 <span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
+<span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>    plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color <span class="op">=</span> <span class="st">"#a4a4a4"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="masjid_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <p>Using the **sf** package, we can visualize the geographic
 distribution of religious infrastructures across Brunei by Mukim. The
@@ -290,14 +292,14 @@ around the border of the mukim.</p>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Distribution of Religious Infrastructures in Brunei by Mukim"</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Source: MORA Annual Statistics (2021)"</span></span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>    legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
 <span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
-<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>    plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color <span class="op">=</span> <span class="st">"#a4a4a4"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="masjid_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 <p>Furthermore, since we have the longtitude and latitude coordiantes of
 the infrastructures, we can visualise the locations of each of them
@@ -307,24 +309,21 @@ Brunei’s mukim boundaries:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mkm_sf</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> <span class="co"># change data to kpg_sf to view bordered by kampong</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">masjid</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">latitude</span>, <span class="va">longitude</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">category</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>             size <span class="op">=</span> <span class="fl">2</span>, alpha <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>             size <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"mako"</span>, </span>
 <span>                        name <span class="op">=</span> <span class="st">"Category"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Distribution of Religious Infrastructures in Brunei"</span>,</span>
-<span>    caption <span class="op">=</span> <span class="st">"Source: MORA Annual Statistics (2021)"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: Compiled by author using MORA Annual Statistics 2021 and other publicly accessible sources online"</span>,</span>
 <span>    x <span class="op">=</span> <span class="st">"Latitude"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Longitude"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>    legend.position <span class="op">=</span> <span class="st">"right"</span>,</span>
-<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,</span>
-<span>    plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 24 rows containing missing values or values outside the scale range</span></span>
-<span><span class="co">#&gt; (`geom_point()`).</span></span></code></pre></div>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>    plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>, face <span class="op">=</span> <span class="st">"italic"</span>, color <span class="op">=</span> <span class="st">"#a4a4a4"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="masjid_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 </div>
 <div class="section level2">
@@ -344,7 +343,9 @@ or the source datasets used in this vignette.</p>
 <ul>
 <li>Department of Economic Planning and Statistics, Ministry of Finance
 and Economy (2022)</li>
-<li>Ministry of Religious Affairs (2021)</li>
+<li>Ministry of Religious Affairs Annual Statistics (2021) &amp;
+Website</li>
+<li>Wikipedia</li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -358,7 +359,7 @@ and Economy (2022)</li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

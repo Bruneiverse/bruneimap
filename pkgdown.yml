@@ -1,10 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.1.2
 pkgdown_sha: ~
 articles:
   masjid: masjid.html
   schools: schools.html
-last_built: 2025-02-15T15:02Z
+last_built: 2025-05-07T06:45Z
 urls:
   reference: https://bruneiverse.github.io/bruneimap/reference
   article: https://bruneiverse.github.io/bruneimap/articles

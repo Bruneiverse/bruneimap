@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Schools • bruneimap</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -93,20 +92,20 @@ district where each school is located.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">sch_sf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 252</span></span>
 <span><span class="co">#&gt; Columns: 14</span></span>
-<span><span class="co">#&gt; $ No.             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…</span></span>
-<span><span class="co">#&gt; $ School          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sekolah Rendah Beribi Telanai", "Sekolah Rendah Datu …</span></span>
-<span><span class="co">#&gt; $ Sector          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MOE", "MOE", "MOE", "MOE", "MOE", "MOE", "MOE", "MOE"…</span></span>
-<span><span class="co">#&gt; $ Cluster         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Cluster 1", "Cluster 1", "Cluster 1", "Cluster 1", "C…</span></span>
-<span><span class="co">#&gt; $ Education.Level <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pre-Primary &amp; Primary", "Pre-Primary &amp; Primary", "Pre…</span></span>
-<span><span class="co">#&gt; $ geometry        <span style="color: #949494; font-style: italic;">&lt;POINT [°]&gt;</span> POINT (114.8973 4.87885), POINT (114.9132 4.8923…</span></span>
-<span><span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45, 66, 87, 251, 245, 87, 113, 116, 954, 116, 247, 89,…</span></span>
-<span><span class="co">#&gt; $ kampong         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kg. Beribi", "Kg. Kiarong", "Kg. Mata-Mata", "STKRJ T…</span></span>
-<span><span class="co">#&gt; $ mukim           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mukim Gadong B", "Mukim Gadong B", "Mukim Gadong B", …</span></span>
-<span><span class="co">#&gt; $ district        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Brunei-Muara", "Brunei-Muara", "Brunei-Muara", "Brune…</span></span>
-<span><span class="co">#&gt; $ X               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 114.8956, 114.9156, 114.8959, 114.8804, 114.8784, 114.…</span></span>
-<span><span class="co">#&gt; $ Y               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.886076, 4.895094, 4.902696, 4.924242, 4.904538, 4.90…</span></span>
-<span><span class="co">#&gt; $ perimeter       <span style="color: #949494;">[m]</span> 16000.315 [m], 9459.647 [m], 12062.622 [m], 3507.623 [m]…</span></span>
-<span><span class="co">#&gt; $ area            <span style="color: #949494;">[m^2]</span> 6372043.3 [m^2], 3851640.7 [m^2], 4833818.0 [m^2], 694…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ No.             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1<span style="color: #949494;">, </span>2<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>5<span style="color: #949494;">, </span>6<span style="color: #949494;">, </span>7<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>9<span style="color: #949494;">, </span>10<span style="color: #949494;">, </span>11<span style="color: #949494;">, </span>12<span style="color: #949494;">, </span>13<span style="color: #949494;">, </span>14<span style="color: #949494;">, </span>15<span style="color: #949494;">, </span>16<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ School          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sekolah Rendah Beribi Telanai"<span style="color: #949494;">, </span>"Sekolah Rendah Datu …</span></span>
+<span><span class="co">#&gt; $ Sector          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MOE"<span style="color: #949494;">, </span>"MOE"<span style="color: #949494;">, </span>"MOE"<span style="color: #949494;">, </span>"MOE"<span style="color: #949494;">, </span>"MOE"<span style="color: #949494;">, </span>"MOE"<span style="color: #949494;">, </span>"MOE"<span style="color: #949494;">, </span>"MOE"…</span></span>
+<span><span class="co">#&gt; $ Cluster         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Cluster 1"<span style="color: #949494;">, </span>"Cluster 1"<span style="color: #949494;">, </span>"Cluster 1"<span style="color: #949494;">, </span>"Cluster 1"<span style="color: #949494;">, </span>"C…</span></span>
+<span><span class="co">#&gt; $ Education.Level <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pre-Primary &amp; Primary"<span style="color: #949494;">, </span>"Pre-Primary &amp; Primary"<span style="color: #949494;">, </span>"Pre…</span></span>
+<span><span class="co">#&gt; $ geometry        <span style="color: #949494; font-style: italic;">&lt;POINT [°]&gt;</span> POINT (114.8973 4.87885)<span style="color: #949494;">, </span>POINT (114.9132 4.8923…</span></span>
+<span><span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45<span style="color: #949494;">, </span>66<span style="color: #949494;">, </span>87<span style="color: #949494;">, </span>251<span style="color: #949494;">, </span>245<span style="color: #949494;">, </span>87<span style="color: #949494;">, </span>113<span style="color: #949494;">, </span>116<span style="color: #949494;">, </span>954<span style="color: #949494;">, </span>116<span style="color: #949494;">, </span>247<span style="color: #949494;">, </span>89<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">#&gt; $ kampong         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kg. Beribi"<span style="color: #949494;">, </span>"Kg. Kiarong"<span style="color: #949494;">, </span>"Kg. Mata-Mata"<span style="color: #949494;">, </span>"STKRJ T…</span></span>
+<span><span class="co">#&gt; $ mukim           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mukim Gadong B"<span style="color: #949494;">, </span>"Mukim Gadong B"<span style="color: #949494;">, </span>"Mukim Gadong B"<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ district        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Brunei-Muara"<span style="color: #949494;">, </span>"Brunei-Muara"<span style="color: #949494;">, </span>"Brunei-Muara"<span style="color: #949494;">, </span>"Brune…</span></span>
+<span><span class="co">#&gt; $ X               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 114.8956<span style="color: #949494;">, </span>114.9156<span style="color: #949494;">, </span>114.8959<span style="color: #949494;">, </span>114.8804<span style="color: #949494;">, </span>114.8784<span style="color: #949494;">, </span>114.…</span></span>
+<span><span class="co">#&gt; $ Y               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.886076<span style="color: #949494;">, </span>4.895094<span style="color: #949494;">, </span>4.902696<span style="color: #949494;">, </span>4.924242<span style="color: #949494;">, </span>4.904538<span style="color: #949494;">, </span>4.90…</span></span>
+<span><span class="co">#&gt; $ perimeter       <span style="color: #949494;">[m]</span> 16000.315 [m]<span style="color: #949494;">, </span>9459.647 [m]<span style="color: #949494;">, </span>12062.622 [m]<span style="color: #949494;">, </span>3507.623 [m]…</span></span>
+<span><span class="co">#&gt; $ area            <span style="color: #949494;">[m^2]</span> 6372043.3 [m^2]<span style="color: #949494;">, </span>3851640.7 [m^2]<span style="color: #949494;">, </span>4833818.0 [m^2]<span style="color: #949494;">, </span>694…</span></span></code></pre></div>
 <p>Schools in Brunei are categorised into three sectors:
 <strong>MOE</strong>, <strong>MORA</strong> (both public) and
 <strong>private</strong>. Additionally, MOE schools, ranging from
@@ -129,7 +128,7 @@ primary to sixth form, are further organized into six clusters.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
