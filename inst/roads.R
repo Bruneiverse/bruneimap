@@ -38,10 +38,17 @@ kpg_rd <-
   st_intersection(select(kpg_sf, id, kampong, mukim, district, geometry)) |>
   bind_rows(filter(brn_rd, grepl("Jambatan Temburong", name)))
 
-place <- "Kiarong"
+place <- "Anggerek Desa|Jaya Setia|Kerajaan|Pulaie|Jaya Bakti|Pingai Berakas"
+aiti_sf <- filter(kpg_sf, grepl(!!place, kampong))
+aiti_rd <- filter(kpg_rd, grepl(!!place, kampong))
+save(aiti_rd, aiti_sf, file = "aiti_rd.RData")
 ggplot() +
-  geom_sf(data = filter(kpg_sf, grepl(!!place, kampong))) +
-  geom_sf(data = filter(kpg_rd, grepl(!!place, kampong)))
+  geom_sf(data = filter(kpg_sf, grepl(!!place, kampong)), fill = NA, col = NA) +
+  geom_sf(data = filter(kpg_rd, grepl(!!place, kampong)), aes(col = highway, linewidth = highway),
+          show.legend = FALSE) +
+  scale_linewidth_manual(values = c(0.3, 0.3, 0.9, 0.9, 0.3, 0.6,
+                                    0.6, 0.3, 0.3, 0.4, 0.4, 0.3)) +
+  scale_colour_viridis_d(option = "mako")
 
 pl <-
   map(
